@@ -19,7 +19,13 @@ Route::get('/', function () {
 
 Route::get('/index', function () {
     return view('index');
-});
+})->name('index');
+
+Route::get('/page', function () {
+    return view('front.page');
+})->name('index');
+
+
 
 
 Route::middleware([
@@ -27,8 +33,11 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-    Route::get('/tocken',[\App\Http\Controllers\SanctumTockenController::class,'generateToken']);
+    Route::get('dashboard', [\App\Http\Controllers\Cabinet\IndexController::class,'index'])->name('dashboard');
+    Route::prefix('cabinet')->group(function (){
+        Route::get('token',[\App\Http\Controllers\SanctumTockenController::class,'generateToken']);
+    });
+    Route::group(['middleware' => ['role:super-admin']], function () {
+        Route::get('office',[\App\Http\Controllers\Cabinet\IndexController::class,'index'])->name('office');
+    });
 });
