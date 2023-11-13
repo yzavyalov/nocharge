@@ -17,13 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/index', function () {
-    return view('index');
-})->name('index');
-
-Route::get('/page', function () {
-    return view('front.page');
-})->name('index');
+Route::get('/', [\App\Http\Controllers\FrontController::class, 'index'])->name('index');
+Route::get('/page', [\App\Http\Controllers\FrontController::class, 'about'])->name('about');
+Route::get('/api',[\App\Http\Controllers\FrontController::class, 'api'])->name('api');
+Route::get('/synergy',[\App\Http\Controllers\FrontController::class,'synergy'])->name('synergy');
 
 
 

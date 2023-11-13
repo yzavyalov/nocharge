@@ -65,10 +65,10 @@
                         <a class="nav-link active" aria-current="page" href="{{route('index')}}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
+                        <a class="nav-link" href="{{route('about')}}">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">API</a>
+                        <a class="nav-link" href="{{route('api')}}">API</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Price</a>
@@ -111,7 +111,7 @@
                     <div class="carousel-caption text-start">
                         <h1>Synergy</h1>
                         <p class="opacity-75">Synergy of cooperation for online business.</p>
-                        <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
+                        <p><a class="btn btn-lg btn-primary" href="{{route('synergy')}}">Sign up today</a></p>
                     </div>
                 </div>
             </div>

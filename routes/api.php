@@ -22,6 +22,7 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('/checked', function (){
         dd('kgjhtrk');
     });
+    Route::post('/upload-users',[\App\Http\Controllers\Api\CheckUserController::class, 'uploadUser']);
 });
 
 

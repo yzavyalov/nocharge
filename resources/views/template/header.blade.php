@@ -9,6 +9,7 @@
     <script src="{{asset('https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js')}}"></script>
 
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    @yield('style')
     <!-- Custom styles for this template -->
     <link href="{{asset('css/carousel.css')}}" rel="stylesheet">
     <!-- Fonts -->
@@ -37,10 +38,10 @@
                         <a class="nav-link active" aria-current="page" href="{{route('index')}}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
+                        <a class="nav-link" href="{{route('about')}}">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">API</a>
+                        <a class="nav-link" href="{{route('api')}}">API</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Price</a>
