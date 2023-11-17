@@ -3,35 +3,29 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserChangeRequest;
 use App\Models\CheckUser;
 use App\Services\EncryptService;
 use Illuminate\Http\Request;
 
 class CheckUserController extends Controller
 {
-    public function uploadUser(Request $request)
+    public function uploadUser(UserChangeRequest $request)
     {
         $usersData = $request->all(); // Получаем JSON-данные
 
-        $check = function($n)
-        {
-            if (EncryptService::checkStringSHA256($n))
-                return $n;
-            else
-                return EncryptService::sha256hash($n);
-        };
-
         foreach ($usersData as $userData) {
-            $user = array_map($check,$userData);
+            if($userData['email']) {
+                $email = EncryptService::coding($userData['email']);
+            }
 
             CheckUser::create([
-                'email' => $user['email'],
-                'ip' => $user['ip'],
-                'browser' => $user['browser'],
-                'agent' => $user['agent'],
-                'platform' => $user['platform'],
+                '*.email' => 'required|email',
+                '*.ip' => 'ip|nullable',
+                '*.browser' => 'string|nullable',
+                '*.agent' => 'string|nullable',
+                '*.platform' => 'string|nullable',
             ]);
-
         }
         return response()->json(['message' => 'Пользователи успешно сохранены'], 200);
 

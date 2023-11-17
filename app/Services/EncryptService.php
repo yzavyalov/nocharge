@@ -21,4 +21,13 @@ class EncryptService
 
         return $string256Hash;
     }
+
+
+    public static function coding($n)
+    {
+        if (EncryptService::checkStringSHA256($n))
+            return $n;
+        else
+            return EncryptService::sha256hash($n);
+    }
 }
