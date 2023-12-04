@@ -40,6 +40,18 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        'api' => [
+            'driver' => 'token',
+            'provider' => 'users',
+            'hash' => false,
+        ],
+
+        'partner' => [
+            'driver' => 'token',
+            'provider' => 'partners', // Имя провайдера для партнеров
+            'hash' => false,
+        ],
     ],
 
     /*
@@ -63,6 +75,11 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+
+        'partners' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Partners::class,
         ],
 
         // 'users' => [

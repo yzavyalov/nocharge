@@ -31,7 +31,18 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('dashboard', [\App\Http\Controllers\Cabinet\IndexController::class,'index'])->name('dashboard');
+    Route::post('/submit-email',[\App\Http\Controllers\Cabinet\EmployeeController::class, 'emailForm'])->name('submit-email');
+    Route::get('partner-form',[\App\Http\Controllers\Cabinet\IndexController::class, 'companyForm'])->name('partner-form');
+
+    Route::get('partner/{id}',[\App\Http\Controllers\Cabinet\PartnerController::class, 'show'])->name('page-partner');
+    Route::post('create-partner',[\App\Http\Controllers\Cabinet\PartnerController::class, 'create'])->name('create-partner');
+    Route::post('update-partner/{id}',[\App\Http\Controllers\Cabinet\PartnerController::class, 'update'])->name('update-partner');
+    Route::post('check/code',[\App\Http\Controllers\Cabinet\CodeController::class, 'checkCode'])->name('save-intermediary');
+
+    Route::post('check',function (){dd('sdgfsfdg');})->name('check');
+
     Route::prefix('cabinet')->group(function (){
+        Route::get('my-cabinet',[\App\Http\Controllers\Cabinet\IndexController::class, 'cabinetIndex'])->name('my-cabinet')->middleware('superadmin');
         Route::get('token',[\App\Http\Controllers\SanctumTockenController::class,'generateToken']);
     });
     Route::group(['middleware' => ['role:super-admin']], function () {

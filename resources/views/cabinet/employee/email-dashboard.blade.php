@@ -25,7 +25,5 @@
                 </div>
             </div>
         </div>
-
-        @livewire('input-encrypt')
     </div>
 </x-app-layout>

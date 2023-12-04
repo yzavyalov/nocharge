@@ -5,16 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CheckUser extends Model
+class Quantity_user_request extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'email',
-        'ip',
-        'browser',
-        'agent',
-        'platform',
-        'owner_partner',
+        'user_id',
+        'partner_id',
+        'check_user_id',
+        'type',
     ];
 }

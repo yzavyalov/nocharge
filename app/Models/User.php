@@ -65,6 +65,6 @@ class User extends Authenticatable
 
     public function partners()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(Partners::class,'partners_users','user_id','partner_id' );
     }
 }

@@ -8,4 +8,17 @@ enum PartnersTypeEnum
     const FOREX = 2;
     const DATING = 3;
     const PSP =4;
+    const OTHER = 5;
+
+
+    public static function toSelectArray(): array
+    {
+        return [
+            self::CASINO => 'Casino',
+            self::FOREX => 'Forex',
+            self::DATING => 'Dating',
+            self::PSP => 'PSP',
+            self::OTHER => 'Other',
+        ];
+    }
 }

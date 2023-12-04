@@ -19,10 +19,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::middleware('auth:sanctum')->group(function(){
-    Route::get('/checked', function (){
-        dd('kgjhtrk');
-    });
     Route::post('/upload-users',[\App\Http\Controllers\Api\CheckUserController::class, 'uploadUser']);
+    Route::post('/check-group-users',[\App\Http\Controllers\Api\CheckUserController::class, 'ckeckGroupUser']);
+    Route::post('/check-user',[\App\Http\Controllers\Api\CheckUserController::class, 'checkOneUser']);
 });
 
 
