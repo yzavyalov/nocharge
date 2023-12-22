@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AddCompaneRequest;
 use App\Http\Requests\UpdatePartnerRequest;
 use App\Models\Partners;
+use App\Models\User;
+use App\Services\TokenService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Sail\Console\AddCommand;
@@ -19,15 +21,26 @@ class PartnerController extends Controller
         Auth::user()->partners()->attach($partner);
 
         Auth::user()->assignRole('user-admin');
+        Auth::user()->removeRole('user-testing');
 
         return redirect()->route('page-partner',$partner->id);
     }
+
+    public function index()
+    {
+       $partners = Partners::all();
+
+        return view('cabinet.admin');
+    }
+
 
     public function show($id)
     {
         $partner = Partners::query()->find($id);
 
-        return view('dashboard.cabinet.partner-cabinet', compact('partner'));
+        session(['partner_id' => $id]);
+
+        return view('cabinet.admin.company-cabinet', compact('partner'));
     }
 
     public function update(UpdatePartnerRequest $request, $id)

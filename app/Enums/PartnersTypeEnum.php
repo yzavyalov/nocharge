@@ -8,7 +8,8 @@ enum PartnersTypeEnum
     const FOREX = 2;
     const DATING = 3;
     const PSP =4;
-    const OTHER = 5;
+    const POKER = 5;
+    const OTHER = 6;
 
 
     public static function toSelectArray(): array
@@ -18,6 +19,7 @@ enum PartnersTypeEnum
             self::FOREX => 'Forex',
             self::DATING => 'Dating',
             self::PSP => 'PSP',
+            self::POKER => 'Poker',
             self::OTHER => 'Other',
         ];
     }

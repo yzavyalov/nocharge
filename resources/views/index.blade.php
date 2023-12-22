@@ -191,7 +191,9 @@
                 <h2 class="featurette-heading fw-normal lh-1">Overall Strength. <span class="text-body-secondary">Information exchange system.</span></h2>
                 <p class="lead">By exchanging information about unreliable clients, you will help each other avoid other participants in the system from meeting them.</p>
             </div>
+
             @livewire('input-encrypt')
+
             <div class="col-md-5">
                 <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Image" preserveAspectRatio="xMidYMid slice" focusable="false">
                     <image href="{{asset('img/exchange.png')}}" width="100%" height="100%" />

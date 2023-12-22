@@ -67,4 +67,19 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Partners::class,'partners_users','user_id','partner_id' );
     }
+
+    public function claims()
+    {
+        return $this->hasMany(Claim::class,'user_id','id');
+    }
+
+    public function lastClaim()
+    {
+        return $this->hasOne(Claim::query()->latest('created_at')->first());
+    }
+
+    public function claimForMe()
+    {
+        return $this->hasMany(Claim::class,'admin_id','id');
+    }
 }
