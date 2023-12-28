@@ -21,6 +21,7 @@ class PartnerController extends Controller
         Auth::user()->partners()->attach($partner);
 
         Auth::user()->assignRole('user-admin');
+
         Auth::user()->removeRole('user-testing');
 
         return redirect()->route('page-partner',$partner->id);

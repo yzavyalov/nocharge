@@ -45,7 +45,10 @@ Route::middleware([
     Route::post('update-partner/{id}',[\App\Http\Controllers\Cabinet\PartnerController::class, 'update'])->name('update-partner');
     Route::post('check/code',[\App\Http\Controllers\Cabinet\CodeController::class, 'checkCode'])->name('save-intermediary');
 
-    Route::get('payment/{count}');
+    Route::get('payment/{count}',[\App\Http\Controllers\Cabinet\PaymentController::class,'createPayment'])->name('payment-create');
+    Route::get('/payment/save/{count}',[\App\Http\Controllers\Cabinet\PaymentController::class, 'savePayment'])->name('save-payment');
+    Route::get('/payment/{id}/oncheck',[\App\Http\Controllers\Cabinet\PaymentController::class,'oncheck'])->name('oncheck-payment');
+
 
     Route::post('check',[\App\Http\Controllers\Cabinet\CodeController::class, 'checkCode'])->name('check');
     Route::post('add-check-user',[\App\Http\Controllers\Cabinet\CodeController::class, 'addCode'])->name('add-code');

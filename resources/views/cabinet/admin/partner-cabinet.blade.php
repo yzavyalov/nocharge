@@ -102,6 +102,57 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-8 mt-8 relative">
+                    <h2 class="text-center font-bold text-xl mb-4">
+                        Your payments:
+                    </h2>
+                    <p class="text-center">We accept cryptocurrency payments directly and, therefore, do not have payment automation.</br> If you have made a payment that you see in the table, please press the 'Confirm' button.</p>
+                    <!-- Кнопка "Add company" в правом верхнем углу блока -->
+
+                    <table class="w-full">
+                        <thead>
+                        <tr class="text-center">
+                            <th>created_at</th>
+                            <th>Sum</th>
+                            <th>Currency</th>
+                            <th>Status</th>
+                            <th>updated_at</th>
+                            <th></th>
+                        </tr>
+                        <tr></tr>
+                        </thead>
+                        <tbody>
+                        @foreach($user->partners as $company)
+                            @foreach($company->threemonthspayments as $payment)
+                            <tr class="text-center">
+                                <td>{{ \Carbon\Carbon::make($payment->created_at)->format('d-m-Y') }}</td>
+                                <td>{{ $payment->sum }}</td>
+                                <td>{{ $payment->currency }}</td>
+                                <td>
+                                    @if($payment->status == 1)
+                                        TEST PERIOD
+                                    @elseif($payment->status == 2)
+                                        PAID
+                                    @elseif($payment->status == 3)
+                                        UNPAID
+                                    @elseif($payment->status == 4)
+                                        CHECK
+                                    @endif
+                                </td>
+                                <td>{{ \Carbon\Carbon::make($payment->updated_at)->format('d-m-Y') }}</td>
+                                <td>
+                                    @if($payment->status == 1)
+                                        <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" onclick="window.location.href = '{{ route('oncheck-payment',$payment->id) }}'">
+                                            CONFIRM
+                                        </button>
+                                    @endif
+                                </td>
+                            </tr>
+                            @endforeach
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
 

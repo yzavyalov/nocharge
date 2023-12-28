@@ -6,7 +6,7 @@
         <div class="flex-grow border-4 border-blue-500 rounded-lg bg-white p-8 mx-auto text-center">
             <h3 class="text-lg font-semibold mb-4">Free - One Month</h3>
             <p>Upload your email<br> database containing clients,<br> who have initiated chargebacks<br> or refunds on your website.</p>
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4" onclick="window.location.href='{{ route('payment-create',0) }}'">
                 Free 1 month
             </button>
         </div>
@@ -15,7 +15,7 @@
         <div class="flex-grow border-4 border-green-500 rounded-lg bg-white p-8 mx-auto text-center">
             <h3 class="text-lg font-semibold mb-4">300 USDT for 1 Month</h3>
             <p>You can pay on a monthly basis.<br> Uploading your database<br> of unreliable users enables<br> all colleagues to avoid another issue.</p>
-            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-4">
+            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-4" onclick="window.location.href='{{ route('payment-create',1) }}'">
                 Pay 1 month
             </button>
         </div>
@@ -24,7 +24,7 @@
         <div class="flex-grow border-4 border-yellow-500 rounded-lg bg-white p-8 mx-auto text-center">
             <h3 class="text-lg font-semibold mb-4">850 USDT for 3 Months</h3>
             <p>If you pay for 3 months upfront,<br> you receive a benefit of 50 USDT.<br>Participation in our system<br> allows participants to save.</p>
-            <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded mt-4">
+            <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded mt-4" onclick="window.location.href='{{ route('payment-create',3) }}'">
                 Pay 3 months
             </button>
         </div>
@@ -33,7 +33,7 @@
         <div class="flex-grow border-4 border-red-500 rounded-lg bg-white p-8 mx-auto text-center">
             <h3 class="text-lg font-semibold mb-4">3000 USDT for 12 Months</h3>
             <p>Paying for your annual participation<br> allows you to save 600 USDT upfront.<br>Participation in our system<br> allows participants to save.</p>
-            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-4">
+            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-4" onclick="window.location.href='{{ route('payment-create',12) }}'">
                 Pay 4 months
             </button>
         </div>
