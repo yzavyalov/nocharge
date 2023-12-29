@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Cabinet;
 
 use App\Enums\PaymentTypeEnum;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\TokenController;
 use App\Models\Payment;
 use Illuminate\Http\Request;
 
@@ -39,6 +40,9 @@ class PaymentController extends Controller
         $payment->currency = 'usd';
         $payment->status = PaymentTypeEnum::TEST_PERIOD;
         $payment->save();
+
+        $token = new TokenController();
+        $token->create($partner_id);
 
         return redirect()->route('page-partner',$partner_id);
     }

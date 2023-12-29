@@ -32,6 +32,7 @@ Route::middleware([
 ])->group(function () {
     Route::get('dashboard', [\App\Http\Controllers\Cabinet\IndexController::class,'index'])->name('dashboard');
     Route::get('packet-page',[\App\Http\Controllers\Cabinet\IndexController::class,'packetPage'])->name('packet-page');
+
     Route::post('/submit-email',[\App\Http\Controllers\Cabinet\EmployeeController::class, 'emailForm'])->name('submit-email');
     Route::post('send/claim',[\App\Http\Controllers\Cabinet\EmployeeController::class,'claim'])->name('send-claim');
 
@@ -43,6 +44,7 @@ Route::middleware([
     Route::get('partner/{id}',[\App\Http\Controllers\Cabinet\PartnerController::class, 'show'])->name('page-partner');
     Route::post('create-partner',[\App\Http\Controllers\Cabinet\PartnerController::class, 'create'])->name('create-partner');
     Route::post('update-partner/{id}',[\App\Http\Controllers\Cabinet\PartnerController::class, 'update'])->name('update-partner');
+
     Route::post('check/code',[\App\Http\Controllers\Cabinet\CodeController::class, 'checkCode'])->name('save-intermediary');
 
     Route::get('payment/{count}',[\App\Http\Controllers\Cabinet\PaymentController::class,'createPayment'])->name('payment-create');
@@ -51,7 +53,9 @@ Route::middleware([
 
 
     Route::post('check',[\App\Http\Controllers\Cabinet\CodeController::class, 'checkCode'])->name('check');
-    Route::post('add-check-user',[\App\Http\Controllers\Cabinet\CodeController::class, 'addCode'])->name('add-code');
+    Route::post('add-check-user',[\App\Http\Controllers\Cabinet\CodeController::class, 'addCheckUsers'])->name('addCheckUsers');
+
+    Route::get('token/{id}/update',[\App\Http\Controllers\TokenController::class,'update'])->name('token-update');
 
     Route::prefix('cabinet')->group(function (){
         Route::get('my-cabinet',[\App\Http\Controllers\Cabinet\IndexController::class, 'cabinetIndex'])->name('my-cabinet')->middleware('superadmin');

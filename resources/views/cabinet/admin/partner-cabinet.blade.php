@@ -113,6 +113,7 @@
                         <thead>
                         <tr class="text-center">
                             <th>created_at</th>
+                            <th>Company</th>
                             <th>Sum</th>
                             <th>Currency</th>
                             <th>Status</th>
@@ -126,6 +127,7 @@
                             @foreach($company->threemonthspayments as $payment)
                             <tr class="text-center">
                                 <td>{{ \Carbon\Carbon::make($payment->created_at)->format('d-m-Y') }}</td>
+                                <td>{{ $payment->partner->name }}</td>
                                 <td>{{ $payment->sum }}</td>
                                 <td>{{ $payment->currency }}</td>
                                 <td>
@@ -155,9 +157,6 @@
                 </div>
             </div>
 
-
-            @livewire('input-encrypt')
-
             <script>
                 function copyToken() {
                     var tokenField = document.getElementById('token');
@@ -169,8 +168,6 @@
 
             @endhasrole
 
-
-          @livewire('intermediaries')
 
         </div>
     </div>

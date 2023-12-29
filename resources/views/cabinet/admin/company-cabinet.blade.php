@@ -18,8 +18,11 @@
                         @if($partner->currentTocken->count() > 0)
                             <div class="mt-4">
                                 <div>This token for your API requests.</div>
-                                <input type="text" id="token" class="mt-1 p-2 border border-gray-300 rounded-md w-full" value="{{ \Illuminate\Support\Facades\Auth::user()->getRememberToken() }}" readonly>
-                                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 mt-2 rounded" onclick="copyToken()">Copy Token</button>
+                                <div style="display: flex; width: 100%;">
+                                    <input type="text" id="token" class="mt-1 p-2 border border-gray-300 rounded-md" style="flex: 1 0 auto;" value="{{ $partner->currentTocken->last()->token }}" readonly>
+                                    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 mt-2 rounded" onclick="copyToken()">Copy Token</button>
+                                </div>
+                                <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 mt-2 rounded" onclick="window.location.href='{{ route('token-update',$partner->currentTocken->last()->id) }}'">Update Token</button>
                             </div>
                         @else
                         <div class="mt-4">

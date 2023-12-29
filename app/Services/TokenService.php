@@ -2,11 +2,18 @@
 
 namespace App\Services;
 
+use App\Models\Partners;
+
 class TokenService
 {
-    public static function createToken($partnerName)
+    public static function createToken($partner_id)
     {
-        $string = $partnerName.now();
-        dd($string);
+        $partner = Partners::query()->find($partner_id);
+
+        $string = $partner->name.now();
+
+        $token = hash('sha256',$string);
+
+        return $token;
     }
 }

@@ -9,6 +9,12 @@ class Token extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'partner_id',
+        'token',
+        'active',
+    ];
+
     public function partner()
     {
         return $this->belongsTo(Partners::class);
