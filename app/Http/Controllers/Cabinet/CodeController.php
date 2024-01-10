@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Cabinet;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CheckUserRequest;
 use App\Http\Requests\EmailRequest;
 use App\Imports\CheckUsersExcelImport;
 use App\Models\CheckUser;
@@ -21,9 +22,23 @@ class CodeController extends Controller
     {
         $this->checkUserService = $checkUserService;
     }
-    public function checkCode(Request $request)
+    public function checkCode(CheckUserRequest $request)
     {
-        dd('feferg');
+        $request = $request->validated();
+
+        $email = $request['email'];
+
+        $checkMail = EncryptService::coding($email);
+
+        $check = CheckUser::query()->where('email',$checkMail)->first();
+
+        if ($check) {
+            session()->flash('success-check', 'This user has been found in our database!');
+
+        } else {
+            session()->flash('error-check', 'This user was not found in our database!');
+        }
+        return redirect()->back();
     }
 
     public function addCheckUsers(EmailRequest $request)
@@ -43,7 +58,8 @@ class CodeController extends Controller
         if ($request->hasFile('file'))
             \Maatwebsite\Excel\Facades\Excel::import(new CheckUsersExcelImport, $request->file('file'));
 
+        session()->flash('success-add-check', 'Your bad guys had added!');
 
-        return redirect()->back()->with('success','Your bad guys had added!');
+        return redirect()->back();
     }
 }

@@ -25,6 +25,9 @@
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('api')">
                         API Documentations
                     </x-nav-link>
+                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('blacklist')">
+                        Black List
+                    </x-nav-link>
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('contact')">
                         Contact with us
                     </x-nav-link>

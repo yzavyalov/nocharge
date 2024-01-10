@@ -7,7 +7,7 @@ use Livewire\Component;
 class InputEncrypt extends Component
 {
     public $email;
-    public $hashedEmail;
+    public $haEmail;
 
     public function submit()
     {
@@ -21,6 +21,6 @@ class InputEncrypt extends Component
 
     public function updatedEmail($value)
     {
-        $this->hashedEmail = hash('sha256', $value);
+        $this->haEmail = hash('sha256', $value);
     }
 }

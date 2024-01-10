@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\TokenTypeEnum;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -29,7 +30,7 @@ class Partners extends Model
 
     public function currentTocken()
     {
-        return $this->hasMany(Token::class,'partner_id','id')->where('active',1);
+        return $this->hasMany(Token::class,'partner_id','id')->where('active',TokenTypeEnum::ACTIVE);
     }
 
     public function payments()

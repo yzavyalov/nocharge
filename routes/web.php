@@ -23,12 +23,11 @@ Route::get('/api',[\App\Http\Controllers\FrontController::class, 'api'])->name('
 Route::get('/synergy',[\App\Http\Controllers\FrontController::class,'synergy'])->name('synergy');
 
 
-
-
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
+    'activeToken',
 ])->group(function () {
     Route::get('dashboard', [\App\Http\Controllers\Cabinet\IndexController::class,'index'])->name('dashboard');
     Route::get('packet-page',[\App\Http\Controllers\Cabinet\IndexController::class,'packetPage'])->name('packet-page');
@@ -41,11 +40,20 @@ Route::middleware([
     Route::get('claim-delete/{id}',[\App\Http\Controllers\Cabinet\ClaimController::class, 'claimDel'])->name('del-claim');
 
     Route::get('user/{id}/partners',[\App\Http\Controllers\Cabinet\PartnerController::class,'index'])->name('user-companies');
-    Route::get('partner/{id}',[\App\Http\Controllers\Cabinet\PartnerController::class, 'show'])->name('page-partner');
+    Route::get('partner/{id}',[\App\Http\Controllers\Cabinet\PartnerController::class, 'show'])->name('page-partner')->middleware('checkroute');
     Route::post('create-partner',[\App\Http\Controllers\Cabinet\PartnerController::class, 'create'])->name('create-partner');
-    Route::post('update-partner/{id}',[\App\Http\Controllers\Cabinet\PartnerController::class, 'update'])->name('update-partner');
+    Route::post('update-partner/{id}',[\App\Http\Controllers\Cabinet\PartnerController::class, 'update'])->name('update-partner')->middleware('checkroute');
 
-    Route::post('check/code',[\App\Http\Controllers\Cabinet\CodeController::class, 'checkCode'])->name('save-intermediary');
+    Route::get('review/all',[\App\Http\Controllers\Cabinet\ReviewController::class, 'index'])->name('index-review');
+    Route::get('review/search',[\App\Http\Controllers\Cabinet\ReviewController::class,'select'])->name('search-review');
+    Route::get('review/{id}',[\App\Http\Controllers\Cabinet\ReviewController::class, 'show'])->name('show-review');
+    Route::post('review/create',[\App\Http\Controllers\Cabinet\ReviewController::class, 'create'])->name('save-review');
+
+    Route::post('review/{id}/comment/create',[\App\Http\Controllers\Cabinet\CommentController::class,'create'])->name('save-comment');
+    Route::get('review/comment/{id}/show',[\App\Http\Controllers\Cabinet\CommentController::class,'show'])->name('show-comment');
+    Route::post('review/comment/{id}/update',[\App\Http\Controllers\Cabinet\CommentController::class,'update'])->name('update-comment');
+    Route::get('review/comment/{id}/delete',[\App\Http\Controllers\Cabinet\CommentController::class,'delete'])->name('delete-comment');
+
 
     Route::get('payment/{count}',[\App\Http\Controllers\Cabinet\PaymentController::class,'createPayment'])->name('payment-create');
     Route::get('/payment/save/{count}',[\App\Http\Controllers\Cabinet\PaymentController::class, 'savePayment'])->name('save-payment');

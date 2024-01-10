@@ -95,6 +95,8 @@
 
             @livewire('input-user')
 
+            @livewire('input-encrypt')
+
             @livewire('intermediaries')
 
         </div>

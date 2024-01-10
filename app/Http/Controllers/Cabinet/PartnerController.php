@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Cabinet;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AddCompaneRequest;
 use App\Http\Requests\UpdatePartnerRequest;
+use App\Models\Badbook\BadItem;
 use App\Models\Partners;
 use App\Models\User;
 use App\Services\TokenService;

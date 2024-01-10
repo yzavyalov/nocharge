@@ -2,7 +2,10 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\ActiveTokenMiddleware;
+use App\Http\Middleware\AuthForMyTokenMiddleware;
 use App\Http\Middleware\AuthWithToken;
+use App\Http\Middleware\CheckRouteMiddleware;
 use App\Http\Middleware\SuperAdminMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -68,5 +71,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'superadmin' => SuperAdminMiddleware::class,
         'token' => AuthWithToken::class,
+        'checkroute' => CheckRouteMiddleware::class,
+        'activeToken'=>ActiveTokenMiddleware::class,
     ];
 }

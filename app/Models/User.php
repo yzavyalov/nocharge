@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Enums\EmployeeApplicationStatusEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -73,6 +74,11 @@ class User extends Authenticatable
         return $this->hasMany(Claim::class,'user_id','id');
     }
 
+    public function activeClaim()
+    {
+        return $this->hasMany(Claim::class,'user_id','id')->where('status',EmployeeApplicationStatusEnum::AGREED)->latest('created_at');
+    }
+
     public function lastClaim()
     {
         return $this->hasOne(Claim::query()->latest('created_at')->first());
@@ -82,4 +88,5 @@ class User extends Authenticatable
     {
         return $this->hasMany(Claim::class,'admin_id','id');
     }
+
 }

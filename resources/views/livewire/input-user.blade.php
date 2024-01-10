@@ -1,13 +1,9 @@
 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-8 mt-8">
     <h3>Add user, who's made a chargeback</h3>
     <form method="post" action="{{ route('addCheckUsers') }}" enctype="multipart/form-data">
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
+        @if (session('success-add-check'))
+            <div class="bg-green-200 border-l-4 border-green-500 p-4 mb-4">
+                <p class="text-green-700">{{ session('success-add-check') }}</p>
             </div>
         @endif
         @csrf
