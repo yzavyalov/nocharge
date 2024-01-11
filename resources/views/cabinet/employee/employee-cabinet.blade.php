@@ -3,11 +3,21 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            @if (session('error-activity-token'))
+                <div class="bg-red-200 border-l-4 border-red-500 p-4 mb-4">
+                    <p class="text-red-700">{{ session('error-activity-token') }}</p>
+                </div>
+            @endif
+
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-8">
                 <!-- Остальной код не изменен -->
 
                 <div class="mt-8">
-                    <h3 class="text-lg font-semibold mb-4">Cabinet</h3>
+                    <h3 class="text-lg font-semibold mb-4">
+                        @foreach($user->partners as $partner)
+                             {{$partner->name}}
+                        @endforeach
+                    </h3>
                     <!-- Блок для ввода email и кнопки "Send Response" -->
                        <div>
                            <h3>Your claim:</h3>

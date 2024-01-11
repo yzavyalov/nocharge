@@ -34,7 +34,7 @@
             <h3 class="text-lg font-semibold mb-4">3000 USDT for 12 Months</h3>
             <p>Paying for your annual participation<br> allows you to save 600 USDT upfront.<br>Participation in our system<br> allows participants to save.</p>
             <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-4" onclick="window.location.href='{{ route('payment-create',12) }}'">
-                Pay 4 months
+                Pay 12 months
             </button>
         </div>
     </div>

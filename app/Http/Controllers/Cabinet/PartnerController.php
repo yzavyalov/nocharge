@@ -55,4 +55,17 @@ class PartnerController extends Controller
 
        return redirect()->back();
     }
+
+    public function delete($id)
+    {
+        $partner = Partners::query()->find($id);
+
+        $partner->users()->detach();
+        $partner->token()->delete();
+        $partner->payments()->delete();
+
+        $partner->delete();
+
+        return redirect()->back();
+    }
 }

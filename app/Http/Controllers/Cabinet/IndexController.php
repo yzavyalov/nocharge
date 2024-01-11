@@ -10,6 +10,7 @@ use App\Models\CheckUser;
 use App\Models\Payment;
 use App\Models\Quantity_user_request;
 use App\Models\User;
+use App\Services\TokenService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,6 +20,7 @@ class IndexController extends Controller
     {
         $user = User::query()->find(Auth::id());
 
+        TokenService::checkPeriodStatusToken($user);
 
         if ($user->hasRole('redaktor'))
         {
@@ -30,7 +32,7 @@ class IndexController extends Controller
 
             $commentCount = ItemComments::all()->count();
 
-            $payments = Payment::all();
+            $payments = Payment::paginate(20);
 
             $paymentTypes = PaymentTypeEnum::toSelectArray();
 

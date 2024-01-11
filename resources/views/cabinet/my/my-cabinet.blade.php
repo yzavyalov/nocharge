@@ -30,16 +30,22 @@
                     <tbody>
                     @foreach($payments as $payment)
                         <tr>
-                            <td>{{ $payment->partner_id }}</td>
+                            <td>{{ $payment->partner->name }}</td>
                             <td>{{ $payment->sum }}</td>
                             <td>{{ $payment->currency }}</td>
                             <td>{{ $paymentTypes[$payment->status] }}</td>
                             <td>{{ $payment->created_at }}</td>
                             <td>
-                                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                                    CONFIRM
-                                </button>
-                                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                                @if($payment->status == \App\Enums\PaymentTypeEnum::PAID)
+                                    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" onclick="window.location.href='{{ route('unpaid-payment',$payment->id) }}'">
+                                        UNPAID
+                                    </button>
+                                @else
+                                    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" onclick="window.location.href='{{ route('paid-payment',$payment->id) }}'">
+                                        CONFIRM
+                                    </button>
+                                @endif
+                                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onclick="window.location.href='{{ route('del-payment',$payment->id) }}'">
                                     DELETE
                                 </button>
                             </td>
@@ -48,6 +54,7 @@
                     </tbody>
                     <!-- Repeat for other payments -->
                 </table>
+                <div> {{ $payments->links() }}  </div>
             </div>
         </div>
     </div>

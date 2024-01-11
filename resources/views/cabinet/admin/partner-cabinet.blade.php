@@ -7,6 +7,11 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            @if (session('error-activity-token'))
+                <div class="bg-red-200 border-l-4 border-red-500 p-4 mb-4">
+                    <p class="text-red-700">{{ session('error-activity-token') }}</p>
+                </div>
+            @endif
             @hasrole('user-admin')
 
             <div class="flex flex-col space-y-4">
@@ -19,20 +24,30 @@
                             Add company
                         </button>
 
-                        <table>
+                        <table class="w-3/4">
                             <thead>
                             <tr>
-                                <th>Name of company</th>
+                                <th class="text-left">Name of company</th>
+                                <th class="text-left">token expiration date</th>
+                                <th></th>
                             </tr>
-                            <tr></tr>
                             </thead>
                             <tbody>
                             @foreach($user->partners as $company)
                             <tr>
                                 <td>{{ $company->name }}</td>
+                                @if($company->token->first())
+                                    <td>{{ $company->token->first()->finish_date }}</td>
+                                @else
+                                    <td></td>
+                                @endif
+
                                 <td>
                                     <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" onclick="window.location.href = '{{ route('page-partner',$company->id) }}'">
                                         SELECT
+                                    </button>
+                                    <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded delete" onclick="confirmDelete('{{ route('del-partner', $company->id) }}')">
+                                        DELETE
                                     </button>
                                 </td>
                             </tr>
@@ -94,7 +109,7 @@
                                                 <button type="submit" class="w-32 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Activate</button>
                                             @endif
                                 </form>
-                                            <button class="w-32 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onclick="window.location.href='{{route('del-claim',$claim->id)}}'">Delete</button>
+                                            <button class="w-32 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onclick="confirmAction('{{ route('del-partner', $company->id) }}')">Delete</button>
                                         </td>
                                     </tr>
 
@@ -165,6 +180,19 @@
                 }
             </script>
 
+                <script>
+                    // Функция для отображения подтверждающего сообщения
+                    function confirmDelete(routeUrl) {
+                        var confirmation = confirm("Do you really want to delete the company? All payments, tokens and users are deleted along with it.");
+                        if (confirmation) {
+                            // Если пользователь выбрал "Да", перейти по указанному маршруту
+                            window.location.href = routeUrl;
+                        } else {
+                            // Если пользователь выбрал "Нет" или закрыл окно, ничего не делать
+                            console.log("Удаление отменено.");
+                        }
+                    }
+                </script>
 
             @endhasrole
 

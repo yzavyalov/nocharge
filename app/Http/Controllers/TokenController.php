@@ -18,6 +18,7 @@ class TokenController extends Controller
             'partner_id' => $company_id,
             'token' => $token,
             'active' => TokenTypeEnum::ACTIVE,
+            'finish_date' => date('Y-m-d', strtotime('+5 days')),
         ]);
 
         return $token;

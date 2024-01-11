@@ -19,22 +19,27 @@ class TokenService
         return $token;
     }
 
-    public static function checkPeriodStatusToken()
+    public static function checkPeriodStatusToken($user)
     {
-        $user = Auth()->user();
-
-        if (session()->has('partner_id'))
-        {
-            $partner_id = session()->get('partner_id');
-
-            $token = Token::query()->where('partner_id',$partner_id)
-                ->where('active',TokenTypeEnum::ACTIVE)->first();
-
-            $token->update(['active',TokenTypeEnum::INACTIVE]);
-
-        }
         $partners = $user->partners;
 
+        foreach ($partners as $partner)
+        {
+            $tokens = $partner->token;
 
+            foreach ($tokens as $token)
+            {
+                if ($token->active == TokenTypeEnum::INACTIVE && $token->finish_date >= now())
+                {
+                    $token->active = TokenTypeEnum::ACTIVE;
+                    $token->save();
+                }
+                elseif($token->active == TokenTypeEnum::ACTIVE && $token->finish_date < now())
+                {
+                    $token->active = TokenTypeEnum::INACTIVE;
+                    $token->save();
+                }
+            }
+        }
     }
 }

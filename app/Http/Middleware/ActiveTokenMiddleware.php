@@ -22,7 +22,9 @@ class ActiveTokenMiddleware
 
         $partner = Partners::query()->find($partner_id);
 
-        if ($partner && !$partner->currentTocken)
+        $token = $partner->currentTocken->first();
+
+        if (empty($token))
         {
             session()->flash('error-activity-token', 'You need to activate the actions of your token! Most likely you need to pay for participation in the system. If you have already paid, then contact the system administrator through your account!');
 
