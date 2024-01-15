@@ -18,6 +18,9 @@ class ActiveTokenMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
+        if (Auth::user()->hasRole('redaktor'))
+            return $next($request);
+
         $partner_id = session()->get('partner_id');
 
         $partner = Partners::query()->find($partner_id);

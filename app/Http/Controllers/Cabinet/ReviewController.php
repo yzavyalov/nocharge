@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ReviewRequest;
 use App\Http\Requests\ReviewSearchRequest;
 use App\Models\Badbook\BadItem;
+use Illuminate\Support\Facades\Auth;
 
 class ReviewController extends Controller
 {
@@ -24,7 +25,12 @@ class ReviewController extends Controller
     {
         $request = $request->validated();
 
-        $request['partner_id'] = session()->get('partner_id');
+        if (Auth::user()->hasRole('redaktor'))
+            $ownerPartner = 1;
+        else
+            $ownerPartner = session()->get('partner_id');
+
+        $request['partner_id'] = $ownerPartner;
 
         $review = BadItem::create($request);
 

@@ -64,17 +64,35 @@
 
                     <!-- Partners Table -->
                     <div class="border p-4 mb-4">
-                        <h3 class="text-xl font-semibold">Partners</h3>
+                        <h3 class="text-xl font-semibold">Partners - {{$partners->total()}}</h3>
                         <!-- Your partners table with employee count goes here -->
                         <!-- Example: -->
-                        <table>
+                        <table class="w-full text-center table-info">
+                            <thead>
+                                <tr>
+                                    <th>id</th>
+                                    <th>name</th>
+                                    <th>type</th>
+                                    <th>finish date of token</th>
+                                    <th>created_at</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($partners as $partner)
+                                    <tr>
+                                        <td>{{ $partner->id }}</td>
+                                        <td>{{ $partner->name }}</td>
+                                        <td>{{ $partnerTypes[$partner->type] }}</td>
+                                        <td>@foreach($partner->currentTocken as $token) {{ $token->finish_date }} @endforeach</td>
+                                        <td>{{ $partner->created_at }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
                             <!-- Partner rows -->
-                            <tr>
-                                <td>Partner 1</td>
-                                <td>Employee Count 1</td>
-                            </tr>
+
                             <!-- Repeat for other partners -->
                         </table>
+                        {{ $partners->links() }}
                     </div>
                 </div>
             </div>

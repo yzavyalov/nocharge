@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Cabinet;
 
+use App\Enums\PartnersTypeEnum;
 use App\Enums\PaymentTypeEnum;
 use App\Http\Controllers\Controller;
 use App\Models\Badbook\BadItem;
 use App\Models\Badbook\ItemComments;
 use App\Models\CheckUser;
+use App\Models\Partners;
 use App\Models\Payment;
 use App\Models\Quantity_user_request;
 use App\Models\User;
@@ -36,7 +38,11 @@ class IndexController extends Controller
 
             $paymentTypes = PaymentTypeEnum::toSelectArray();
 
-            return view('cabinet.my.my-cabinet',compact('user','checkuserCount','checkCount','negativeReviewCount','commentCount','payments','paymentTypes'));
+            $partners = Partners::paginate(20);
+
+            $partnerTypes = PartnersTypeEnum::toSelectArray();
+
+            return view('cabinet.my.my-cabinet',compact('user','partners','checkuserCount','checkCount','negativeReviewCount','commentCount','payments','paymentTypes','partnerTypes'));
         }
         elseif ($user->hasRole('user-admin'))
         {

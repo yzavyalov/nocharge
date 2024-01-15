@@ -12,7 +12,7 @@
             </div>
         @endif
 
-        <form method="POST" action="{{ route('login') }}">
+        <form method="POST" action="{{ route('login') }}" id="login-form">
             @csrf
 
             <div>
@@ -39,10 +39,20 @@
                     </a>
                 @endif
 
-                <x-button class="ml-4">
+                <x-button class="ml-4 g-recaptcha"
+                          data-sitekey="{{ env('GOOGLE_RECAPTCHA_SITE_KEY') }}"
+                          data-callback='onSubmit'
+                          data-action='submit'>
                     {{ __('Log in') }}
                 </x-button>
             </div>
         </form>
     </x-authentication-card>
+    @push('scripts')
+        <script>
+            function onSubmit(token) {
+                document.getElementById("login-form").submit();
+            }
+        </script>
+    @endpush
 </x-guest-layout>

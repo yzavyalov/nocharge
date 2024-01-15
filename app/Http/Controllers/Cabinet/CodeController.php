@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Cabinet;
 
+use App\Enums\QuantityCheckUsersTypeEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CheckUserRequest;
 use App\Http\Requests\EmailRequest;
 use App\Imports\CheckUsersExcelImport;
 use App\Models\CheckUser;
+use App\Models\Quantity_user_request;
 use App\Services\CheckUserService;
 use App\Services\EncryptService;
 use Illuminate\Http\Request;
@@ -35,6 +37,18 @@ class CodeController extends Controller
         if ($check) {
             session()->flash('success-check', 'This user has been found in our database!');
 
+            if (Auth::user()->hasRole('redaktor'))
+                $ownerPartner = 1;
+            else
+                $ownerPartner = session()->get('partner_id');
+
+            Quantity_user_request::create([
+                'user_id' => Auth::id(),
+                'partner_id' => $ownerPartner,
+                'check_user_id' => $check->id,
+                'type' => QuantityCheckUsersTypeEnum::CHECKED,
+            ]);
+
         } else {
             session()->flash('error-check', 'This user was not found in our database!');
         }
@@ -47,11 +61,16 @@ class CodeController extends Controller
         {
             $mail = EncryptService::coding($request->email);
             $user = CheckUser::query()->where('email',$mail)->first();
+            if (Auth::user()->hasRole('redaktor'))
+                $ownerPartner = 1;
+            else
+                $ownerPartner = session()->get('partner_id');
+
 
             if (!isset($user))
                 CheckUser::create([
                     'email' => $mail,
-                    'owner_partner' => session()->get('partner_id'),
+                    'owner_partner' => $ownerPartner,
                 ]);
         }
             //идем по сохранению эмейла в базу
