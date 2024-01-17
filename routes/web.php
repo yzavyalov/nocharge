@@ -30,6 +30,10 @@ Route::middleware([
 ])->group(function () {
     Route::get('dashboard', [\App\Http\Controllers\Cabinet\IndexController::class,'index'])->name('dashboard');
 
+        Route::get('/cabinet/about',[\App\Http\Controllers\Cabinet\PageController::class, 'about'])->name('cabinet-about');
+        Route::get('/cabinet/membership',[\App\Http\Controllers\Cabinet\PageController::class, 'membership'])->name('cabinet-membership');
+        Route::get('/cabinet/black-list',[\App\Http\Controllers\Cabinet\PageController::class, 'blackList'])->name('cabinet-blacklist');
+
         Route::post('/submit-email',[\App\Http\Controllers\Cabinet\EmployeeController::class, 'emailForm'])->name('submit-email');
         Route::post('send/claim',[\App\Http\Controllers\Cabinet\EmployeeController::class,'claim'])->name('send-claim');
 

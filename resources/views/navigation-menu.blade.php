@@ -16,16 +16,16 @@
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('about')">
+                    <x-nav-link href="{{ route('cabinet-about') }}" :active="request()->routeIs('about')">
                         About our system
                     </x-nav-link>
-                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('membership')">
+                    <x-nav-link href="{{ route('cabinet-membership') }}" :active="request()->routeIs('membership')">
                         Membership
                     </x-nav-link>
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('api')">
                         API Documentations
                     </x-nav-link>
-                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('blacklist')">
+                    <x-nav-link href="{{ route('cabinet-blacklist') }}" :active="request()->routeIs('blacklist')">
                         Black List
                     </x-nav-link>
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('contact')">
