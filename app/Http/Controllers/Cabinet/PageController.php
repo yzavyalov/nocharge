@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Cabinet;
 
+use App\Enums\MessageTypeEnum;
 use App\Enums\MiddlemanTypeEnum;
 use App\Http\Controllers\Controller;
 use App\Models\Badbook\BadItem;
+use App\Models\Message;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PageController extends Controller
 {
@@ -41,8 +44,26 @@ class PageController extends Controller
 
     }
 
+    public function apiDocumantation()
+    {
+        return view('cabinet.pages.api');
+    }
+
     public function contact()
     {
-        return 'dfdf';
+        $user = Auth::user();
+
+        $messageTypes = MessageTypeEnum::toSelectArray();
+
+        if ($user->hasRole('redaktor'))
+        {
+            $messages = Message::orderBy('created_at','DESC')->paginate(15);
+
+            return view('cabinet.my.my-contact',compact('messages','messageTypes'));
+        }
+        else
+        {
+            return view('cabinet.pages.contact-in-cabinet',compact('user','messageTypes'));
+        }
     }
 }

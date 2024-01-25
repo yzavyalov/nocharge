@@ -22,13 +22,13 @@
                     <x-nav-link href="{{ route('cabinet-membership') }}" :active="request()->routeIs('membership')">
                         Membership
                     </x-nav-link>
-                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('api')">
+                    <x-nav-link href="{{ route('cabinet-api') }}" :active="request()->routeIs('api')">
                         API Documentations
                     </x-nav-link>
                     <x-nav-link href="{{ route('cabinet-blacklist') }}" :active="request()->routeIs('blacklist')">
                         Black List
                     </x-nav-link>
-                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('contact')">
+                    <x-nav-link href="{{ route('cabinet-contact') }}" :active="request()->routeIs('contact')">
                         Contact with us
                     </x-nav-link>
                 </div>

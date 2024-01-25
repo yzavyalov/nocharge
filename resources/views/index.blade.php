@@ -51,10 +51,12 @@
     </ul>
 </div>
 
-<header data-bs-theme="dark">
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{{ route('index') }}">No charge system</a>
+            <a class="navbar-brand" href="{{ route('index') }}">
+                <img src="{{ asset('img/Logo.png') }}" alt="International Internet Financial Association" id="logo">
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -98,140 +100,7 @@
 
 <main>
 
-    <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel" data-bs-theme="light">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-        </div>
-        <div class="carousel-inner">
-            <div class="carousel-item slide-one active">
-                <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
-                <div class="container">
-                    <div class="carousel-caption text-start">
-                        <h1>Synergy</h1>
-                        <p class="opacity-75">Synergy of cooperation for online business.</p>
-                        <p><a class="btn btn-lg btn-primary" href="{{route('synergy')}}">Sign up today</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item slide-two">
-                <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
-                <div class="container">
-                    <div class="carousel-caption">
-                        <h1>No chargeback</h1>
-                        <p>Reduce chargeback requests by up to 80%.</p>
-                        <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item slide-three">
-                <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
-                <div class="container">
-                    <div class="carousel-caption text-end">
-                        <h1>Online payment</h1>
-                        <p>Some representative placeholder content for the third slide of this carousel.</p>
-                        <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
 
-
-    <!-- Marketing messaging and featurettes
-    ================================================== -->
-    <!-- Wrap the rest of the page in another container to center all the content. -->
-
-    <div class="container marketing">
-
-        <!-- Three columns of text below the carousel -->
-        <div class="row">
-            <div class="col-lg-4">
-                <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                    <image href="{{asset('img/registration.png')}}"  style="border: 1px solid #5a23c8" width="100%" height="100%" />
-                </svg>
-                <h2 class="fw-normal">REGISTRATION</h2>
-                <p>Become a member of the information exchange system, which will allow you to save money by eliminating malicious contacts.</p>
-                <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
-            </div><!-- /.col-lg-4 -->
-            <div class="col-lg-4">
-                <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                    <image href="{{asset('img/connection.jpg')}}"  style="border: 1px solid #5a23c8" width="100%" height="100%" />
-                </svg>
-                <h2 class="fw-normal">CONNECTION</h2>
-                <p>Until the end of 2023, free connection to the system. From January 1, 2024, the cost of connecting to the system will cost $300.</p>
-                <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
-            </div><!-- /.col-lg-4 -->
-            <div class="col-lg-4">
-                <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                    <image href="{{asset('img/Transactions.png')}}"  style="border: 1px solid #5a23c8" width="100%" height="100%" />
-                </svg>
-                <h2 class="fw-normal">CHECK YOUR TRANSACTIONS</h2>
-                <p>It simply checks whether your payer or payment partner is on the Black List. Check your transactions using a server-to-server connection or your cabinet.</p>
-                <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
-            </div><!-- /.col-lg-4 -->
-        </div><!-- /.row -->
-
-
-        <!-- START THE FEATURETTES -->
-
-        <hr class="featurette-divider">
-
-        <div class="row featurette">
-            <div class="col-md-7">
-                <h2 class="featurette-heading fw-normal lh-1">Overall Strength. <span class="text-body-secondary">Information exchange system.</span></h2>
-                <p class="lead">By exchanging information about unreliable clients, you will help each other avoid other participants in the system from meeting them.</p>
-            </div>
-
-            @livewire('input-encrypt')
-
-            <div class="col-md-5">
-                <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Image" preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <image href="{{asset('img/exchange.png')}}" width="100%" height="100%" />
-                </svg>
-            </div>
-        </div>
-
-        <hr class="featurette-divider">
-
-        <div class="row featurette">
-            <div class="col-md-7 order-md-2">
-                <h2 class="featurette-heading fw-normal lh-1">Protecting information <span class="text-body-secondary"> about your clients.</span></h2>
-                <p class="lead">You send us information about your clients only in encrypted form. In this way we cannot read it or pass it on to someone.</p>
-            </div>
-            <div class="col-md-5 order-md-1">
-                <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Image" preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <image href="{{asset('img/hash.jpg')}}" width="100%" height="100%" />
-                </svg>
-            </div>
-        </div>
-
-        <hr class="featurette-divider">
-
-        <div class="row featurette">
-            <div class="col-md-7">
-                <h2 class="featurette-heading fw-normal lh-1">Increasing efficiency. <span class="text-body-secondary">Checkmate.</span></h2>
-                <p class="lead">The more you use the system, the more effective it becomes. You will save money on screening out users who like to contact the bank for chargebacks. You will also be able to inform your colleagues about an unscrupulous intermediary and payment system that does not return funds to you according to the agreement. This will reduce the opportunities for fraudsters in the online payment market.</p>
-            </div>
-            <div class="col-md-5">
-                <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Image" preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <image href="{{asset('img/chahe.jpg')}}" width="100%" height="100%" />
-                </svg>
-            </div>
-        </div>
-
-        <hr class="featurette-divider">
-
-        <!-- /END THE FEATURETTES -->
 
     </div><!-- /.container -->
 

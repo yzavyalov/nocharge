@@ -23,6 +23,11 @@ class Partners extends Model
         return $this->belongsToMany(User::class,'partners_users','partner_id','user_id');
     }
 
+    public function admin()
+    {
+        return $this->users()->role('user-admin');
+    }
+
     public function token()
     {
         return $this->hasMany(Token::class,'partner_id','id');

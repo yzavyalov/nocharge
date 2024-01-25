@@ -20,11 +20,11 @@ class CheckUserController extends Controller
 
     public function uploadUser(UserChangeRequest $request)
     {
-        $user = $request->user();
+        $partnerId = session()->get('partner_id');
 
-        $this->checkUserService->create($request->all(), $user);
+        $this->checkUserService->create($request->all(), $partnerId);
 
-        return response()->json(['message' => 'Пользователи успешно сохранены'], 200);
+        return response()->json(['message' => 'Users successfully saved'], 200);
     }
 
     public function ckeckGroupUser(UserChangeRequest $request)

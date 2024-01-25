@@ -1,5 +1,19 @@
 <?php
 
+use App\Http\Controllers\Cabinet\AnswerController;
+use App\Http\Controllers\Cabinet\ClaimController;
+use App\Http\Controllers\Cabinet\CodeController;
+use App\Http\Controllers\Cabinet\CommentController;
+use App\Http\Controllers\Cabinet\EmployeeController;
+use App\Http\Controllers\Cabinet\IndexController;
+use App\Http\Controllers\Cabinet\MessageController;
+use App\Http\Controllers\Cabinet\PageController;
+use App\Http\Controllers\Cabinet\PartnerController;
+use App\Http\Controllers\Cabinet\PaymentController;
+use App\Http\Controllers\Cabinet\ReviewController;
+use App\Http\Controllers\FrontController;
+use App\Http\Controllers\SanctumTockenController;
+use App\Http\Controllers\TokenController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,10 +31,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/', [\App\Http\Controllers\FrontController::class, 'index'])->name('index');
-Route::get('/page', [\App\Http\Controllers\FrontController::class, 'about'])->name('about');
-Route::get('/api',[\App\Http\Controllers\FrontController::class, 'api'])->name('api');
-Route::get('/synergy',[\App\Http\Controllers\FrontController::class,'synergy'])->name('synergy');
+Route::get('/', [FrontController::class, 'index'])->name('index');
+Route::get('/page', [FrontController::class, 'about'])->name('about');
+Route::get('/api',[FrontController::class, 'api'])->name('api');
+Route::get('/synergy',[FrontController::class,'synergy'])->name('synergy');
 
 
 Route::middleware([
@@ -28,59 +42,66 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('dashboard', [\App\Http\Controllers\Cabinet\IndexController::class,'index'])->name('dashboard');
+    Route::get('dashboard', [IndexController::class,'index'])->name('dashboard');
 
-        Route::get('/cabinet/about',[\App\Http\Controllers\Cabinet\PageController::class, 'about'])->name('cabinet-about');
-        Route::get('/cabinet/membership',[\App\Http\Controllers\Cabinet\PageController::class, 'membership'])->name('cabinet-membership');
-        Route::get('/cabinet/black-list',[\App\Http\Controllers\Cabinet\PageController::class, 'blackList'])->name('cabinet-blacklist');
+        Route::get('/cabinet/about',[PageController::class, 'about'])->name('cabinet-about');
+        Route::get('/cabinet/membership',[PageController::class, 'membership'])->name('cabinet-membership');
+        Route::get('/cabinet/black-list',[PageController::class, 'blackList'])->name('cabinet-blacklist');
+        Route::get('/cabinet/api-documentation',[PageController::class, 'apiDocumantation'])->name('cabinet-api');
+        Route::get('/cabinet/contact-form',[PageController::class, 'contact'])->name('cabinet-contact');
 
-        Route::post('/submit-email',[\App\Http\Controllers\Cabinet\EmployeeController::class, 'emailForm'])->name('submit-email');
-        Route::post('send/claim',[\App\Http\Controllers\Cabinet\EmployeeController::class,'claim'])->name('send-claim');
+        Route::post('/message/send',[MessageController::class,'create'])->name('send-message');
+        Route::get('/message/read/{message_id}',[MessageController::class,'read'])->name('read-message');
 
-        Route::get('partner-form',[\App\Http\Controllers\Cabinet\IndexController::class, 'companyForm'])->name('partner-form');
-        Route::post('claim-succsess/{id}',[\App\Http\Controllers\Cabinet\ClaimController::class, 'claimSuccsess'])->name('claim-succsess');
-        Route::get('claim-delete/{id}',[\App\Http\Controllers\Cabinet\ClaimController::class, 'claimDel'])->name('del-claim');
+        Route::post('/answer/create',[AnswerController::class,'createAndSend'])->name('send-answer');
 
-        Route::get('user/{id}/partners',[\App\Http\Controllers\Cabinet\PartnerController::class,'index'])->name('user-companies');
-        Route::get('partner/{id}',[\App\Http\Controllers\Cabinet\PartnerController::class, 'show'])->name('page-partner')->middleware('checkroute');
-        Route::get('partner/{id}/delete',[\App\Http\Controllers\Cabinet\PartnerController::class, 'delete'])->name('del-partner')->middleware('checkroute');
-        Route::post('create-partner',[\App\Http\Controllers\Cabinet\PartnerController::class, 'create'])->name('create-partner');
-        Route::post('update-partner/{id}',[\App\Http\Controllers\Cabinet\PartnerController::class, 'update'])->name('update-partner')->middleware('checkroute');
+        Route::post('/submit-email',[EmployeeController::class, 'emailForm'])->name('submit-email');
+        Route::post('send/claim',[EmployeeController::class,'claim'])->name('send-claim');
+
+        Route::get('partner-form',[IndexController::class, 'companyForm'])->name('partner-form');
+        Route::post('claim-succsess/{id}',[ClaimController::class, 'claimSuccsess'])->name('claim-succsess');
+        Route::get('claim-delete/{id}',[ClaimController::class, 'claimDel'])->name('del-claim');
+
+        Route::get('user/{id}/partners',[PartnerController::class,'index'])->name('user-companies');
+        Route::get('partner/{id}',[PartnerController::class, 'show'])->name('page-partner')->middleware('checkroute');
+        Route::get('partner/{id}/delete',[PartnerController::class, 'delete'])->name('del-partner')->middleware('checkroute');
+        Route::post('create-partner',[PartnerController::class, 'create'])->name('create-partner');
+        Route::post('update-partner/{id}',[PartnerController::class, 'update'])->name('update-partner')->middleware('checkroute');
 
 
-        Route::get('packet-page',[\App\Http\Controllers\Cabinet\IndexController::class,'packetPage'])->name('packet-page');
-        Route::get('payment/{count}',[\App\Http\Controllers\Cabinet\PaymentController::class,'createPayment'])->name('payment-create');
-        Route::get('/payment/save/{count}',[\App\Http\Controllers\Cabinet\PaymentController::class, 'savePayment'])->name('save-payment');
-        Route::get('/payment/{id}/oncheck',[\App\Http\Controllers\Cabinet\PaymentController::class,'oncheck'])->name('oncheck-payment');
+        Route::get('packet-page',[IndexController::class,'packetPage'])->name('packet-page');
+        Route::get('payment/{count}',[PaymentController::class,'createPayment'])->name('payment-create');
+        Route::get('/payment/save/{count}',[PaymentController::class, 'savePayment'])->name('save-payment');
+        Route::get('/payment/{id}/oncheck',[PaymentController::class,'oncheck'])->name('oncheck-payment');
 
-        Route::get('token/{id}/update',[\App\Http\Controllers\TokenController::class,'update'])->name('token-update');
+        Route::get('token/{id}/update',[TokenController::class,'update'])->name('token-update');
 
     Route::middleware('activeToken')->group(function () {
-            Route::post('check', [\App\Http\Controllers\Cabinet\CodeController::class, 'checkCode'])->name('check');
-            Route::post('add-check-user',[\App\Http\Controllers\Cabinet\CodeController::class, 'addCheckUsers'])->name('addCheckUsers');
+            Route::post('check', [CodeController::class, 'checkCode'])->name('check');
+            Route::post('add-check-user',[CodeController::class, 'addCheckUsers'])->name('addCheckUsers');
 
-            Route::get('review/all',[\App\Http\Controllers\Cabinet\ReviewController::class, 'index'])->name('index-review');
-            Route::get('review/search',[\App\Http\Controllers\Cabinet\ReviewController::class,'select'])->name('search-review');
-            Route::get('review/{id}',[\App\Http\Controllers\Cabinet\ReviewController::class, 'show'])->name('show-review');
-            Route::post('review/create',[\App\Http\Controllers\Cabinet\ReviewController::class, 'create'])->name('save-review');
+            Route::get('review/all',[ReviewController::class, 'index'])->name('index-review');
+            Route::get('review/search',[ReviewController::class,'select'])->name('search-review');
+            Route::get('review/{id}',[ReviewController::class, 'show'])->name('show-review');
+            Route::post('review/create',[ReviewController::class, 'create'])->name('save-review');
 
-            Route::post('review/{id}/comment/create',[\App\Http\Controllers\Cabinet\CommentController::class,'create'])->name('save-comment');
-            Route::get('review/comment/{id}/show',[\App\Http\Controllers\Cabinet\CommentController::class,'show'])->name('show-comment');
-            Route::post('review/comment/{id}/update',[\App\Http\Controllers\Cabinet\CommentController::class,'update'])->name('update-comment');
-            Route::get('review/comment/{id}/delete',[\App\Http\Controllers\Cabinet\CommentController::class,'delete'])->name('delete-comment');
+            Route::post('review/{id}/comment/create',[CommentController::class,'create'])->name('save-comment');
+            Route::get('review/comment/{id}/show',[CommentController::class,'show'])->name('show-comment');
+            Route::post('review/comment/{id}/update',[CommentController::class,'update'])->name('update-comment');
+            Route::get('review/comment/{id}/delete',[CommentController::class,'delete'])->name('delete-comment');
 
         });
 
 
 
     Route::middleware('superadmin')->group(function () {
-        Route::get('my-cabinet',[\App\Http\Controllers\Cabinet\IndexController::class, 'cabinetIndex'])->name('my-cabinet')->middleware('superadmin');
-        Route::get('token',[\App\Http\Controllers\SanctumTockenController::class,'generateToken']);
+        Route::get('my-cabinet',[IndexController::class, 'cabinetIndex'])->name('my-cabinet')->middleware('superadmin');
+        Route::get('token',[SanctumTockenController::class,'generateToken']);
 
-        Route::get('office',[\App\Http\Controllers\Cabinet\IndexController::class,'index'])->name('office');
-        Route::get('payment/{id}/delete',[\App\Http\Controllers\Cabinet\PaymentController::class,'delete'])->name('del-payment');
-        Route::get('payment/{id}/paid',[\App\Http\Controllers\Cabinet\PaymentController::class,'paidPayment'])->name('paid-payment');
-        Route::get('payment/{id}/unpaid',[\App\Http\Controllers\Cabinet\PaymentController::class,'unpaidPayments'])->name('unpaid-payment');
+        Route::get('office',[IndexController::class,'index'])->name('office');
+        Route::get('payment/{id}/delete',[PaymentController::class,'delete'])->name('del-payment');
+        Route::get('payment/{id}/paid',[PaymentController::class,'paidPayment'])->name('paid-payment');
+        Route::get('payment/{id}/unpaid',[PaymentController::class,'unpaidPayments'])->name('unpaid-payment');
     });
 
 });

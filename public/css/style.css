@@ -9,7 +9,10 @@
 a .login-register{
     color:white;
 }
-
+#logo{
+    height: 90px;
+    width: auto;
+}
 
 .bd-placeholder-img {
     font-size: 1.125rem;

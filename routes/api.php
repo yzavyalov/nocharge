@@ -18,7 +18,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware('auth:sanctum')->group(function(){
+Route::middleware('apiToken')->group(function(){
     Route::post('/upload-users',[\App\Http\Controllers\Api\CheckUserController::class, 'uploadUser']);
     Route::post('/check-group-users',[\App\Http\Controllers\Api\CheckUserController::class, 'ckeckGroupUser']);
     Route::post('/check-user',[\App\Http\Controllers\Api\CheckUserController::class, 'checkOneUser']);

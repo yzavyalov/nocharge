@@ -89,4 +89,9 @@ class User extends Authenticatable
         return $this->hasMany(Claim::class,'admin_id','id');
     }
 
+    public function messages()
+    {
+        return $this->hasMany(Message::class,'user_id','id');
+    }
+
 }

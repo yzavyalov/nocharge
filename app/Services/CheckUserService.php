@@ -5,18 +5,21 @@ namespace App\Services;
 use App\Enums\QuantityCheckUsersTypeEnum;
 use App\Http\Requests\UserChangeRequest;
 use App\Models\CheckUser;
+use App\Models\Partners;
 use App\Models\Quantity_user_request;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class CheckUserService
 {
-    public function create($usersData, $user)
+    public function create($usersData, $partnerId)
     {
         foreach ($usersData as $userData)
         {
             if($userData['email'])
                 $email = EncryptService::coding($userData['email']);
 
-            $owner_partner = $user->partners->first();
+            $owner_partner = Partners::query()->find($partnerId);
 
             isset($userData['ip']) ? $ip = $userData['ip'] : $ip = null;
 
@@ -39,6 +42,7 @@ class CheckUserService
                         'platform' => $platform,
                     ]);
                 }
+                $user = $owner_partner->admin->first();
                 Quantity_user_request::create([
                     'user_id' => $user->id,
                     'partner_id' => $owner_partner->id,
@@ -90,6 +94,12 @@ class CheckUserService
                 if (isset($user))
                 {
                     $coincidence[] = $userData;
+                    Quantity_user_request::create([
+                        'user_id' => 1,
+                        'partner_id' => session()->get('partner_id'),
+                        'check_user_id' => $user->id,
+                        'type' => QuantityCheckUsersTypeEnum::CHECKED,
+                    ]);
                 }
                 else
                 {
