@@ -35,6 +35,7 @@ Route::get('/', [FrontController::class, 'index'])->name('index');
 Route::get('/page', [FrontController::class, 'about'])->name('about');
 Route::get('/api',[FrontController::class, 'api'])->name('api');
 Route::get('/synergy',[FrontController::class,'synergy'])->name('synergy');
+Route::get('/membership',[FrontController::class,'membership'])->name('membership');
 
 
 Route::middleware([
@@ -50,8 +51,7 @@ Route::middleware([
         Route::get('/cabinet/api-documentation',[PageController::class, 'apiDocumantation'])->name('cabinet-api');
         Route::get('/cabinet/contact-form',[PageController::class, 'contact'])->name('cabinet-contact');
 
-        Route::post('/message/send',[MessageController::class,'create'])->name('send-message');
-        Route::get('/message/read/{message_id}',[MessageController::class,'read'])->name('read-message');
+
 
         Route::post('/answer/create',[AnswerController::class,'createAndSend'])->name('send-answer');
 
@@ -102,6 +102,10 @@ Route::middleware([
         Route::get('payment/{id}/delete',[PaymentController::class,'delete'])->name('del-payment');
         Route::get('payment/{id}/paid',[PaymentController::class,'paidPayment'])->name('paid-payment');
         Route::get('payment/{id}/unpaid',[PaymentController::class,'unpaidPayments'])->name('unpaid-payment');
+
+        Route::post('/message/send',[MessageController::class,'create'])->name('send-message');
+        Route::get('/message/read/{message_id}',[MessageController::class,'read'])->name('read-message');
+        Route::get('/message/del/{message_id}',[MessageController::class, 'delete'])->name('del-message');
     });
 
 });

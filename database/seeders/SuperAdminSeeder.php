@@ -16,18 +16,29 @@ class SuperAdminSeeder extends Seeder
     public function run(): void
     {
         $data = [
+        [
             'name' => 'SuperAdmin',
             'email' => '8540462@gmail.com',
             'password' => 'Nocharge356!',
-        ];
+        ],
+        [
+            'name' => 'SecondAdmin',
+            'email' => 'iafs76@proton.me',
+            'password' => 'Iafs356!',
+        ],
+                ];
 
 
-        $user = User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        foreach ($data as $userData) {
 
-        $user->assignRole('redaktor');
+            $user = User::create([
+                'name' => $userData['name'],
+                'email' => $userData['email'],
+                'password' => Hash::make($userData['password']),
+            ]);
+
+            $user->removeRole('user-testing');
+            $user->assignRole('redaktor');
+        }
     }
 }

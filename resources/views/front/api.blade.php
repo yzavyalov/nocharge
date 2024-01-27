@@ -9,33 +9,17 @@
 @section('content')
     <div class="container">
         <div class="row mt-6 page-title">
-            <div class="col">
+            <div class="col title">
                 <h2>API documantation</h2>
             </div>
         </div>
         <div class="row mb-4 mt-3 page-content">
             <div class="row">
                 <div class="col">
-                    <table>
-                        <thead>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Registration</td>
-                                <td>To register you need to contact us. After registration, you will receive a login, password and token.
-                                    Your login and password will allow you to use your cabinet in the browser, and the token will need to be added to the headers as Bearer token with your request.</td>
-                            </tr>
-                            <tr>
-                                <td>Test request</td>
-                                <td>You can send email test@test.test in request without token on route http://no-charge.net/api/test, method get, parametr email.
-                                    Before request don't foget encrypt email in SHA-256. </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <img src="{{ asset('img/api_image.png') }}" alt="">
+                </div>
+                <div class="col">
+                    <p>Our system empowers users to leverage its functionality both through the company dashboard on the website and via API. This enables our participants to conduct transaction checks without visiting our site, seamlessly integrating the verification process into their own workflows. To utilize our API, you need to register, proceed to set up your company in the dashboard, and acquire an authorization token. Additionally, our dashboard hosts a documentation page detailing routes and methods for your reference.</p>
                 </div>
             </div>
         </div>

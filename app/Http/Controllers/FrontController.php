@@ -36,4 +36,9 @@ class FrontController extends Controller
 
         return view('gallery_page.synergy', compact('visiter'));
     }
+
+    public function membership()
+    {
+        return view('front.frontmembership');
+    }
 }

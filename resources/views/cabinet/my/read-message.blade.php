@@ -40,7 +40,7 @@
                                 <td>{{ $message->subject }}</td>
                                 <td>{{ $message->text }}</td>
                                 <td>
-                                    <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onclick="window.location.href='{{ route('del-payment',$message->id) }}'">
+                                    <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onclick="window.location.href='{{ route('del-message',$message->id) }}'">
                                         DELETE
                                     </button>
                                 </td>

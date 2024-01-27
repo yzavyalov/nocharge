@@ -34,4 +34,13 @@ class MessageController extends Controller
 
         return view('cabinet.my.read-message',compact('message','messageTypes'));
     }
+
+    public function delete($message_id)
+    {
+        $message = Message::query()->find($message_id);
+
+        $message->delete();
+
+        return redirect()->route('cabinet-contact');
+    }
 }

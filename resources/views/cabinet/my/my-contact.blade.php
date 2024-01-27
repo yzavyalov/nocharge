@@ -44,10 +44,7 @@
                                     <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" onclick="window.location.href='{{ route('read-message',$message->id) }}'">
                                         READ
                                     </button>
-                                    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" onclick="window.location.href='{{ route('paid-payment',$message->id) }}'">
-                                        CONFIRM
-                                    </button>
-                                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onclick="window.location.href='{{ route('del-payment',$message->id) }}'">
+                                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onclick="window.location.href='{{ route('del-message',$message->id) }}'">
                                     DELETE
                                 </button>
                             </td>
