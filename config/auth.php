@@ -40,6 +40,21 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+<<<<<<< HEAD
+=======
+
+        'api' => [
+            'driver' => 'token',
+            'provider' => 'users',
+            'hash' => false,
+        ],
+
+        'partner' => [
+            'driver' => 'token',
+            'provider' => 'partners', // Имя провайдера для партнеров
+            'hash' => false,
+        ],
+>>>>>>> 2c834df24b0f0b6f1633d56f1315cd3c697d6124
     ],
 
     /*
@@ -65,6 +80,14 @@ return [
             'model' => App\Models\User::class,
         ],
 
+<<<<<<< HEAD
+=======
+        'partners' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Partners::class,
+        ],
+
+>>>>>>> 2c834df24b0f0b6f1633d56f1315cd3c697d6124
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',

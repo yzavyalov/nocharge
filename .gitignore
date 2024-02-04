@@ -17,3 +17,7 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+<<<<<<< HEAD
+=======
+/seeder/SuperAdminSeeder.php
+>>>>>>> 2c834df24b0f0b6f1633d56f1315cd3c697d6124

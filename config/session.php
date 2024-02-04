@@ -18,7 +18,11 @@ return [
     |
     */
 
+<<<<<<< HEAD
     'driver' => env('SESSION_DRIVER', 'file'),
+=======
+    'driver' => env('SESSION_DRIVER', 'database'),
+>>>>>>> 2c834df24b0f0b6f1633d56f1315cd3c697d6124
 
     /*
     |--------------------------------------------------------------------------
@@ -198,6 +202,7 @@ return [
 
     'same_site' => 'lax',
 
+<<<<<<< HEAD
     /*
     |--------------------------------------------------------------------------
     | Partitioned Cookies
@@ -211,4 +216,6 @@ return [
 
     'partitioned' => false,
 
+=======
+>>>>>>> 2c834df24b0f0b6f1633d56f1315cd3c697d6124
 ];

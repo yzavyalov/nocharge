@@ -24,7 +24,10 @@
         <!-- <env name="DB_CONNECTION" value="sqlite"/> -->
         <!-- <env name="DB_DATABASE" value=":memory:"/> -->
         <env name="MAIL_MAILER" value="array"/>
+<<<<<<< HEAD
         <env name="PULSE_ENABLED" value="false"/>
+=======
+>>>>>>> 2c834df24b0f0b6f1633d56f1315cd3c697d6124
         <env name="QUEUE_CONNECTION" value="sync"/>
         <env name="SESSION_DRIVER" value="array"/>
         <env name="TELESCOPE_ENABLED" value="false"/>
