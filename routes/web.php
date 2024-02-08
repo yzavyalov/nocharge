@@ -1,7 +1,5 @@
 <?php
 
-<<<<<<< HEAD
-=======
 use App\Http\Controllers\Cabinet\AnswerController;
 use App\Http\Controllers\Cabinet\ClaimController;
 use App\Http\Controllers\Cabinet\CodeController;
@@ -16,7 +14,6 @@ use App\Http\Controllers\Cabinet\ReviewController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\SanctumTockenController;
 use App\Http\Controllers\TokenController;
->>>>>>> 2c834df24b0f0b6f1633d56f1315cd3c697d6124
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,8 +30,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-<<<<<<< HEAD
-=======
 
 Route::get('/', [FrontController::class, 'index'])->name('index');
 Route::get('/page', [FrontController::class, 'about'])->name('about');
@@ -114,4 +109,4 @@ Route::middleware([
     });
 
 });
->>>>>>> 2c834df24b0f0b6f1633d56f1315cd3c697d6124
+

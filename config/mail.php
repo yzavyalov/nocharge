@@ -29,11 +29,8 @@ return [
     | mailers below. You are free to add additional mailers as required.
     |
     | Supported: "smtp", "sendmail", "mailgun", "ses", "ses-v2",
-<<<<<<< HEAD
-    |            "postmark", "log", "array", "failover", "roundrobin"
-=======
+
     |            "postmark", "log", "array", "failover"
->>>>>>> 2c834df24b0f0b6f1633d56f1315cd3c697d6124
     |
     */
 
@@ -54,26 +51,20 @@ return [
             'transport' => 'ses',
         ],
 
-<<<<<<< HEAD
+
         'postmark' => [
             'transport' => 'postmark',
             // 'message_stream_id' => null,
-=======
+
         'mailgun' => [
             'transport' => 'mailgun',
->>>>>>> 2c834df24b0f0b6f1633d56f1315cd3c697d6124
             // 'client' => [
             //     'timeout' => 5,
             // ],
         ],
 
-<<<<<<< HEAD
-        'mailgun' => [
-            'transport' => 'mailgun',
-=======
         'postmark' => [
             'transport' => 'postmark',
->>>>>>> 2c834df24b0f0b6f1633d56f1315cd3c697d6124
             // 'client' => [
             //     'timeout' => 5,
             // ],
@@ -100,7 +91,6 @@ return [
                 'log',
             ],
         ],
-<<<<<<< HEAD
 
         'roundrobin' => [
             'transport' => 'roundrobin',
@@ -109,8 +99,6 @@ return [
                 'postmark',
             ],
         ],
-=======
->>>>>>> 2c834df24b0f0b6f1633d56f1315cd3c697d6124
     ],
 
     /*
@@ -147,5 +135,5 @@ return [
             resource_path('views/vendor/mail'),
         ],
     ],
-
+],
 ];

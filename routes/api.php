@@ -17,8 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-<<<<<<< HEAD
-=======
+
 
 Route::middleware('apiToken')->group(function(){
     Route::post('/upload-users',[\App\Http\Controllers\Api\CheckUserController::class, 'uploadUser']);
@@ -28,5 +27,3 @@ Route::middleware('apiToken')->group(function(){
 
 
 
-
->>>>>>> 2c834df24b0f0b6f1633d56f1315cd3c697d6124

@@ -2,17 +2,8 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-<<<<<<< HEAD
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+ use Illuminate\Contracts\Auth\MustVerifyEmail;
 
-class User extends Authenticatable
-{
-    use HasApiTokens, HasFactory, Notifiable;
-=======
 use App\Enums\EmployeeApplicationStatusEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -31,7 +22,6 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
     use HasRoles;
->>>>>>> 2c834df24b0f0b6f1633d56f1315cd3c697d6124
 
     /**
      * The attributes that are mass assignable.
@@ -52,11 +42,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
-<<<<<<< HEAD
-=======
         'two_factor_recovery_codes',
         'two_factor_secret',
->>>>>>> 2c834df24b0f0b6f1633d56f1315cd3c697d6124
     ];
 
     /**
@@ -66,10 +53,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-<<<<<<< HEAD
         'password' => 'hashed',
-    ];
-=======
     ];
 
     /**
@@ -111,6 +95,4 @@ class User extends Authenticatable
     {
         return $this->hasMany(Message::class,'user_id','id');
     }
-
->>>>>>> 2c834df24b0f0b6f1633d56f1315cd3c697d6124
 }

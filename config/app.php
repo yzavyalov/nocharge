@@ -141,11 +141,7 @@ return [
 
     'maintenance' => [
         'driver' => 'file',
-<<<<<<< HEAD
-        // 'store' => 'redis',
-=======
-        // 'store'  => 'redis',
->>>>>>> 2c834df24b0f0b6f1633d56f1315cd3c697d6124
+         'store'  => 'redis',
     ],
 
     /*
@@ -172,14 +168,11 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-<<<<<<< HEAD
-=======
         App\Providers\FortifyServiceProvider::class,
         App\Providers\JetstreamServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
->>>>>>> 2c834df24b0f0b6f1633d56f1315cd3c697d6124
-    ])->toArray(),
+   ])->toArray(),
 
     /*
     |--------------------------------------------------------------------------
@@ -194,10 +187,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
-<<<<<<< HEAD
-=======
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
->>>>>>> 2c834df24b0f0b6f1633d56f1315cd3c697d6124
     ])->toArray(),
 
 ];
