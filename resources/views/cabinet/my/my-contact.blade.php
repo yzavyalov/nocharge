@@ -1,63 +1,61 @@
 <x-app-layout>
 
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            SuperAdmin's Cabinet
-        </h2>
+        <div class="card text-center p-4">
+            <h2 class="text-xl text-gray-800 leading-tight">
+                SuperAdmin's Contacts
+            </h2>
+        </div>
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="flex flex-col space-y-4">
-                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-8 mt-8">
-            <!-- Payments Table -->
-            <div class="border p-4 mb-4">
-                <h3 class="text-xl font-semibold">Messages</h3>
-                <!-- Your payments table goes here -->
-                <!-- Example: -->
-                <table class="text-center w-full">
-                    <!-- Payment rows with CONFIRM button -->
-                    <thead>
-                        <tr>
-                            <th>id</th>
-                            <th>data</th>
-                            <th>status</th>
-                            <th>author</th>
-                            <th>author's email</th>
-                            <th>subject</th>
-                            <th>text</th>
-                            <th>created_at</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($messages as $message)
-                        <tr>
-                            <td>{{ $message->id }}</td>
-                            <td>{{ $message->created_at }}</td>
-                            <td>{{ $messageTypes[$message->status] }}</td>
-                            <td>{{ $message->author->name }}</td>
-                            <td>{{ $message->author->email }}</td>
-                            <td>{{ $message->subject }}</td>
-                            <td>{{ $message->text }}</td>
-                            <td>
-                                    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" onclick="window.location.href='{{ route('read-message',$message->id) }}'">
-                                        READ
-                                    </button>
-                                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onclick="window.location.href='{{ route('del-message',$message->id) }}'">
-                                    DELETE
-                                </button>
-                            </td>
-                        </tr>
-                    @endforeach
-                    </tbody>
-                    <!-- Repeat for other payments -->
-                </table>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card shadow-lg">
+                        <div class="card-body">
+                            <h3 class="card-title text-center font-weight-bold">Messages</h3>
+                            <div class="table-responsive">
+                                <table class="table table-bordered text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        <th>Author</th>
+                                        <th>Author's Email</th>
+                                        <th>Subject</th>
+                                        <th>Text</th>
+                                        <th>Created At</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($messages as $message)
+                                        <tr>
+                                            <td>{{ $message->id }}</td>
+                                            <td>{{ $message->created_at }}</td>
+                                            <td>{{ $messageTypes[$message->status] }}</td>
+                                            <td>{{ $message->author->name }}</td>
+                                            <td>{{ $message->author->email }}</td>
+                                            <td>{{ $message->subject }}</td>
+                                            <td>{{ $message->text }}</td>
+                                            <td>{{ $message->created_at }}</td>
+                                            <td>
+                                                <button class="btn btn-success btn-sm" onclick="window.location.href='{{ route('read-message',$message->id) }}'">Read</button>
+                                                <button class="btn btn-danger btn-sm" onclick="window.location.href='{{ route('del-message',$message->id) }}'">Delete</button>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-        </div>
-    </div>
 </x-app-layout>
 

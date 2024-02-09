@@ -1,14 +1,17 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            <div class="col title">Api documentation</div>
-        </h2>
+        <div class="card text-center p-4">
+            <h2 class="text-xl text-gray-800 leading-tight">
+                Api documentation
+            </h2>
+        </div>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="flex flex-col space-y-4">
-                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-8 mt-8 rounded">
+    <div class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="card bg-white shadow-sm rounded p-4 mt-4">
                     <div>The Bearer Token – your company's special key. This token will pop up in your company dashboard after you've signed up.</div>
                     <table class="border-collapse border">
                         <thead>
