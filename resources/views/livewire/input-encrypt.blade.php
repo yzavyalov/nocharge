@@ -14,7 +14,7 @@
 
         <form action="{{ route('check') }}" method="post">
             @csrf
-            <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-between align-items-center p-3">
                 <div class="flex-grow-1">
                     You can check if your customer's email address is in our database. If one of our partners has entered it into the database, this client is defined as untrustworthy. You can then decide whether or not to provide them with services. Please note that client data is stored in our database in encrypted form (<strong>SHA-256</strong> encryption algorithm). This is done to protect the data. In this regard, you can specify your e-mail as an e-mail (then our system will encrypt it before comparing it with the database) or in encrypted form (but only using the same algorithm).
                     <input wire:model="email" type="text" id="input-email1" name="email" class="form-control w-80 mb-2" placeholder="Your customer's email" oninput="encryptInput1(this)">
@@ -25,7 +25,7 @@
                 </div>
             </div>
         </form>
-        <div class="mt-2" style="padding: 3px;">
+        <div class="mt-2 p-3" style="padding: 3px;">
             <p class="text-muted">Your email in SHA256</p>
             <div class="d-flex align-items-center">
                 <button class="btn btn-success" onclick="copyToClipboard1()">

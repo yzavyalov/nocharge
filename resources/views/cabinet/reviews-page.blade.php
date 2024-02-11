@@ -1,8 +1,10 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Reviews of those you shouldn't work with
-        </h2>
+        <div class="card-body">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                Reviews of those you shouldn't work with
+            </h2>
+        </div>
     </x-slot>
 
     <div class="py-12">
@@ -25,7 +27,7 @@
                             <label for="search" class="sr-only">Search</label>
                             <input type="text" id="search" name="search" placeholder="Search by title" class="border p-2 rounded w-80">
                             <select name="category" id="category" class="border p-2 ml-2 rounded w-80">
-                                    <option value="">All</option>
+                                <option value="">All</option>
                                 @foreach($middlemanTypes as $value => $description)
                                     <option value="{{ $value }}">{{ $description }}</option>
                                 @endforeach
@@ -34,7 +36,7 @@
                             <button type="submit" class="bg-blue-500 text-white p-2 ml-2 rounded w-40">Search</button>
                         </form>
 
-                        <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onclick="toggleForm('addIntermediaryForm')">
+                        <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onclick="toggleForm()">
                             Add bad intermediaries
                         </button>
                     </div>
@@ -107,7 +109,7 @@
                                             @foreach($review->twocomments as $comment)
                                                 <li>{{ $comment->text }}</li>
                                             @endforeach
-                                                <a href="{{ route('show-review',$review->id) }}" style="color: blue">reed all comments</a>
+                                            <a href="{{ route('show-review',$review->id) }}" style="color: blue">reed all comments</a>
                                         </ul>
                                     @endif
                                     <!-- Displaying comments -->
@@ -127,6 +129,14 @@
             {{ $reviews->links() }}
         </div>
     </div>
+
+    <script>
+        function toggleForm() {
+            var form = document.getElementById('addIntermediaryForm');
+            form.classList.toggle('hidden');
+        }
+    </script>
+
     <script>
         function toggleForm() {
             const form = document.querySelector('.hidden');

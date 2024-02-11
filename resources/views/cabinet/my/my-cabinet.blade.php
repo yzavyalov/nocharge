@@ -135,9 +135,9 @@
 
     @livewire('input-user')
 
-            @livewire('input-encrypt')
+    @livewire('input-encrypt')
 
-            @livewire('intermediaries')
+    @livewire('intermediaries')
 
         </div>
     </div>

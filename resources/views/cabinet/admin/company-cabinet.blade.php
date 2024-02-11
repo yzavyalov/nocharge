@@ -1,71 +1,77 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-weight-bold text-xl text-dark">
             {{ $partner->name }}
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+    <div class="py-5">
+        <div class="container">
             @hasrole('user-admin')
+            <div class="row">
+                <div class="col-md-6 mx-auto">
+                    <div class="card shadow-sm mb-5">
+                        <div class="card-body">
+                            <h2 class="text-center font-weight-bold text-xl mb-4">
+                                <a href="#">{{ $partner->name }}</a>
+                            </h2>
 
-            <div class="flex flex-col space-y-4">
-                    <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-8 mt-8">
-                        <h2 class="text-center font-bold text-xl mb-4">
-                            <a href="#">{{ $partner->name }}</a>
-                        </h2>
-
-                        @if($partner->currentTocken->count() > 0)
-                            <div class="mt-4">
-                                <div>This token for your API requests.</div>
-                                <div style="display: flex; width: 100%;">
-                                    <input type="text" id="token" class="mt-1 p-2 border border-gray-300 rounded-md" style="flex: 1 0 auto;" value="{{ $partner->currentTocken->last()->token }}" readonly>
-                                    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 mt-2 rounded" onclick="copyToken()">Copy Token</button>
+                            @if($partner->currentTocken->count() > 0)
+                                <div class="mt-4">
+                                    <div>This token for your API requests.</div>
+                                    <div class="input-group mb-3">
+                                        <input type="text" id="token" class="form-control" value="{{ $partner->currentTocken->last()->token }}" readonly>
+                                        <button class="btn btn-success" onclick="copyToken()">Copy Token</button>
+                                    </div>
+                                    <button class="btn btn-warning" onclick="window.location.href='{{ route('token-update',$partner->currentTocken->last()->id) }}'">Update Token</button>
                                 </div>
-                                <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 mt-2 rounded" onclick="window.location.href='{{ route('token-update',$partner->currentTocken->last()->id) }}'">Update Token</button>
-                            </div>
-                        @else
-                        <div class="mt-4">
-                            <div>To access the full functionality of the system and obtain a token for information exchange via the API (server-to-server),
-                                you are required to make a membership contribution to participate in our system.</div>
-                            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 mt-2 rounded" onclick="window.location.href='{{ route('packet-page') }}'">Page with descriptions of membership contributions.</button>
+                            @else
+                                <div class="mt-4">
+                                    <div>To access the full functionality of the system and obtain a token for information exchange via the API (server-to-server),
+                                        you are required to make a membership contribution to participate in our system.</div>
+                                    <button class="btn btn-success mt-2" onclick="window.location.href='{{ route('packet-page') }}'">Page with descriptions of membership contributions.</button>
+                                </div>
+                            @endif
                         </div>
-                        @endif
                     </div>
+                </div>
+
+                <div class="col-md-6 mx-auto">
+                    <div class="card shadow-sm mb-5">
+                        <div class="card-body">
+                            <form method="post" action="{{ route('update-partner',$partner->id) }}">
+                                @csrf
+                                <div class="mb-3">
+                                    <label for="companyName" class="form-label">Company Name</label>
+                                    <input type="text" id="companyName" name="name" class="form-control" value="{{ $partner->name }}" placeholder="Enter your company name" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="companyType" class="form-label">Company Type</label>
+                                    <select id="companyType" name="type" class="form-control" required>
+                                        @foreach(\App\Enums\PartnersTypeEnum::toSelectArray() as $value => $description)
+                                            @if($value == $partner->type)
+                                                <option value="{{ $value }}" selected>{{ $description }}</option>
+                                            @else
+                                                <option value="{{ $value }}">{{ $description }}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <button type="submit" class="btn btn-primary">Update</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </div>
+    </div>
 
 
-
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-8 mt-8">
-                <form method="post" action="{{ route('update-partner',$partner->id) }}">
-                    @csrf
-                    <div>
-                        <label for="companyName" class="block text-sm font-medium text-gray-700">Company Name</label>
-                        <input type="text" id="companyName" name="name" class="mt-1 p-2 border border-gray-300 rounded-md w-full" value="{{ $partner->name }}" placeholder="Enter your company name" required>
-                    </div>
-
-                    <div class="mt-4">
-                        <label for="companyType" class="block text-sm font-medium text-gray-700">Company Type</label>
-                        <select id="companyType" name="type" class="mt-1 p-2 border border-gray-300 rounded-md w-full" required>
-                            @foreach(\App\Enums\PartnersTypeEnum::toSelectArray() as $value => $description)
-                                @if($value == $partner->type)
-                                    <option value="{{ $value }}" selected>{{ $description }}</option>
-                                @else
-                                    <option value="{{ $value }}">{{ $description }}</option>
-                                @endif
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="flex items-center justify-between mt-4">
-                        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                            Update
-                        </button>
-                    </div>
-                </form>
-            </div>
-
-            <script>
+    <script>
                 function copyToken() {
                     var tokenField = document.getElementById('token');
                     tokenField.select();
@@ -73,25 +79,28 @@
                 }
             </script>
 
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-8 mt-8">
-                <table class="max-w-full">
-                    <thead>
-                    <tr class="text-center">
-                        <th class="py-2 px-4 text-left">Email</th>
-                        <th class="py-2 px-4 text-left">Role</th>
+    <div class="bg-white overflow-hidden shadow-xl rounded-lg p-4 mt-4">
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="text-center">
+                <tr>
+                    <th class="py-2 px-4">Email</th>
+                    <th class="py-2 px-4">Role</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($partner->users as $user)
+                    <tr>
+                        <td class="py-2 px-4">{{ $user->email }}</td>
+                        <td class="py-2 px-4">{{ $user->roles->first()->name }}</td>
                     </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($partner->users as $user)
-                        <tr class="text-left">
-                            <td class="py-2 px-4">{{ $user->email }}</td>
-                            <td class="py-2 px-4">{{ $user->roles->first()->name }}</td>
-                            </tr>
-                    @endforeach
-                    </tbody>
-                </table>
-            </div>
-            @endhasrole
+                @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    @endhasrole
 
             @livewire('input-user')
 

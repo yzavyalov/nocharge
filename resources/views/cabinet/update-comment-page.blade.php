@@ -1,14 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-weight-bold h4 text-dark">
             Reviews of those you shouldn't work with
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+    <div class="py-4">
+        <div class="container">
             <div class="border p-4 mb-4">
-                <h3 class="text-xl font-semibold">{{ $comment->baditem->name }}</h3>
+                <h3 class="font-weight-bold h5">{{ $comment->baditem->name }}</h3>
                 <p>{{  \App\Enums\MiddlemanTypeEnum::toSelectArray()[$comment->baditem->category] }}</p>
                 <p>{{ $comment->baditem->link }}</p>
                 <p>{{ $comment->baditem->text }}</p>
@@ -25,15 +25,16 @@
                     @endif
                     @csrf
                     <!-- Your form fields for adding comments go here -->
-                    <input type="text" name="text" placeholder="Enter comment text" class="w-full mt-3" value="{{ $comment->text }}">
-                    <button type="submit" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded mt-2">
+                    <div class="form-group">
+                        <input type="text" name="text" placeholder="Enter comment text" class="form-control mt-3" value="{{ $comment->text }}">
+                    </div>
+                    <button type="submit" class="btn btn-warning mt-2">
                         Update Comment
                     </button>
                 </form>
 
                 <!-- Comments Section -->
             </div>
-
         </div>
     </div>
     <script>

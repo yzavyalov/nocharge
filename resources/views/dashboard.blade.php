@@ -2,43 +2,40 @@
     <!-- Остальной код не изменен -->
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-8">
+        <div class="container">
+            <div class="bg-white overflow-hidden shadow-xl rounded-lg p-8">
                 <!-- Остальной код не изменен -->
 
-                <div class="mt-8 flex flex-col md:flex-row md:space-x-4">
+                <div class="mt-8 row">
                     <!-- Левая часть -->
-                    <div class="flex-grow mb-4 md:mb-0">
-                        <h3 class="text-lg font-semibold mb-4">Enter Manager's Email</h3>
-                        <form action="{{ route('submit-email') }}" method="post">
+                    <div class="col-md mb-4 mb-md-0">
+                        <h3 class="h5 font-weight-bold mb-4">Enter Manager's Email</h3>
+                        <form action="{{ route('submit-email') }}" method="post" class="d-flex flex-column flex-md-row align-items-center">
                             @csrf
 
-                            <div class="flex items-center mb-4">
-                                <input type="email" name="email" class="py-2 px-4 border border-blue-500 rounded flex-grow" placeholder="Your manager's email">
-                                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                                    Submit
-                                </button>
-                            </div>
+                            <input type="email" name="email" class="form-control py-2 px-4 mb-2 mb-md-0 mr-md-2" placeholder="Your manager's email">
+                            <button type="submit" class="btn btn-primary py-2 px-4">
+                                Submit
+                            </button>
                         </form>
 
                         @if(session('error'))
-                            <div class="text-red-500">{{ session('error') }}</div>
+                            <div class="text-danger">{{ session('error') }}</div>
                         @endif
                     </div>
 
                     <!-- Правая часть -->
-                    <div class="flex-grow flex items-center justify-end mb-4 mb-0">
-                        <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" onclick="window.location.href = '{{ route('partner-form') }}'">
+                    <div class="col-md d-flex justify-content-md-end">
+                        <button class="btn btn-success py-2 px-4" onclick="window.location.href = '{{ route('partner-form') }}'">
                             Add company
                         </button>
                     </div>
                 </div>
-
-
-
             </div>
         </div>
+    </div>
 
-        @livewire('input-encrypt')
+
+    @livewire('input-encrypt')
     </div>
 </x-app-layout>
