@@ -24,6 +24,7 @@ class AuthRequest extends FormRequest
         return [
             'login' => 'email|required',
             'password' => 'string|required',
+            'g-recaptcha-response' => 'required|recaptcha',
         ];
     }
 }

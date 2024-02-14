@@ -35,22 +35,23 @@
                 @if (Route::has('password.request'))
                     <a class="text-decoration-none me-4" href="{{ route('password.request') }}">{{ __('Forgot your password?') }}</a>
                 @endif
-
+{{--                <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.site_key') }}"></div>--}}
                 <button type="submit" class="btn btn-primary g-recaptcha"
-                        data-sitekey="{{ env('GOOGLE_RECAPTCHA_SITE_KEY') }}"
+                        data-sitekey="6LcHgFApAAAAADZFleoZEuORYc0f0VrdHzxh6Xfw"
                         data-callback='onSubmit'
                         data-action='submit'>
                     {{ __('Log in') }}
                 </button>
+                    <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.site_key') }}"></div>
             </div>
         </form>
 
     </x-authentication-card>
-    @push('scripts')
-        <script>
-            function onSubmit(token) {
-                document.getElementById("login-form").submit();
-            }
-        </script>
-    @endpush
-</x-guest-layout>
+        @push('scripts')
+            <script>
+                function onSubmit(token) {
+                    document.getElementById("login-form").submit();
+                }
+            </script>
+        @endpush
+    </x-guest-layout>
