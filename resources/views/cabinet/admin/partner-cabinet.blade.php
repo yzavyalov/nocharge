@@ -117,7 +117,7 @@
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
-                        <tr>
+                        <tr class="text-center">
                             <th>Created at</th>
                             <th>Company</th>
                             <th>Sum</th>

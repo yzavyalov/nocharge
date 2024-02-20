@@ -45,6 +45,14 @@ return [
             'password' => env('MAIL_PASSWORD'),
             'timeout' => null,
             'local_domain' => env('MAIL_EHLO_DOMAIN'),
+            'from' => [
+                'address' => 'administartor@iafs.info',
+                'name' => 'Administrator',
+            ],
+            'sender' => [
+                'address' => 'administartor@iafs.info',
+                'name' => 'Administrator',
+            ],
         ],
 
         'ses' => [

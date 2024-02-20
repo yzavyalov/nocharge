@@ -24,8 +24,8 @@ class AnswerController extends Controller
             'text' => $validatedData['answer_text'],
             'subject' => $validatedData['subject'],
         ], function ($message) use ($user, $validatedData) {
-            $message->to($user->email)->subject($validatedData['subject']);
-            $message->from('8540462@gmail.com','Administrator');
+            $message->to($user->email)->subject('from Internet Association of Fintech Services');
+            $message->from('administartor@iafs.info', 'Internet Association of Fintech Services');
         });
 
         $answer = Answer::create([

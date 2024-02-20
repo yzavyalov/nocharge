@@ -6,7 +6,7 @@
 
         <x-validation-errors class="mb-4" />
 
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" action="{{ route('register') }}" id="register">
             @csrf
 
             <div class="mb-3">
@@ -45,9 +45,20 @@
 
             <div class="d-flex justify-content-end align-items-center mb-3">
                 <a class="text-decoration-none me-4" href="{{ route('login') }}">{{ __('Already registered?') }}</a>
-                <button type="submit" class="btn btn-primary">{{ __('Register') }}</button>
+                <button type="submit" class="btn btn-primary g-recaptcha"
+                        data-sitekey="6LcHgFApAAAAADZFleoZEuORYc0f0VrdHzxh6Xfw"
+                        data-callback='onSubmit'
+                        data-action='submit'>{{ __('Register') }}</button>
             </div>
+            <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.site_key') }}"></div>
         </form>
 
     </x-authentication-card>
+    @push('scripts')
+        <script>
+            function onSubmit(token) {
+                document.getElementById("register").submit();
+            }
+        </script>
+    @endpush
 </x-guest-layout>

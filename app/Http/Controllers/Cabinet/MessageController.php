@@ -9,6 +9,7 @@ use App\Models\Message;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class MessageController extends Controller
 {
@@ -19,6 +20,11 @@ class MessageController extends Controller
         $request['status'] = MessageTypeEnum::NEW;
 
         $message = Message::create($request);
+
+        Mail::send(['text' => 'emails.message'], ['user_id' => $request['user_id'], 'subject' => $request['subject'], 'text' => $request['text'], 'status' => $request['status']], function($message){
+              $message->to('8540462@gmail.com', 'IAFS')->subject('form IAFS');
+              $message->from('administartor@iafs.info', 'Internet Association of Fintech Services');
+        });
 
         $user = Auth::user();
 

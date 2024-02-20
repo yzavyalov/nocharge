@@ -51,10 +51,6 @@ Route::middleware([
         Route::get('/cabinet/api-documentation',[PageController::class, 'apiDocumantation'])->name('cabinet-api');
         Route::get('/cabinet/contact-form',[PageController::class, 'contact'])->name('cabinet-contact');
 
-
-
-        Route::post('/answer/create',[AnswerController::class,'createAndSend'])->name('send-answer');
-
         Route::post('/submit-email',[EmployeeController::class, 'emailForm'])->name('submit-email');
         Route::post('send/claim',[EmployeeController::class,'claim'])->name('send-claim');
 
@@ -67,6 +63,7 @@ Route::middleware([
         Route::get('partner/{id}/delete',[PartnerController::class, 'delete'])->name('del-partner')->middleware('checkroute');
         Route::post('create-partner',[PartnerController::class, 'create'])->name('create-partner');
         Route::post('update-partner/{id}',[PartnerController::class, 'update'])->name('update-partner')->middleware('checkroute');
+        Route::post('/message/send',[MessageController::class,'create'])->name('send-message');
 
 
         Route::get('packet-page',[IndexController::class,'packetPage'])->name('packet-page');
@@ -103,9 +100,9 @@ Route::middleware([
         Route::get('payment/{id}/paid',[PaymentController::class,'paidPayment'])->name('paid-payment');
         Route::get('payment/{id}/unpaid',[PaymentController::class,'unpaidPayments'])->name('unpaid-payment');
 
-        Route::post('/message/send',[MessageController::class,'create'])->name('send-message');
         Route::get('/message/read/{message_id}',[MessageController::class,'read'])->name('read-message');
         Route::get('/message/del/{message_id}',[MessageController::class, 'delete'])->name('del-message');
+        Route::post('/answer/create',[AnswerController::class,'createAndSend'])->name('send-answer');
     });
 
 });

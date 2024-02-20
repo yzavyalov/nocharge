@@ -6,7 +6,7 @@
                 <div class="col-lg-8">
                     <div class="card border border-success shadow-lg rounded-lg mt-5">
                         <div class="card-body">
-                            <div class="bg-success border-left-4 border-success p-4 mb-4">
+                            <div class="border-left-4 border-success p-4 mb-4">
                                 <p class="text-success">Your message was sent!</p>
                                 <p class="text-success">{{ $message->subject }}</p>
                                 <p class="text-success">{{ $message->text }}</p>
