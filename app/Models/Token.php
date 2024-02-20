@@ -13,6 +13,7 @@ class Token extends Model
         'partner_id',
         'token',
         'active',
+        'finish_date',
     ];
 
     public function partner()

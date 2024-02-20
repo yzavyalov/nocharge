@@ -11,26 +11,26 @@
         <div class="container">
             <!-- Блок 1 -->
             <div class="row">
-                <div class="col-md-6">
-                    <div class="rounded-lg bg-white p-4 text-center" style="border:5px solid blue;">
-                        <h3 class="text-lg font-semibold mb-3">Free - One Month</h3>
-                        <p>Upload your email database containing clients, who have initiated chargebacks or refunds on your website.</p>
-                        <button class="btn btn-primary mt-3">Free 1 month</button>
-                    </div>
-                </div>
+{{--                <div class="col-md-6">--}}
+{{--                    <div class="rounded-lg bg-white p-4 text-center" style="border:5px solid blue;">--}}
+{{--                        <h3 class="text-lg font-semibold mb-3">Free - One Month</h3>--}}
+{{--                        <p>Upload your email database containing clients, who have initiated chargebacks or refunds on your website.</p>--}}
+{{--                        <button class="btn btn-primary mt-3">Free 1 month</button>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
                 <!-- Блок 2 -->
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="rounded-lg bg-white p-4 text-center" style="border:5px solid green;">
                         <h3 class="text-lg font-semibold mb-3">300 USDT for 1 Month</h3>
                         <p>You can pay on a monthly basis. Uploading your database of unreliable users enables all colleagues to avoid another issue.</p>
                         <button class="btn btn-success mt-3">Pay 1 month</button>
                     </div>
                 </div>
-            </div>
+{{--            </div>--}}
 
             <!-- Блок 3 -->
-            <div class="row mt-4">
-                <div class="col-md-6">
+{{--            <div class="row mt-4">--}}
+                <div class="col-md-4">
                     <div class="rounded-lg bg-white p-4 text-center"  style="border:5px solid orange;">
                         <h3 class="text-lg font-semibold mb-3">850 USDT for 3 Months</h3>
                         <p>If you pay for 3 months upfront, you receive a benefit of 50 USDT. Participation in our system allows participants to save.</p>
@@ -38,7 +38,7 @@
                     </div>
                 </div>
                 <!-- Блок 4 -->
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="rounded-lg bg-white p-4 text-center" style="border:5px solid red;">
                         <h3 class="text-lg font-semibold mb-3">3000 USDT for 12 Months</h3>
                         <p>Paying for your annual participation allows you to save 600 USDT upfront. Participation in our system allows participants to save.</p>

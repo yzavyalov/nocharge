@@ -80,7 +80,7 @@ class PaymentController extends Controller
 
         $partner = Partners::query()->find($payment->partner_id);
 
-        $token = $partner->currentTocken->first();
+        $token = $partner->token->first();
 
         $finishDate = Carbon::parse($token->finish_date);
 
