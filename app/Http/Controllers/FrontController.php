@@ -41,4 +41,9 @@ class FrontController extends Controller
     {
         return view('front.frontmembership');
     }
+
+    public function policy()
+    {
+        return view('front.policy');
+    }
 }

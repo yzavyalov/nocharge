@@ -36,6 +36,7 @@ Route::get('/page', [FrontController::class, 'about'])->name('about');
 Route::get('/api',[FrontController::class, 'api'])->name('api');
 Route::get('/synergy',[FrontController::class,'synergy'])->name('synergy');
 Route::get('/membership',[FrontController::class,'membership'])->name('membership');
+Route::get('/policy',[FrontController::class,'policy'])->name('policy');
 
 
 Route::middleware([
