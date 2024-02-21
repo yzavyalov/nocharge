@@ -51,6 +51,7 @@ Route::middleware([
         Route::get('/cabinet/black-list',[PageController::class, 'blackList'])->name('cabinet-blacklist');
         Route::get('/cabinet/api-documentation',[PageController::class, 'apiDocumantation'])->name('cabinet-api');
         Route::get('/cabinet/contact-form',[PageController::class, 'contact'])->name('cabinet-contact');
+        Route::get('/cabinet/policy',[PageController::class, 'policy'])->name('cabinet-policy');
 
         Route::post('/submit-email',[EmployeeController::class, 'emailForm'])->name('submit-email');
         Route::post('send/claim',[EmployeeController::class,'claim'])->name('send-claim');

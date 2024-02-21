@@ -66,4 +66,9 @@ class PageController extends Controller
             return view('cabinet.pages.contact-in-cabinet',compact('user','messageTypes'));
         }
     }
+
+    public function policy()
+    {
+        return view('cabinet.pages.policy');
+    }
 }

@@ -25,6 +25,9 @@
                 <x-nav-link href="{{ route('cabinet-api') }}" :active="request()->routeIs('api')">
                     API Documentations
                 </x-nav-link>
+                <x-nav-link href="{{ route('cabinet-policy') }}" :active="request()->routeIs('policy')">
+                    Our Policy
+                </x-nav-link>
                 <x-nav-link href="{{ route('cabinet-blacklist') }}" :active="request()->routeIs('blacklist')">
                     Black List
                 </x-nav-link>

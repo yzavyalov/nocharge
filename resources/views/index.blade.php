@@ -46,6 +46,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('membership') }}">Membership</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('policy') }}">Our policy</a>
+                    </li>
                 </ul>
 
                 @if (Route::has('login'))
