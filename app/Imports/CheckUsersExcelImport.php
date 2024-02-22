@@ -16,14 +16,33 @@ class CheckUsersExcelImport implements ToCollection
     */
     public function collection(Collection $rows)
     {
+        $headerSkipped = false;
+
         foreach ($rows as $row)
         {
-            $user = CheckUser::query()->where('email',EncryptService::coding($row[0]))->first();
+            // Пропускаем первую строку (заголовок столбцов)
+            if (!$headerSkipped) {
+                $headerSkipped = true;
+                continue;
+            }
 
-            if (!isset($user))
+
+            // Проверяем, что email является действительным
+            $email = $row[0];
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                throw new \Exception('Invalid email format: ' . $email);
+            }
+
+            // Проверяем другие поля, если необходимо
+
+            // Проверяем, существует ли пользователь с таким email
+            $user = CheckUser::query()->where('email', EncryptService::coding($email))->first();
+
+            // Если пользователь не существует, создаем нового
+            if (!$user)
             {
                 CheckUser::create([
-                    'email' => EncryptService::coding($row[0]),
+                    'email' => EncryptService::coding($email),
                     'ip' => $row[1],
                     'browser' => $row[2],
                     'agent' => $row[3],
@@ -33,4 +52,6 @@ class CheckUsersExcelImport implements ToCollection
             }
         }
     }
+
+
 }

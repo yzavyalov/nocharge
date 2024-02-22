@@ -90,7 +90,7 @@
                 </thead>
                 <tbody>
                 @foreach($partner->users as $user)
-                    <tr>
+                    <tr class="text-center">
                         <td class="py-2 px-4">{{ $user->email }}</td>
                         <td class="py-2 px-4">{{ $user->roles->first()->name }}</td>
                     </tr>

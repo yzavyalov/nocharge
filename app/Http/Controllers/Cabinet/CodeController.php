@@ -55,30 +55,73 @@ class CodeController extends Controller
         return redirect()->back();
     }
 
+//    public function addCheckUsers(EmailRequest $request)
+//    {
+//        if ($request->has('email'))
+//        {
+//            $mail = EncryptService::coding($request->email);
+//            $user = CheckUser::query()->where('email',$mail)->first();
+//            if (Auth::user()->hasRole('redaktor'))
+//                $ownerPartner = 1;
+//            else
+//                $ownerPartner = session()->get('partner_id');
+//
+//
+//            if (!isset($user))
+//                CheckUser::create([
+//                    'email' => $mail,
+//                    'owner_partner' => $ownerPartner,
+//                ]);
+//        }
+//            //идем по сохранению эмейла в базу
+//        if ($request->hasFile('file'))
+//            \Maatwebsite\Excel\Facades\Excel::import(new CheckUsersExcelImport, $request->file('file'));
+//
+//        session()->flash('success-add-check', 'Your bad guys had added!');
+//
+//        return redirect()->back();
+//    }
+
+
+
+
+
     public function addCheckUsers(EmailRequest $request)
     {
-        if ($request->has('email'))
-        {
-            $mail = EncryptService::coding($request->email);
-            $user = CheckUser::query()->where('email',$mail)->first();
-            if (Auth::user()->hasRole('redaktor'))
-                $ownerPartner = 1;
-            else
-                $ownerPartner = session()->get('partner_id');
+        try {
+            if ($request->has('email')) {
+                $mail = EncryptService::coding($request->email);
+                $user = CheckUser::query()->where('email', $mail)->first();
+                $ownerPartner = Auth::user()->hasRole('redaktor') ? 1 : session()->get('partner_id');
 
+                if (!$user) {
+                    CheckUser::create([
+                        'email' => $mail,
+                        'owner_partner' => $ownerPartner,
+                    ]);
+                }
+            }
 
-            if (!isset($user))
-                CheckUser::create([
-                    'email' => $mail,
-                    'owner_partner' => $ownerPartner,
-                ]);
+            if ($request->hasFile('file')) {
+                \Maatwebsite\Excel\Facades\Excel::import(new CheckUsersExcelImport, $request->file('file'));
+                session()->flash('success-add-check', 'Your bad guys have been added successfully!');
+            } else {
+                throw new \Exception('File not found in the request.');
+            }
+        } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
+            $failures = $e->failures();
+
+            $errorMessages = [];
+            foreach ($failures as $failure) {
+                $errorMessages[] = 'Row ' . $failure->row() . ': ' . implode(', ', $failure->errors());
+            }
+
+            session()->flash('error-add-check', 'There were errors in the file: ' . implode('; ', $errorMessages));
+        } catch (\Exception $e) {
+            session()->flash('error-add-check', 'An error occurred while processing the file: ' . $e->getMessage());
         }
-            //идем по сохранению эмейла в базу
-        if ($request->hasFile('file'))
-            \Maatwebsite\Excel\Facades\Excel::import(new CheckUsersExcelImport, $request->file('file'));
-
-        session()->flash('success-add-check', 'Your bad guys had added!');
 
         return redirect()->back();
     }
+
 }

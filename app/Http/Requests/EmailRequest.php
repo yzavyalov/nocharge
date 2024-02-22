@@ -23,7 +23,7 @@ class EmailRequest extends FormRequest
     {
         return [
             'email' => 'email|nullable',
-            'file' => 'file|mimes:csv|nullable',
+            'file' => 'file|mimes:csv,txt|nullable',
         ];
     }
 }
