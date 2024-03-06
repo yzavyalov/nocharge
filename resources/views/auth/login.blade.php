@@ -37,7 +37,7 @@
                 @endif
 {{--                <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.site_key') }}"></div>--}}
                 <button type="submit" class="btn btn-primary g-recaptcha"
-                        data-sitekey="6LcHgFApAAAAADZFleoZEuORYc0f0VrdHzxh6Xfw"
+                        data-sitekey="6LftBnwpAAAAAHlM1zr6Oo1bZXmZkccFJnxS8Awu"
                         data-callback='onSubmit'
                         data-action='submit'>
                     {{ __('Log in') }}

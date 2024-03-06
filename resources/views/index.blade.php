@@ -47,6 +47,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('policy') }}">Our policy</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('contact') }}">Contact</a>
+                    </li>
                 </ul>
 
                 @if (Route::has('login'))

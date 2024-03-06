@@ -46,7 +46,7 @@
             <div class="d-flex justify-content-end align-items-center mb-3">
                 <a class="text-decoration-none me-4" href="{{ route('login') }}">{{ __('Already registered?') }}</a>
                 <button type="submit" class="btn btn-primary g-recaptcha"
-                        data-sitekey="6LcHgFApAAAAADZFleoZEuORYc0f0VrdHzxh6Xfw"
+                        data-sitekey="6LftBnwpAAAAAHlM1zr6Oo1bZXmZkccFJnxS8Awu"
                         data-callback='onSubmit'
                         data-action='submit'>{{ __('Register') }}</button>
             </div>

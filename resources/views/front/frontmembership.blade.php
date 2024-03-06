@@ -13,12 +13,13 @@
                 <h2>Membership</h2>
             </div>
         </div>
-        <div class="row mb-4 mt-3 page-content">
-            <div class="row">
-                <div class="col">
-                    <img src="{{ asset('img/server.png') }}" alt="">
+
+        <div class="container">
+            <div class="row mb-4 mt-3 page-content">
+                <div class="col-md-6">
+                    <img src="{{ asset('img/server.png') }}" alt="membership" class="img-fluid mb-3 mb-md-0">
                 </div>
-                <div class="col">
+                <div class="col-md-6">
                     <p>
                         Our system is a hub for communication among companies engaged in online business. The success of our system directly correlates with the success of each participant because active interaction between participants brings benefits to everyone involved. We also analyze other systems focused on preventing chargeback cases and incorporate their experiences.
 
@@ -33,5 +34,6 @@
                 </div>
             </div>
         </div>
+
     </div>
 @endsection

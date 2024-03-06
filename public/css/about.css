@@ -1,63 +1,28 @@
 .about{
-    font-size: 30px;
+    font-family: "Modern No. 20";
 }
 
-
-h2{
-    font-size: 40px !important;
-    font-weight: bolder !important;
-    margin-bottom: 5px !important;
-    text-align: center;
+.secondTitle{
+    font-weight: 600;
+    font-size: 2em;
 }
-
-#partners{
-    font-weight: bolder;
-}
-
-#partners li{
-    padding-left: 30px;
-    font-size: 30px;
-    font-weight: lighter;
-}
-
 #slogan-one{
-    font-weight: bold;
-    font-size: 25px;
+    font-size: 1.5em;
+}
+.rectangle{
+    text-align: right;
 }
 
-.protection h3  {
-    font-size: 40px;
-    font-weight: bolder;
+.bg-gray{
+    background-color: #F7F6F6;
 }
 
-ul{
-    font-size: 20px;
-    list-style-type:circle !important;
-    padding-left: 5% !important;
+#presantation{
+    padding-top: 5%;
 }
 
-ol{
-    font-size: 20px;
-    list-style-type:circle !important;
-    padding-left: 5% !important;
-}
-
-#marker {
-    width: 10px;
-}
-
-#title-how{
-    font-size: 25px;
-    font-weight: bolder;
-    margin-top: 15px;
-}
-
-#title-benefits{
-    font-size: 25px;
-    font-weight: bolder;
-    margin-top: 15px;
-}
-
-#presentation{
-    color: blue;
+@media (max-width: 1000px){
+    #bigImage{
+        display: none;
+    }
 }

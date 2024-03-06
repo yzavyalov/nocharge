@@ -9,6 +9,8 @@
     <script src="{{asset('https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js')}}"></script>
 
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('css/about.css')}}">
+    <link rel="stylesheet" href="{{asset('css/frontPage.css')}}">
     <!-- Custom styles for this template -->
     <link href="{{asset('css/carousel.css')}}" rel="stylesheet">
     <!-- Fonts -->
@@ -48,6 +50,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('policy') }}">Our policy</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('contact') }}">Contact</a>
                     </li>
                 </ul>
 

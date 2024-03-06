@@ -99,5 +99,6 @@ class Kernel extends HttpKernel
         'checkroute' => CheckRouteMiddleware::class,
         'activeToken'=>ActiveTokenMiddleware::class,
         'apiToken' => ApiTokenMiddleware::class,
+        'check.access' => \App\Http\Middleware\CheckAccess::class,
     ];
 }

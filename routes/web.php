@@ -27,9 +27,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::group(['middleware' => ['check.access']], function () {
+    // Все ваши маршруты, к которым требуется проверка доступа
 
 Route::get('/', [FrontController::class, 'index'])->name('index');
 Route::get('/page', [FrontController::class, 'about'])->name('about');
@@ -37,6 +36,7 @@ Route::get('/api',[FrontController::class, 'api'])->name('api');
 Route::get('/synergy',[FrontController::class,'synergy'])->name('synergy');
 Route::get('/membership',[FrontController::class,'membership'])->name('membership');
 Route::get('/policy',[FrontController::class,'policy'])->name('policy');
+Route::get('/contact',[FrontController::class,'contact'])->name('contact');
 
 
 Route::middleware([
@@ -107,5 +107,6 @@ Route::middleware([
         Route::post('/answer/create',[AnswerController::class,'createAndSend'])->name('send-answer');
     });
 
+});
 });
 

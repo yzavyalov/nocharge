@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-weight-bold text-xl text-dark">
+        <h2 class="font-weight-bold h4 text-dark">
             {{ $partner->name }}
         </h2>
     </x-slot>
