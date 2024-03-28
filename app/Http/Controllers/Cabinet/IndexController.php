@@ -42,7 +42,13 @@ class IndexController extends Controller
 
             $partnerTypes = PartnersTypeEnum::toSelectArray();
 
-            return view('cabinet.my.my-cabinet',compact('user','partners','checkuserCount','checkCount','negativeReviewCount','commentCount','payments','paymentTypes','partnerTypes'));
+            $usersCount = User::all()->count();
+
+            $userNotVer = User::whereNull('email_verified_at')->count();
+
+            $userVer = User::whereNotNull('email_verified_at')->count();
+
+            return view('cabinet.my.my-cabinet',compact('user','partners','checkuserCount','checkCount','negativeReviewCount','commentCount','payments','paymentTypes','partnerTypes','usersCount','userVer','userNotVer'));
         }
         elseif ($user->hasRole('user-admin'))
         {

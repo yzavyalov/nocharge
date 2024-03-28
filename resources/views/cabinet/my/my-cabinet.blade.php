@@ -107,8 +107,12 @@
                             <h3 class="h5 fw-bold mb-4">Checkusers and Checks</h3>
                             <!-- Your block with checkusers and checks information goes here -->
                             <!-- Example: -->
+                            <p>Users all: {{ $usersCount }}</p>
+                            <p>Users verification: {{ $userVer }}</p>
+                            <p>Users not verification: {{ $userNotVer }}</p>
                             <p>Checkusers: {{ $checkuserCount }}</p>
                             <p>Checks: {{ $checkCount }}</p>
+                            <button class="btn btn-dark" onclick="window.location.href='{{route('reVerification')}}'">Send a letter to unverified users</button>
                         </div>
                     </div>
                 </div>

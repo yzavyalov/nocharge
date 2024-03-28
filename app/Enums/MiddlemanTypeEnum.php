@@ -18,7 +18,7 @@ class MiddlemanTypeEnum
             self::PSP => 'PSP',
             self::GATE => 'Gate',
             self::AGENT => 'Agent',
-            self::BANK => 'BankP',
+            self::BANK => 'Bank',
             self::OTHER => 'Other',
         ];
     }

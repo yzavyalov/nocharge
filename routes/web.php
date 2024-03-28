@@ -12,6 +12,7 @@ use App\Http\Controllers\Cabinet\PartnerController;
 use App\Http\Controllers\Cabinet\PaymentController;
 use App\Http\Controllers\Cabinet\ReviewController;
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\SanctumTockenController;
 use App\Http\Controllers\TokenController;
 use Illuminate\Support\Facades\Route;
@@ -55,6 +56,8 @@ Route::middleware([
 
         Route::post('/submit-email',[EmployeeController::class, 'emailForm'])->name('submit-email');
         Route::post('send/claim',[EmployeeController::class,'claim'])->name('send-claim');
+
+        Route::get('/re-verification',[MailController::class, 'reVerification'])->name('reVerification');
 
         Route::get('partner-form',[IndexController::class, 'companyForm'])->name('partner-form');
         Route::post('claim-succsess/{id}',[ClaimController::class, 'claimSuccsess'])->name('claim-succsess');

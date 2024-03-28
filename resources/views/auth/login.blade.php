@@ -12,7 +12,6 @@
             </div>
         @endif
 
-
         <form method="POST" action="{{ route('login') }}" id="login-form">
             @csrf
 

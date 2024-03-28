@@ -1,4 +1,4 @@
-<div class="min-vh-100 d-flex flex-column justify-content-center align-items-center bg-light">
+<div class="min-vh-60 d-flex flex-column justify-content-center align-items-center bg-light">
     <div>
         {{ $logo }}
     </div>
