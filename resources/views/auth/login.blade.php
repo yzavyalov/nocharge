@@ -30,7 +30,8 @@
                 <label for="remember_me" class="form-check-label">{{ __('Remember me') }}</label>
             </div>
 
-            <div class="d-flex justify-content-end align-items-center mb-3">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <button class="btn btn-outline-success" onclick="window.location.href='{{ route('register') }}'">If you are not registered</button>
                 @if (Route::has('password.request'))
                     <a class="text-decoration-none me-4" href="{{ route('password.request') }}">{{ __('Forgot your password?') }}</a>
                 @endif

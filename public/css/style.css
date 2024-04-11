@@ -1,17 +1,32 @@
 .header{
-    background-color: blue;
+    background-color: #f7f5f5;
     height:180px;
 }
 .footer{
-    background-color: #2563eb;
-    height: 100px;
+    background-color: #f7f5f5;
+    height: auto;
+    font-family: "Modern No. 20";
+    padding: 30px 30px;
 }
+.footer .footcolumn {
+    border-right: 1px solid #ccc; /* Устанавливаем серую границу справа для каждой колонки */
+    padding-right: 15px; /* Добавляем отступ справа для создания отступа между содержимым и границей */
+}
+.footer .footcolumn h4{
+    text-align: center;
+}
+
+    /* Стили для последней колонки */
+.footer .footcolumn:last-child {
+    border-right: none; /* Удаляем границу справа для последней колонки */
+}
+
 a .login-register{
     color:white;
 }
 
 .navbar{
-    background-color: #ef4444;
+    background-color: #f7f5f5;
     font-family: "Modern No. 20";
 }
 /*.nav-item>img{*/
@@ -23,13 +38,15 @@ a .login-register{
     height: 120px;
     width: auto;
 }
-main{
-    margin-top: 100px;
+.main{
+    margin-top: 180px;
     margin-bottom: 30px;
+    max-width: 1200px;
+    min-height: calc(100vh - 180px - 250px);
 }
 
 .banner{
-    margin-left: 40px;
+    text-align: center;
 }
 
 .title{
@@ -37,12 +54,10 @@ main{
     font-family: "Modern No. 20";
     font-size: 60px;
 }
+
 .block-column{
     font-family: "Modern No. 20";
-    width: 80%;
     margin-top: 30px;
-    margin-left: 5%;
-    padding-left: 10%;
 }
 
 .column{
@@ -80,36 +95,201 @@ main{
     -webkit-overflow-scrolling: touch;
 }
 
-.btn-bd-primary {
-    --bd-violet-bg: #712cf9;
-    --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
-
-    --bs-btn-font-weight: 600;
-    --bs-btn-color: var(--bs-white);
-    --bs-btn-bg: var(--bd-violet-bg);
-    --bs-btn-border-color: var(--bd-violet-bg);
-    --bs-btn-hover-color: var(--bs-white);
-    --bs-btn-hover-bg: #6528e0;
-    --bs-btn-hover-border-color: #6528e0;
-    --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
-    --bs-btn-active-color: var(--bs-btn-hover-color);
-    --bs-btn-active-bg: #5a23c8;
-    --bs-btn-active-border-color: #5a23c8;
-}
-.bd-mode-toggle {
-    z-index: 1500;
-}
-
 .mainCard{
     margin-top: 5%;
 }
 
+.custom-btn {
+    width: 130px;
+    height: 40px;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px 25px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+    7px 7px 20px 0px rgba(0,0,0,.1),
+    4px 4px 5px 0px rgba(0,0,0,.1);
+    outline: none;
+}
+.btn-9 {
+    border: none;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+.btn-9:after {
+    position: absolute;
+    content: " ";
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #1fd1f9;
+    background-image: linear-gradient(315deg, #1fd1f9 0%, #b621fe 74%);
+    transition: all 0.3s ease;
+}
+.btn-9:hover {
+    background: transparent;
+    box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+    -4px -4px 6px 0 rgba(116, 125, 136, .2),
+    inset -4px -4px 6px 0 rgba(255,255,255,.5),
+    inset 4px 4px 6px 0 rgba(116, 125, 136, .3);
+    color: #fff;
+}
+.btn-9:hover:after {
+    -webkit-transform: scale(2) rotate(180deg);
+    transform: scale(2) rotate(180deg);
+    box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+    -4px -4px 6px 0 rgba(116, 125, 136, .2),
+    inset -4px -4px 6px 0 rgba(255,255,255,.5),
+    inset 4px 4px 6px 0 rgba(116, 125, 136, .3);
+}
 
+.block-description{
+    font-family: "Modern No. 20";
+    text-align: center;
+    margin: 10px;
+}
+
+
+.subscription{
+    margin-left: 5px;
+    margin-right: 5px;
+    justify-items: center;
+}
+
+.footer .footcolumn ul {
+    list-style-type: none; /* Убираем маркеры списка */
+    padding-left: 0; /* Убираем отступ слева для списка */
+}
+
+.footer .footcolumn ul li a {
+    color: black; /* Цвет ссылок */
+    text-decoration: none; /* Убираем подчеркивание ссылок */
+    transition: color 0.3s; /* Плавное изменение цвета ссылок при наведении */
+}
+
+.footer .footcolumn ul li a:hover {
+    color: gray; /* Цвет ссылок при наведении */
+}
+
+
+
+
+
+
+/*проба*/
+
+/* Стили для заголовков */
+.footer .footcolumn h4 {
+    color: #343a40; /* Цвет заголовков */
+    font-size: 20px; /* Размер шрифта заголовков */
+    margin-bottom: 20px; /* Отступ снизу для создания пространства между заголовками и списками */
+}
+
+/* Стили для ссылок в списке */
+.footer .footcolumn ul li a {
+    color: #6c757d; /* Цвет ссылок */
+    text-decoration: none; /* Убираем подчеркивание ссылок */
+    transition: color 0.3s; /* Плавное изменение цвета ссылок при наведении */
+}
+
+.footer .footcolumn ul li a:hover {
+    color: #007bff; /* Цвет ссылок при наведении */
+}
+
+
+
+/* Медиа-запрос для улучшения макета на маленьких экранах */
+@media (max-width: 768px) {
+    .footer .footcolumn {
+        margin-bottom: 30px; /* Увеличение отступа между колонками на маленьких экранах */
+    }
+}
+/*проба*/
 
 @media only screen and (min-width: 800px) {
     .column {
         flex: 1; /* На устройствах с шириной экрана более 600px блоки будут выстраиваться в ряд */
         margin: 0px 10px; /* Пространство между блоками */
     }
+}
+
+
+.button-sendform{
+    padding-top: 30px;
+}
+
+.ai-block{
+    font-family: "Modern No. 20";
+    border: 1px solid #9ca3af;
+    border-radius: 10px;
+    margin-top: 2%;
+    padding: 1%;
+}
+.head-body{
+    margin: 0;
+    overflow: hidden;
+}
+.face{
+    width: auto;
+    height: 300px;
+}
+#head {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+}
+.face-block{
+    text-align: center;
+}
+.ai{
+    font-weight: bolder;
+    font-family: "Modern No. 20";
+    font-size: 30px;
+    text-transform: uppercase;
+}
+
+#artificial{
+    padding-top: 10%;
+    text-align: right;
+}
+
+#intelligence{
+    padding-top: 10%;
+    text-align: left;
+}
+
+.form-sendmail{
+    font-family: "Modern No. 20";
+}
+
+@media (max-width: 991px) {
+    .button-sendform {
+        margin-bottom: 10px;
+        padding-left: 30%;
+    }
+
+    .form-sendmail{
+        text-align: center;
+    }
+
+    #artificial{
+        text-align: center;
+    }
+
+    #intelligence{
+        text-align: center;
+    }
+    .block-description{
+        margin: 10px 0px;
+    }
+
 }
 

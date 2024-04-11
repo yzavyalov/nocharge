@@ -21,6 +21,8 @@
     padding-top: 5%;
 }
 
+
+
 @media (max-width: 1000px){
     #bigImage{
         display: none;
