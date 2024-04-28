@@ -5,9 +5,13 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta property="og:title" content="@yield('title')">
+    <meta property="og:description" content="@yield('description')">
+    <meta property="og:image" content="@yield('img')">
+    <meta property="og:url" content="{{request()->url()}}">
     <link href="{{asset('https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css')}}" rel="stylesheet">
 {{--    <script src="{{asset('https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js')}}"></script>--}}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
 
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <link rel="stylesheet" href="{{asset('css/about.css')}}">
@@ -27,8 +31,8 @@
 <body>
 
 <header>
-    <nav class="navbar navbar-expand-md fixed-top" style="background-color: #f7f5f5;">
-        <div class="container-fluid">
+    <nav class="navbar navbar-expand-md fixed-top">
+        <div class="container">
             <a class="navbar-brand" href="{{ route('index') }}">
                 <img src="{{ asset('img/Logo.png') }}" alt="International Internet Financial Association" id="logo">
             </a>
@@ -40,14 +44,39 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{ route('index') }}">Internet Association of Fintech Services</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('about') }}">About</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            About
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{route('about')}}">About our asociation</a></li>
+                            <li><a class="dropdown-item" href="{{route('membership')}}">Membership</a></li>
+                            <li><a class="dropdown-item" href="{{route('list-membership')}}">Participation</a></li>
+                        </ul>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('api') }}">API</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Solutions (Products)
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{route('no-frod-system')}}">The system of checking the user for the presence of chargebacks</a></li>
+                            <li><a class="dropdown-item" href="{{route('rewiews-system')}}">Reviews of unscrupulous mediators</a></li>
+                            <li><a class="dropdown-item" href="{{route('ludoman-system')}}">System for verifying user data in ludomaniac registries</a></li>
+                            <li><a class="dropdown-item" href="{{route('cascad-system')}}">Cascading payment management system</a></li>
+                            <li><a class="dropdown-item" href="{{route('api')}}">API</a></li>
+                            <li><a class="dropdown-item" href="{{route('catalog')}}">Catalogue</a></li>
+{{--                            <li><hr class="dropdown-divider"></li>--}}
+{{--                            <li><a class="dropdown-item" href="#">Password generation system (Enigma)</a></li>--}}
+                        </ul>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('membership') }}">Membership</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Laws
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{route('protection')}}">Protection of user personal data</a></li>
+                            <li><a class="dropdown-item" href="{{ route('links') }}">Useful links</a></li>
+                        </ul>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('policy') }}">Our policy</a>
@@ -55,39 +84,13 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('contact') }}">Contact</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
                 </ul>
-
-                @if (Route::has('login'))
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            @auth
-                                <a href="{{ route('dashboard') }}" class="nav-link">Dashboard</a>
-                            @else
-                                <a href="{{ route('login') }}" class="nav-link">Log in</a>
-                            @endif
-                        </li>
-                        <li class="nav-item">
-                            @if (Route::has('register'))
-                                <a href="{{ route('register') }}" class="nav-link">Register</a>
-                            @endif
-                        </li>
-                    </ul>
-                @endif
+                <button class="custom-btn btn-9" onclick="window.location.href='{{ route('dashboard') }}'">SIGN IN</button>
             </div>
         </div>
     </nav>
 </header>
+
 
 
 <main>

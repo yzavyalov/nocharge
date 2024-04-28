@@ -1,7 +1,24 @@
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    /* Растягиваем body по высоте html */
+    min-height: 100%;
+
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    height: 100vh;
+
+}
+
+
 .header{
     background-color: #f7f5f5;
     height:180px;
 }
+
 .footer{
     background-color: #f7f5f5;
     height: auto;
@@ -42,7 +59,6 @@ a .login-register{
     margin-top: 180px;
     margin-bottom: 30px;
     max-width: 1200px;
-    min-height: calc(100vh - 180px - 250px);
 }
 
 .banner{

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\UsefulLink;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Jenssegers\Agent\Agent;
@@ -15,7 +16,36 @@ class FrontController extends Controller
 
     public function about()
     {
+        return view('front.association');
+    }
+
+    public function membership()
+    {
+        return view('front.frontmembership');
+    }
+    public function ourMembers()
+    {
+        return view('front.partication');
+    }
+
+    public function noFrodSystem()
+    {
         return view('front.page');
+    }
+
+    public function rewiewsSystem()
+    {
+        return view('front.rewiewSystem');
+    }
+
+    public function ludomanSystem()
+    {
+        return view('front.ludomania');
+    }
+
+    public function cascadSystem()
+    {
+        return view('front.cascade-system');
     }
 
     public function api()
@@ -23,24 +53,24 @@ class FrontController extends Controller
         return view('front.api');
     }
 
-    public function synergy()
+    public function catalog()
     {
-        $agent = new Agent();
-
-        $visiter = [
-            'ip' => \request()->ip(),
-            'browser' => $agent->browser(),
-            'agent' => $agent->getUserAgent(),
-            'platform' => $agent->platform(),
-        ];
-
-        return view('gallery_page.synergy', compact('visiter'));
+        return view('front.catalog');
     }
 
-    public function membership()
+    public function protectionData()
     {
-        return view('front.frontmembership');
+        return view('front.protection');
     }
+
+    public function links()
+    {
+        $links = UsefulLink::all();
+
+        return view('front.links',compact('links'));
+    }
+
+
 
     public function policy()
     {
@@ -52,8 +82,6 @@ class FrontController extends Controller
         return view('front.contact');
     }
 
-    public function products()
-    {
-        return view('front.products');
-    }
+
+
 }

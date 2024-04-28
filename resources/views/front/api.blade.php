@@ -6,8 +6,16 @@
     Synergy of cooperation for online business.
 @endsection
 
+@section('description')
+    Our members can organize data verification using server-to-server requests
+@endsection
+
+@section('img')
+    {{ asset('img/api_image.png') }}
+@endsection
+
 @section('content')
-    <div class="container">
+    <div class="container main">
         <div class="row mt-6 page-title">
             <div class="col title">
                 <h2>API documantation</h2>

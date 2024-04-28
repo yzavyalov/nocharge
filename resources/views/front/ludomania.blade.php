@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="{{asset('css/about.css')}}">
 @endsection
 @section('title')
-    No frod system.
+    System for verifying user data in ludomaniac registries.
 @endsection
 @section('description')
     Our participants consist of online enterprises engaged in the facilitation and management of user payments. We are committed to fostering seamless communication among these entities and furnishing them with cutting-edge tools to mitigate their operational costs.
@@ -13,20 +13,21 @@
 @section('img')
     {{ asset('img/Logo.png') }}
 @endsection
+
 @section('content')
     <div class="container main">
         <div class="row mt-6 page-title">
             <div class="col title">
-                <h2>API documantation</h2>
+                <h2>System for verifying user data in ludomaniac registries</h2>
             </div>
         </div>
         <div class="container">
             <div class="row mb-4 mt-3 page-content">
                 <div class="col-md-6">
-                    <img src="{{ asset('img/api_image.png') }}" alt="api" class="img-fluid mb-3 mb-md-0">
+                    <img src="{{ asset('img/ludomania.jpg') }}" alt="api" class="img-fluid mb-3 mb-md-0">
                 </div>
                 <div class="col-md-6">
-                    <p>Our system empowers users to leverage its functionality both through the company dashboard on the website and via API. This enables our participants to conduct transaction checks without visiting our site, seamlessly integrating the verification process into their own workflows. To utilize our API, you need to register, proceed to set up your company in the dashboard, and acquire an authorization token. Additionally, our dashboard hosts a documentation page detailing routes and methods for your reference.</p>
+                    <p>Today, numerous countries are engaged in the establishment of a registry for individuals with gambling addiction. On our part, we are actively collaborating with these registries, as well as with authorities identifying political figures. When our participant requests a user verification, if we identify them as being listed in the gambling addiction registry, we disclose this information in our response.</p>
                 </div>
             </div>
         </div>

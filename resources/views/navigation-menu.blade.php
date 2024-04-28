@@ -34,6 +34,14 @@
                 <x-nav-link href="{{ route('cabinet-contact') }}" :active="request()->routeIs('contact')">
                     Contact with us
                 </x-nav-link>
+                @if(\Illuminate\Support\Facades\Auth::user()->hasRole('redaktor'))
+                    <x-nav-link href="{{ route('cabinet-links.index') }}" :active="request()->routeIs('cabinet-links.index')">
+                        Useful Link
+                    </x-nav-link>
+                    <x-nav-link href="{{ route('cabinet-subscriptions') }}" :active="request()->routeIs('cabinet-subscriptions')">
+                        Subscriptions
+                    </x-nav-link>
+                @endif
             </ul>
 
             <!-- Settings Dropdown -->

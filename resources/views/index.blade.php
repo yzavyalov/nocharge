@@ -5,6 +5,12 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta property="og:title" content="Internet Association of Fintech Services">
+    <meta property="og:description" content="Our participants consist of online enterprises engaged in the facilitation and management of user payments. We are committed to fostering seamless communication among these entities and furnishing them with cutting-edge tools to mitigate their operational costs.
+During the global online payment process, certain challenges arise, accounting for approximately 10% of their turnover. These include customers abusing chargebacks and unscrupulous intermediaries misappropriating funds from their merchants.
+Our endeavor focuses on facilitating the exchange of information regarding such entities among participants to prevent financial losses and reduce expenses. We have devised innovative mechanisms to automate the information exchange process, thereby reducing losses to around 3%, enhancing the efficiency and resilience of our partners in the online payment sphere.">
+    <meta property="og:image" content="{{ asset('img/Logo.png') }}">
+    <meta property="og:url" content="https://iafs.info/">
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
@@ -34,9 +40,9 @@
                             About
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">About our asociation</a></li>
-                            <li><a class="dropdown-item" href="#">Membership</a></li>
-                            <li><a class="dropdown-item" href="#">Our members</a></li>
+                            <li><a class="dropdown-item" href="{{route('about')}}">About our asociation</a></li>
+                            <li><a class="dropdown-item" href="{{route('membership')}}">Membership</a></li>
+                            <li><a class="dropdown-item" href="{{route('list-membership')}}">Participation</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -44,14 +50,14 @@
                             Solutions (Products)
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">The system of checking the user for the presence of chargebacks</a></li>
-                            <li><a class="dropdown-item" href="#">Reviews of unscrupulous mediators</a></li>
-                            <li><a class="dropdown-item" href="#">System for verifying user data in ludomaniac registries</a></li>
-                            <li><a class="dropdown-item" href="#">Cascading payment management system</a></li>
-                            <li><a class="dropdown-item" href="#">API</a></li>
-                            <li><a class="dropdown-item" href="#">Company catalog</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Password generation system (Enigma)</a></li>
+                            <li><a class="dropdown-item" href="{{route('no-frod-system')}}">The system of checking the user for the presence of chargebacks</a></li>
+                            <li><a class="dropdown-item" href="{{route('rewiews-system')}}">Reviews of unscrupulous mediators</a></li>
+                            <li><a class="dropdown-item" href="{{route('ludoman-system')}}">System for verifying user data in ludomaniac registries</a></li>
+                            <li><a class="dropdown-item" href="{{route('cascad-system')}}">Cascading payment management system</a></li>
+                            <li><a class="dropdown-item" href="{{route('api')}}">API</a></li>
+                            <li><a class="dropdown-item" href="{{route('catalog')}}">Catalogue</a></li>
+{{--                            <li><hr class="dropdown-divider"></li>--}}
+{{--                            <li><a class="dropdown-item" href="#">Password generation system (Enigma)</a></li>--}}
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -59,8 +65,8 @@
                             Laws
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Protection of user personal data</a></li>
-                            <li><a class="dropdown-item" href="#">Useful links</a></li>
+                            <li><a class="dropdown-item" href="{{route('protection')}}">Protection of user personal data</a></li>
+                            <li><a class="dropdown-item" href="{{ route('links') }}">Useful links</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -105,12 +111,12 @@
 
                 <div class="row justify-content-center mt-3 subscription">
                     <div class="col border border-2 rounded">
-                        <form method="post">
+                        <form method="post" action="{{route('subscription-form')}}">
                             @csrf
                             <div class="row form-sendmail">
                                 <div class="col-lg">
                                     <label for="exampleInputEmail1" class="form-label">Send your email and we will get back to you</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                    <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                                     <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                                 </div>
                                 <div class="col-auto button-sendform">
@@ -168,25 +174,25 @@
         <div class="col-lg-3 footcolumn">
             <h4>About</h4>
             <ul>
-                <li><a href="#">About our asociation</a></li>
-                <li><a href="#">Membership</a></li>
-                <li><a href="#">Our members</a></li>
+                <li><a href="{{route('about')}}">About our asociation</a></li>
+                <li><a href="{{route('membership')}}">Membership</a></li>
+                <li><a href="{{route('list-membership')}}">Participation</a></li>
             </ul>
         </div>
         <div class="col-lg-3 footcolumn">
             <h4>Solutions (Products)</h4>
             <ul>
-                <li><a href="#">The system of checking the user for the presence of chargebacks</a></li>
-                <li><a href="#">Reviews of unscrupulous mediators</a></li>
-                <li><a href="#">API</a></li>
-                <li><a href="#">Company catalog</a></li>
+                <li><a href="{{route('no-frod-system')}}">The system of checking the user for the presence of chargebacks</a></li>
+                <li><a href="{{route('rewiews-system')}}">Reviews of unscrupulous mediators</a></li>
+                <li><a href="{{route('api')}}">API</a></li>
+                <li><a href="{{route('catalog')}}">Catalogue</a></li>
                 <li><a href="#">Password generation system (Enigma)</a></li>
             </ul>
         </div>
         <div class="col-lg-3 footcolumn">
             <h4>Laws</h4>
             <ul>
-                <li><a href="#">Protection of user personal data</a></li>
+                <li><a href="{{route('protection')}}">Protection of user personal data</a></li>
                 <li><a href="#">Useful links</a></li>
             </ul>
         </div>
