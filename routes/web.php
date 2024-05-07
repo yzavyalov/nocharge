@@ -37,7 +37,6 @@ Route::group(['middleware' => ['check.access']], function () {
     // Все ваши маршруты, к которым требуется проверка доступа
 
     Route::get('/auth/{provider}/redirect',[ProviderController::class,'redirect']);
-
     Route::get('/auth/{provider}/callback',[ProviderController::class,'callback']);
 
     Route::get('/', [FrontController::class, 'index'])->name('index');
@@ -64,7 +63,6 @@ Route::group(['middleware' => ['check.access']], function () {
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
-    'verified',
 ])->group(function () {
     Route::get('dashboard', [IndexController::class,'index'])->name('dashboard');
 
