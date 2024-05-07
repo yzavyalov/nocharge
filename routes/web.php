@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\ProviderController;
 use App\Http\Controllers\Cabinet\AnswerController;
 use App\Http\Controllers\Cabinet\ClaimController;
 use App\Http\Controllers\Cabinet\CodeController;
@@ -19,6 +20,7 @@ use App\Http\Controllers\SanctumTockenController;
 use App\Http\Controllers\SubscriptionFormController;
 use App\Http\Controllers\TokenController;
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +35,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['check.access']], function () {
     // Все ваши маршруты, к которым требуется проверка доступа
+
+    Route::get('/auth/{provider}/redirect',[ProviderController::class,'redirect']);
+
+    Route::get('/auth/{provider}/callback',[ProviderController::class,'callback']);
 
     Route::get('/', [FrontController::class, 'index'])->name('index');
     Route::get('/about', [FrontController::class, 'about'])->name('about');
@@ -49,6 +55,7 @@ Route::group(['middleware' => ['check.access']], function () {
     Route::get('/links',[FrontController::class,'links'])->name('links');
 
     Route::get('/policy',[FrontController::class,'policy'])->name('policy');
+    Route::get('/terms',[FrontController::class,'terms'])->name('terms');
     Route::get('/contact',[FrontController::class,'contact'])->name('contact');
 
     Route::post('/subscription-form',[SubscriptionFormController::class,'subscriptionForm'])->name('subscription-form');

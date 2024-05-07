@@ -24,7 +24,7 @@ class SuperAdminSeeder extends Seeder
         [
             'name' => 'SecondAdmin',
             'email' => 'iafs76@proton.me',
-            'password' => 'Iafs356!',
+            'password' => 'Iafs346!',
         ],
                 ];
 

@@ -177,6 +177,7 @@ Our endeavor focuses on facilitating the exchange of information regarding such 
                 <li><a href="{{route('about')}}">About our asociation</a></li>
                 <li><a href="{{route('membership')}}">Membership</a></li>
                 <li><a href="{{route('list-membership')}}">Participation</a></li>
+                <li><a href="{{route('terms')}}">Terms of Service for the website</a></li>
             </ul>
         </div>
         <div class="col-lg-3 footcolumn">
@@ -186,7 +187,6 @@ Our endeavor focuses on facilitating the exchange of information regarding such 
                 <li><a href="{{route('rewiews-system')}}">Reviews of unscrupulous mediators</a></li>
                 <li><a href="{{route('api')}}">API</a></li>
                 <li><a href="{{route('catalog')}}">Catalogue</a></li>
-                <li><a href="#">Password generation system (Enigma)</a></li>
             </ul>
         </div>
         <div class="col-lg-3 footcolumn">

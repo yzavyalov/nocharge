@@ -82,6 +82,10 @@ class FrontController extends Controller
         return view('front.contact');
     }
 
+    public function terms()
+    {
+        return view('front.terms');
+    }
 
 
 }

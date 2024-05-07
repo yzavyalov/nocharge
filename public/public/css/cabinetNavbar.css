@@ -1,0 +1,21 @@
+/* Стили для заголовка */
+h2 {
+    font-family: "Modern No. 20", cursive;
+    color: #333333; /* Темно-серый цвет текста */
+}
+
+/* Стили для ссылок в навигации */
+.nav-link {
+    font-family: "Modern No. 20", cursive;
+    color: #333333; /* Темно-серый цвет текста */
+    text-decoration: none; /* Убираем подчеркивание */
+}
+
+.nav-link:hover {
+    color: #222222; /* Цвет текста становится темнее при наведении */
+    text-decoration: underline; /* Добавляем подчеркивание при наведении */
+}
+
+.nav-link.active {
+    color: #4285f4; /* Цвет активной ссылки */
+}

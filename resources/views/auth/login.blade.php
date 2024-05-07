@@ -6,7 +6,25 @@
 
         <x-validation-errors class="mb-4" />
 
-        @if (session('status'))
+        <div class="row">
+            <div class="social">
+
+                <a class="social__icon facebook" href="/auth/google/redirect">
+                    <img src="{{ asset('../img/google_icon.png') }}" alt="Google">
+                </a>
+                <a class="social__icon git" href="/auth/github/redirect">
+                    <img src="{{ asset('../img/icon-github.png') }}" alt="Github">
+                </a>
+                <a class="social__icon twitter" href="/auth/twitter/redirect">
+                    <img src="{{ asset('../img/icon-x.png') }}" alt="X.com">
+                </a>
+                <a class="social__icon linkedin" href="/auth/linkedin/redirect">
+                    <img src="{{ asset('../img/icon-linkedin.png') }}" alt="X.com">
+                </a>
+            </div>
+        </div>
+
+    @if (session('status'))
             <div class="mb-4 font-medium text-success">
                 {{ session('status') }}
             </div>
@@ -45,6 +63,9 @@
                     <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.site_key') }}"></div>
             </div>
         </form>
+        <div>
+
+        </div>
 
     </x-authentication-card>
         @push('scripts')
