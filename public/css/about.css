@@ -1,0 +1,30 @@
+.about{
+    font-family: "Modern No. 20";
+}
+
+.secondTitle{
+    font-weight: 600;
+    font-size: 2em;
+}
+#slogan-one{
+    font-size: 1.5em;
+}
+.rectangle{
+    text-align: right;
+}
+
+.bg-gray{
+    background-color: #F7F6F6;
+}
+
+#presantation{
+    padding-top: 5%;
+}
+
+
+
+@media (max-width: 1000px){
+    #bigImage{
+        display: none;
+    }
+}

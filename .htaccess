@@ -1,0 +1,9 @@
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteRule ^$ public/ [L]
+RewriteRule ((?s).*) public/$1 [L]
+</IfModule>
+
+
+# *** редирект на страницу ошибки 404 ***
+ErrorDocument 404 /errors/404.blade.php
