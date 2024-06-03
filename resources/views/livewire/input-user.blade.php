@@ -1,4 +1,4 @@
-<div class="container mt-4">
+<div class="container mt-4" id="checkUserBlock">
     <div class="card bg-white shadow-xl rounded-lg p-4" style="border: 5px solid #FF3333; padding: 3px;">
         <div>
             <h3 class="text-xl font-semibold mb-4">Add user, who's made a chargeback</h3>

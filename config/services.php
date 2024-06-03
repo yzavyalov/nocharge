@@ -58,7 +58,7 @@ return [
     'linkedin' => [
         'client_id' => env('LINKEDIN_ID'),
         'client_secret' => env('LINKEDIN_CLIENT_SECRET'),
-        'redirect' => '/auth/linkedin/callback',
+        'redirect' => 'http://localhost:8000/auth/linkedin/callback',
     ],
 
 

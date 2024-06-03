@@ -7,6 +7,7 @@ use App\Http\Controllers\Cabinet\CodeController;
 use App\Http\Controllers\Cabinet\CommentController;
 use App\Http\Controllers\Cabinet\EmployeeController;
 use App\Http\Controllers\Cabinet\IndexController;
+use App\Http\Controllers\Cabinet\LudomanController;
 use App\Http\Controllers\Cabinet\MessageController;
 use App\Http\Controllers\Cabinet\PageController;
 use App\Http\Controllers\Cabinet\PartnerController;
@@ -15,6 +16,7 @@ use App\Http\Controllers\Cabinet\ReviewController;
 use App\Http\Controllers\Cabinet\SubscriptionController;
 use App\Http\Controllers\Cabinet\UsefulLinksController;
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\InvestitionController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\SanctumTockenController;
 use App\Http\Controllers\SubscriptionFormController;
@@ -37,7 +39,9 @@ Route::group(['middleware' => ['check.access']], function () {
     // Все ваши маршруты, к которым требуется проверка доступа
 
     Route::get('/auth/{provider}/redirect',[ProviderController::class,'redirect']);
-    Route::get('/auth/{provider}/callback',[ProviderController::class,'callback']);
+    Route::get('/auth/{provider}/callback',[ProviderController::class,'callback'])->name('provider-callback');
+
+    Route::get('/auth/{provider}/redirect',[ProviderController::class,'redirect']);
 
     Route::get('/', [FrontController::class, 'index'])->name('index');
     Route::get('/about', [FrontController::class, 'about'])->name('about');
@@ -45,9 +49,11 @@ Route::group(['middleware' => ['check.access']], function () {
     Route::get('/synergy',[FrontController::class,'synergy'])->name('synergy');
     Route::get('/membership',[FrontController::class,'membership'])->name('membership');
     Route::get('/participation',[FrontController::class,'ourMembers'])->name('list-membership');
-    Route::get('/no-frod-system',[FrontController::class,'noFrodSystem'])->name('no-frod-system');
+    Route::get('/no-fraud-system',[FrontController::class,'noFrodSystem'])->name('no-frod-system');
     Route::get('/rewiews-system',[FrontController::class,'rewiewsSystem'])->name('rewiews-system');
     Route::get('/ludo-system',[FrontController::class,'ludomanSystem'])->name('ludoman-system');
+    Route::get('/ludo-offer',[FrontController::class,'ludoOffer'])->name('ludo-offer');
+    Route::post('/add-ludo',[LudomanController::class,'create'])->name('add-ludo');
     Route::get('/cascad-system',[FrontController::class,'cascadSystem'])->name('cascad-system');
     Route::get('/catalog',[FrontController::class,'catalog'])->name('catalog');
     Route::get('/protection',[FrontController::class,'protectionData'])->name('protection');
@@ -56,6 +62,8 @@ Route::group(['middleware' => ['check.access']], function () {
     Route::get('/policy',[FrontController::class,'policy'])->name('policy');
     Route::get('/terms',[FrontController::class,'terms'])->name('terms');
     Route::get('/contact',[FrontController::class,'contact'])->name('contact');
+    Route::get('/investments',[FrontController::class,'investments'])->name('investments');
+    Route::post('/invest-form',[InvestitionController::class,'form'])->name('invest-form');
 
     Route::post('/subscription-form',[SubscriptionFormController::class,'subscriptionForm'])->name('subscription-form');
 

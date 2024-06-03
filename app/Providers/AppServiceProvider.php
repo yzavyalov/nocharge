@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\User;
 use App\Observers\NewUserRoleObserver;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,5 +24,9 @@ class AppServiceProvider extends ServiceProvider
     {
 
         User::observe(NewUserRoleObserver::class);
+
+        Paginator::defaultView('vendor.pagination.bootstrap-5');
+
+        Paginator::defaultSimpleView('vendor.pagination.bootstrap-5');
     }
 }

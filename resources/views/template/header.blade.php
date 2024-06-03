@@ -84,6 +84,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('contact') }}">Contact</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('investments') }}">Investments</a>
+                    </li>
                 </ul>
                 <button class="custom-btn btn-9" onclick="window.location.href='{{ route('dashboard') }}'">SIGN IN</button>
             </div>

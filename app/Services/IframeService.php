@@ -689,7 +689,17 @@ class IframeService
         $oembed = self::oembedly($url);
         $metas = self::metas($url);
         $data = $oembed;
-        isset($oembed['thumbnail_url']) && $oembed['thumbnail_url'] != '' ? $data['thumbnail_url'] = $oembed['thumbnail_url'] : $data['thumbnail_url'] = $metas['thumbnail_url'];
+        if ($oembed['thumbnail_url'] && $oembed['thumbnail_url'] != '')
+        {
+            $data['thumbnail_url'] = $oembed['thumbnail_url'];
+        }
+        elseif (isset($metas['thumbnail_url']) && $metas['thumbnail_url'] != '')
+        {
+            $data['thumbnail_url'] = $metas['thumbnail_url'];
+        }
+        else
+            $data['thumbnail_url'] = '';
+
         if($data['thumbnail_url'] !== '')
         {
             if (self::fourhundredfour($data['thumbnail_url'])) $data['thumbnail_url'] = '';

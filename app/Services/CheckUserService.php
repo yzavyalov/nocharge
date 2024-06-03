@@ -3,8 +3,11 @@
 namespace App\Services;
 
 use App\Enums\QuantityCheckUsersTypeEnum;
+use App\Http\Controllers\Cabinet\LudomanController;
 use App\Http\Requests\UserChangeRequest;
+use App\Http\Resources\CheckUserResource;
 use App\Models\CheckUser;
+use App\Models\Ludoman;
 use App\Models\Partners;
 use App\Models\Quantity_user_request;
 use App\Models\User;
@@ -67,7 +70,7 @@ class CheckUserService
                 ]);
 
                 Quantity_user_request::create([
-                    'user_id' => $user->id,
+                    'user_id' => $newCheckUser->id,
                     'partner_id' => $owner_partner->id,
                     'check_user_id' => $newCheckUser->id,
                     'type' => QuantityCheckUsersTypeEnum::DOWNLOAD,
@@ -89,11 +92,12 @@ class CheckUserService
         {
                 $email = EncryptService::coding($userData['email']);
 
-                $user = CheckUser::query()->where('email',$email)->first();
+                $user = self::checkInUserList($email);
 
                 if (isset($user))
                 {
-                    $coincidence[] = $userData;
+                    $coincidence[] = $user;
+
                     Quantity_user_request::create([
                         'user_id' => 1,
                         'partner_id' => session()->get('partner_id'),
@@ -103,10 +107,17 @@ class CheckUserService
                 }
                 else
                 {
-                    $mismatch[] = $userData;
+                    $mismatch[] = collect($userData);
                 }
         }
 
         return ['coincidence' => $coincidence, 'mismatch' => $mismatch];
+    }
+
+    public static function checkInUserList($email)
+    {
+        $checkUser = CheckUser::query()->where('email',$email)->first();
+
+        return $checkUser ? $checkUser : null;
     }
 }

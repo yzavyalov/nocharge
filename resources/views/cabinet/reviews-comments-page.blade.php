@@ -17,9 +17,12 @@
 
                                 <!-- Large Review Section -->
                                 <div class="border p-4 mb-4">
+                                    <img src="{{$review->image}}" alt="{{$review->title}}" style="width: 200px;">
                                     <h3 class="text-xl font-semibold">{{ $review->name }}</h3>
                                     <p>{{  \App\Enums\MiddlemanTypeEnum::toSelectArray()[$review->category] }}</p>
                                     <p>{{ $review->link }}</p>
+                                    <p>{{ $review->title }}</p>
+                                    <p>{{ $review->description }}</p>
                                     <p>{{ $review->text }}</p>
                                     <button class="btn btn-primary mt-2" onclick="toggleForm('addCommentForm')">Add Comment</button>
                                     <form id="addCommentForm" method="post" action="{{ route('save-comment',$review->id) }}" style="display:none;">

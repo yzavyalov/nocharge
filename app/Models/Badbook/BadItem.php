@@ -16,6 +16,9 @@ class BadItem extends Model
         'category',
         'text',
         'link',
+        'title',
+        'description',
+        'image',
     ];
 
     public function comments()

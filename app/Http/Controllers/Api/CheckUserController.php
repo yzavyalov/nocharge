@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Cabinet\LudomanController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserChangeRequest;
+use App\Http\Resources\CheckUserResource;
+use App\Http\Resources\MismatchChangeUserResource;
 use App\Models\CheckUser;
 use App\Models\Quantity_user_request;
 use App\Services\CheckUserService;
@@ -27,19 +30,50 @@ class CheckUserController extends Controller
         return response()->json(['message' => 'Users successfully saved'], 200);
     }
 
-    public function ckeckGroupUser(UserChangeRequest $request)
-    {
-        return $this->checkUserService->checkGroupUsers($request);
-    }
-
-    public function checkOneUser(UserChangeRequest $request)
+    public function checkUser(UserChangeRequest $request)
     {
         $check = $this->checkUserService->checkGroupUsers($request);
 
-        if (!empty($check['coincidence']))
-            return response()->json(['message' => 'This user is in our base'],201);
+        foreach ($check['coincidence'] as $coincidence)
+        {
+            $ludoman = new LudomanController();
+            $ludoUser = $ludoman->checkInBase($coincidence['email']);
+            if ($ludoUser)
+            {
+                $coincidence['ludoman'] = 1;
+                $coincidence['limit'] = $ludoUser->limit;
+            }
+            else
+            {
+                $coincidence['ludoman'] = 0;
+            }
 
-        if (!empty($check['mismatch']))
-            return response()->json(['message' => 'This user is not in our base'],203);
+            $coincidence['chargeback_initiator'] = 1;
+        }
+        unset($coincidence); // Удалить ссылку, чтобы избежать случайных изменений
+
+        foreach ($check['mismatch'] as $mismatch)
+        {
+            $ludoman = new LudomanController();
+            $ludoUser = $ludoman->checkInBase($mismatch['email']);
+            if ($ludoUser)
+            {
+                $mismatch['ludoman'] = 1;
+                $mismatch['limit'] = $ludoUser->limit;
+            }
+            else
+            {
+                $mismatch['ludoman'] = 0;
+            }
+
+            $mismatch['chargeback_initiator'] = 0;
+        }
+        unset($mismatch); // Удалить ссылку, чтобы избежать случайных изменений
+
+        $answer['coincidence'] = CheckUserResource::collection($check['coincidence']);
+        $answer['mismatch'] = MismatchChangeUserResource::collection($check['mismatch']);
+
+        return $answer;
     }
+
 }

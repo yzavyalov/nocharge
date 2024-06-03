@@ -34,13 +34,21 @@ class CodeController extends Controller
 
         $check = CheckUser::query()->where('email',$checkMail)->first();
 
-        if ($check) {
-            session()->flash('success-check', 'This user has been found in our database!');
+        $ludoman = new LudomanController();
 
-            if (Auth::user()->hasRole('redaktor'))
-                $ownerPartner = 1;
+        $ludoUser = $ludoman->checkInBase($checkMail);
+
+        if (Auth::user()->hasRole('redaktor'))
+            $ownerPartner = 1;
+        else
+            $ownerPartner = session()->get('partner_id');
+
+        if ($check)
+        {
+            if ($ludoUser)
+                session()->flash('success-check', 'This user has been identified in our database as a chargeback initiator and a gambler (his limit - '.$ludoUser->limit.').');
             else
-                $ownerPartner = session()->get('partner_id');
+                session()->flash('success-check', 'This user has been identified in our database as a chargeback initiator.');
 
             Quantity_user_request::create([
                 'user_id' => Auth::id(),
@@ -49,10 +57,15 @@ class CodeController extends Controller
                 'type' => QuantityCheckUsersTypeEnum::CHECKED,
             ]);
 
-        } else {
-            session()->flash('error-check', 'This user was not found in our database!');
         }
-        return redirect()->back();
+        else
+        {
+            if ($ludoUser)
+                session()->flash('error-check', 'This user is recorded in our database as a gambler (his limit - '.$ludoUser->limit.'), but was not identified as a chargeback initiator.');
+            else
+                session()->flash('error-check', 'This user is not in our database!');
+        }
+        return redirect()->back()->with(['anchor' => 'checkUser']);
     }
 
 //    public function addCheckUsers(EmailRequest $request)
@@ -121,7 +134,7 @@ class CodeController extends Controller
             session()->flash('error-add-check', 'An error occurred while processing the file: ' . $e->getMessage());
         }
 
-        return redirect()->back();
+        return redirect()->back()->with(['anchor' => 'checkUserBlock']);
     }
 
 }

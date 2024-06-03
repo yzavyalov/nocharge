@@ -25,7 +25,7 @@ class ReviewRequest extends FormRequest
             'name' => 'required|string|max:150|unique:bad_items',
             'category' => 'required|integer',
             'text' => 'required|string|max:600',
-            'link' => 'string|nullable',
+            'link' => 'url:http,https|nullable',
         ];
     }
 }

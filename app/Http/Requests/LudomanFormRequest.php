@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EmailRequest extends FormRequest
+class LudomanFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +22,8 @@ class EmailRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => 'string|nullable',
-            'file' => 'file|mimes:csv,txt|nullable',
+            'email' => 'required|string',
+            'limit' => 'nullable|integer',
         ];
     }
 }

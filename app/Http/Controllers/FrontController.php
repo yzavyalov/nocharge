@@ -43,6 +43,11 @@ class FrontController extends Controller
         return view('front.ludomania');
     }
 
+    public function ludoOffer()
+    {
+        return view('front.ludooffer');
+    }
+
     public function cascadSystem()
     {
         return view('front.cascade-system');
@@ -80,6 +85,11 @@ class FrontController extends Controller
     public function contact()
     {
         return view('front.contact');
+    }
+
+    public function investments()
+    {
+        return view('front.investments');
     }
 
     public function terms()

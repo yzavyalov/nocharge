@@ -1,5 +1,5 @@
 <div class="container mt-4">
-    <div class="card" style="padding: 3px; border: 5px solid #FF9933;">
+    <div class="card" id="checkUser" style="padding: 3px; border: 5px solid #FF9933;">
         @if (session('success-check'))
             <div class="alert alert-danger" role="alert">
                 <p class="text-danger">{{ session('success-check') }}</p>

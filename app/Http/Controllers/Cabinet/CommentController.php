@@ -16,7 +16,12 @@ class CommentController extends Controller
 
         $request['bad_item_id'] = $id;
 
-        $request['partner_id'] = session()->get('partner_id');
+        if (session()->get('partner_id'))
+            $partner_id = session()->get('partner_id');
+        else
+            $partner_id = 1;
+
+        $request['partner_id'] = $partner_id;
 
         $request['user_id'] = Auth::id();
 

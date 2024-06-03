@@ -71,6 +71,7 @@
                         <table class="table table-bordered table-striped">
                             <thead>
                             <tr>
+                                <th></th>
                                 <th>Title</th>
                                 <th>Link</th>
                                 <th>Category</th>
@@ -83,6 +84,7 @@
                             <!-- Data from the database will be displayed here -->
                             @foreach($reviews as $review)
                                 <tr>
+                                    <td><a href="{{ route('show-review',$review->id) }}"><img src="{{$review->image}}" alt="{{$review->title}}" style="width: 100px;"></a></td>
                                     <td><a href="{{ route('show-review',$review->id) }}">{{ $review->name }}</a></td>
                                     <td><a href="{{ $review->link }}">{{ $review->link }}</a></td>
                                     <td>{{ \App\Enums\MiddlemanTypeEnum::toSelectArray()[$review->category] }}</td>
@@ -108,8 +110,8 @@
                         </table>
                     </div>
                 </div>
+        {{ $reviews->links() }}
 
-                {{ $reviews->links() }}
         </div>
     </div>
 
