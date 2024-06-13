@@ -18,9 +18,9 @@
                 <a class="social__icon twitter" href="/auth/twitter/redirect">
                     <img src="{{ asset('../img/icon-x.png') }}" alt="X.com">
                 </a>
-                <a class="social__icon linkedin" href="/auth/linkedin/redirect">
-                    <img src="{{ asset('../img/icon-linkedin.png') }}" alt="X.com">
-                </a>
+{{--                <a class="social__icon linkedin" href="/auth/linkedin/redirect">--}}
+{{--                    <img src="{{ asset('../img/icon-linkedin.png') }}" alt="X.com">--}}
+{{--                </a>--}}
             </div>
         </div>
 

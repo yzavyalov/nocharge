@@ -16,9 +16,7 @@ class ProviderController extends Controller
     public function redirect($provider)
     {
 //        if ($provider == 'linkedin')
-//        {
-//           $this->linkedin($provider);
-//        }
+//           return $this->linkedin($provider);
 
         return Socialite::driver($provider)->redirect();
     }
@@ -50,7 +48,6 @@ class ProviderController extends Controller
         $response = Http::withToken($token)->get('https://api.linkedin.com/v2/userinfo');
 
         if ($response->successful()) {
-
             $socialUser = $response->json();
 
             $user = User::updateOrCreate([
@@ -60,13 +57,15 @@ class ProviderController extends Controller
                 'provider' => $provider,
                 'name' => $socialUser['name'],
                 'email' => $socialUser['email'],
-
             ]);
-            // Если запрос был успешным, можно выполнить перенаправление
+
+            // Логин пользователя после успешного создания или обновления
+            auth()->login($user);
+
+            // Перенаправление на '/dashboard'
             return redirect('/dashboard');
         } else {
             // Обработка ошибки, если запрос не удался
-            // Например, можно выполнить какие-то действия или показать пользователю сообщение об ошибке
             return back()->with('error', 'Failed to fetch data from API');
         }
     }

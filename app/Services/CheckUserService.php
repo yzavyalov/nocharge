@@ -84,10 +84,8 @@ class CheckUserService
     {
         $usersData = $request->all();
 
-        $coincidence = [];
-
-        $mismatch = [];
-
+        $checkUsers = [];
+        $i = 0;
         foreach ($usersData as $userData)
         {
                 $email = EncryptService::coding($userData['email']);
@@ -96,7 +94,9 @@ class CheckUserService
 
                 if (isset($user))
                 {
-                    $coincidence[] = $user;
+                    $checkUsers[$i] = $userData;
+
+                    $checkUsers[$i]['chargeback_initiator'] = 1;
 
                     Quantity_user_request::create([
                         'user_id' => 1,
@@ -107,11 +107,14 @@ class CheckUserService
                 }
                 else
                 {
-                    $mismatch[] = collect($userData);
+                    $checkUsers[$i] = $userData;
+
+                    $checkUsers[$i]['chargeback_initiator'] = 0;
                 }
+                $i++;
         }
 
-        return ['coincidence' => $coincidence, 'mismatch' => $mismatch];
+        return $checkUsers;
     }
 
     public static function checkInUserList($email)

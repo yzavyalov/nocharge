@@ -15,8 +15,10 @@ use App\Http\Controllers\Cabinet\PaymentController;
 use App\Http\Controllers\Cabinet\ReviewController;
 use App\Http\Controllers\Cabinet\SubscriptionController;
 use App\Http\Controllers\Cabinet\UsefulLinksController;
+use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\InvestitionController;
+use App\Http\Controllers\LudomanTransactionController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\SanctumTockenController;
 use App\Http\Controllers\SubscriptionFormController;
@@ -37,11 +39,6 @@ use Laravel\Socialite\Facades\Socialite;
 
 Route::group(['middleware' => ['check.access']], function () {
     // Все ваши маршруты, к которым требуется проверка доступа
-
-    Route::get('/auth/{provider}/redirect',[ProviderController::class,'redirect']);
-    Route::get('/auth/{provider}/callback',[ProviderController::class,'callback'])->name('provider-callback');
-
-    Route::get('/auth/{provider}/redirect',[ProviderController::class,'redirect']);
 
     Route::get('/', [FrontController::class, 'index'])->name('index');
     Route::get('/about', [FrontController::class, 'about'])->name('about');
@@ -67,6 +64,16 @@ Route::group(['middleware' => ['check.access']], function () {
 
     Route::post('/subscription-form',[SubscriptionFormController::class,'subscriptionForm'])->name('subscription-form');
 
+
+    Route::get('/auth/{provider}/redirect',[ProviderController::class,'redirect']);
+    Route::get('/auth/{provider}/callback',[ProviderController::class,'callback'])->name('provider-callback');
+
+    Route::get('/payments/callback', [LudomanTransactionController::class, 'callback'])->name('payment-callback');
+
+    //catalog
+    Route::prefix('/catalog')->group(function (){
+        Route::get('index', [CatalogController::class,'index'])->name('catalog-index');
+    });
 
 Route::middleware([
     'auth:sanctum',

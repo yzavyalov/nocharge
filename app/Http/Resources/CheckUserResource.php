@@ -14,16 +14,20 @@ class CheckUserResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return [
-            'id' => $this->id,
-            'email' => $this->email,
-            'ip' => $this->ip,
-            'browser' => $this->browser,
-            'agent' => $this->agent,
-            'platform' => $this->platform,
-            'chargeback_initiator' => $this->chargeback_initiator,
-            'gambler' => $this->ludoman,
-            'limit' => $this->limit,
-        ];
+
+        $keys = ['request_id','email','ip','browser','agent','platform','chargeback_initiator','limit'];
+        $result = [];
+
+        foreach ($keys as $key) {
+            if (isset($this[$key])) {
+                $result[$key] = $this[$key];
+            }
+        }
+
+        if (isset($this['ludoman'])) {
+            $result['gambler'] = $this['ludoman'];
+        }
+
+        return $result;
     }
 }

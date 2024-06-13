@@ -6,9 +6,7 @@
     System for verifying user data in ludomaniac registries.
 @endsection
 @section('description')
-    Our participants consist of online enterprises engaged in the facilitation and management of user payments. We are committed to fostering seamless communication among these entities and furnishing them with cutting-edge tools to mitigate their operational costs.
-    During the global online payment process, certain challenges arise, accounting for approximately 10% of their turnover. These include customers abusing chargebacks and unscrupulous intermediaries misappropriating funds from their merchants.
-    Our endeavor focuses on facilitating the exchange of information regarding such entities among participants to prevent financial losses and reduce expenses. We have devised innovative mechanisms to automate the information exchange process, thereby reducing losses to around 3%, enhancing the efficiency and resilience of our partners in the online payment sphere.
+    Through civilized and responsible interaction between casinos and individuals with gambling addiction, we can develop the best strategies to mitigate the negative impact on society. Our goal is to reduce the number of people affected by addiction while maintaining profitability for organizations in the entertainment industry.
 @endsection
 @section('img')
     {{ asset('img/Logo.png') }}

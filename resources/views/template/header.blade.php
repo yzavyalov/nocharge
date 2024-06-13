@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <link rel="stylesheet" href="{{asset('css/about.css')}}">
     <link rel="stylesheet" href="{{asset('css/frontPage.css')}}">
+    <link rel="icon" type="image/png" size="16x16" href="{{asset('favicon.ico')}}">
     <!-- Custom styles for this template -->
     <link href="{{asset('css/carousel.css')}}" rel="stylesheet">
     <!-- Fonts -->

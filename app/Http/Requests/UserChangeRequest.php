@@ -17,6 +17,7 @@ class UserChangeRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'request_id' => 'string|nullable',
             '*.email' => 'required',
             '*.ip' => 'ip|nullable',
             '*.browser' => 'string|nullable',

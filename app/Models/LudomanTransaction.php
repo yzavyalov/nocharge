@@ -5,18 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Ludoman extends Model
+class LudomanTransaction extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'id',
-        'email',
-        'limit',
+        'ludomen_id',
+        'sum',
+        'status',
     ];
 
-    public function ludoTransactions()
+    public function ludoman()
     {
-        return $this->hasMany(LudomanTransaction::class);
+        return $this->belongsTo(Ludoman::class);
     }
 }
