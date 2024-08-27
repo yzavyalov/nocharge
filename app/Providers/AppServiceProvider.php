@@ -28,5 +28,9 @@ class AppServiceProvider extends ServiceProvider
         Paginator::defaultView('vendor.pagination.bootstrap-5');
 
         Paginator::defaultSimpleView('vendor.pagination.bootstrap-5');
+
+        if (app()->environment('local')) {
+            \Livewire\Livewire::setUpdatePeriod(50);
+        }
     }
 }

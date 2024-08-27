@@ -17,4 +17,6 @@ class CheckUser extends Model
         'platform',
         'owner_partner',
     ];
+
+
 }

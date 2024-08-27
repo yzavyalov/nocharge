@@ -10,4 +10,9 @@ class CatalogController extends Controller
     {
         return view('front.formcatalog');
     }
+
+    public function store()
+    {
+        dd('werw');
+    }
 }

@@ -26,7 +26,10 @@ class BadItemsFilter extends AbstractFilter
     public function search(Builder $builder, $search)
     {
         return $builder->where('name', 'like', '%' . $search . '%')
-                       ->orWhere('text', 'like', '%' . $search . '%');
+                       ->orWhere('text', 'like', '%' . $search . '%')
+                       ->orWhere('link', 'like', '%' . $search . '%')
+                       ->orWhere('title', 'like', '%' . $search . '%')
+                       ->orWhere('description', 'like', '%' . $search . '%');
     }
 
 

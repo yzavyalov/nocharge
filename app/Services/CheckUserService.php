@@ -19,24 +19,26 @@ class CheckUserService
     {
         foreach ($usersData as $userData)
         {
-            if($userData['email'])
+            if(isset($userData['email'])) {
                 $email = EncryptService::coding($userData['email']);
+            } else {
+                // Если email не установлен, пропускаем итерацию
+                continue;
+            }
 
-            $owner_partner = Partners::query()->find($partnerId);
+            $owner_partner = PartnerService::checkParnter($partnerId);
 
-            isset($userData['ip']) ? $ip = $userData['ip'] : $ip = null;
+            // Устанавливаем значения с помощью тернарного оператора
+            $ip = $userData['ip'] ?? null;
+            $browser = $userData['browser'] ?? null;
+            $agent = $userData['agent'] ?? null;
+            $platform = $userData['platform'] ?? null;
 
-            isset($userData['browser']) ? $browser = $userData['browser'] : $browser = null;
+            $checkUser = CheckUser::query()->where('email', $email)->first();
 
-            isset($userData['agent']) ? $agent = $userData['agent'] : $agent = null;
-
-            isset($userData['platform']) ? $platform = $userData['platform'] : $platform = null;
-
-            $checkUser = CheckUser::query()->where('email',$email)->first();
-
-            if (isset($checkUser) && $checkUser->count()>0)
+            if ($checkUser) // Убедитесь, что объект найден
             {
-                if (!isset($checkUser->ip) || !isset($checkUser->browser) || !isset($checkUser->agent) || !isset($checkUser->platform))
+                if (!$checkUser->ip || !$checkUser->browser || !$checkUser->agent || !$checkUser->platform)
                 {
                     $checkUser->update([
                         'ip' => $ip,
@@ -46,20 +48,14 @@ class CheckUserService
                     ]);
                 }
                 $user = $owner_partner->admin->first();
-                Quantity_user_request::create([
-                    'user_id' => $user->id,
-                    'partner_id' => $owner_partner->id,
-                    'check_user_id' => $checkUser->id,
-                    'type' => QuantityCheckUsersTypeEnum::DOWNLOAD,
-                ]);
+                // Проверьте, что $user не null
+                if ($user) {
+                   $this->createQuantityUserRequest($user->id,$owner_partner->id,$checkUser->id);
+                }
             }
             else
             {
-                isset($userData['ip']) ? $ip = $userData['ip'] : $ip = null;
-                isset($userData['browser']) ? $browser = $userData['browser'] : $browser = null;
-                isset($userData['agent']) ? $agent = $userData['agent'] : $agent = null;
-                isset($userData['platform']) ? $platform = $userData['platform'] : $platform = null;
-
+                // Создаем нового пользователя CheckUser
                 $newCheckUser = CheckUser::create([
                     'email' => $email,
                     'ip' => $ip,
@@ -69,15 +65,15 @@ class CheckUserService
                     'owner_partner' => $owner_partner->id,
                 ]);
 
-                Quantity_user_request::create([
-                    'user_id' => $newCheckUser->id,
-                    'partner_id' => $owner_partner->id,
-                    'check_user_id' => $newCheckUser->id,
-                    'type' => QuantityCheckUsersTypeEnum::DOWNLOAD,
-                ]);
+                // Используем идентификатор пользователя от администратора партнера
+                $user = $owner_partner->admin->first();
+                if ($user) {
+                    $this->createQuantityUserRequest($user->id,$owner_partner->id,$newCheckUser->id);
+                }
             }
         }
     }
+
 
 
     public function checkGroupUsers($request)
@@ -122,5 +118,40 @@ class CheckUserService
         $checkUser = CheckUser::query()->where('email',$email)->first();
 
         return $checkUser ? $checkUser : null;
+    }
+
+    protected function createQuantityUserRequest($userId, $ownerPartnerId, $checkUserId)
+    {
+        $currentPartner = PartnerService::getIdCurrentParnter($userId);
+
+        $checkQuantityUser = $this->checkQuantityCheckUser($userId, $currentPartner, $checkUserId);
+
+        if ($checkQuantityUser)
+        {
+            $checkQuantityUser->quantity += 1;
+
+            $checkQuantityUser->save();
+        }
+        else
+        {
+            Quantity_user_request::create([
+                'user_id' => $userId,
+                'partner_id' => $ownerPartnerId,
+                'check_user_id' => $checkUserId,
+                'type' => QuantityCheckUsersTypeEnum::DOWNLOAD,
+            ]);
+        }
+    }
+
+    protected function checkQuantityCheckUser($userId, $partnerID, $checkUserId)
+    {
+        $checkQuantityUser = Quantity_user_request::query()->where('check_user_id',$checkUserId)
+                                                            ->where('partner_id',$partnerID)
+                                                            ->where('user_id',$userId)
+                                                            ->first();
+        if ($checkQuantityUser)
+            return $checkQuantityUser;
+        else
+            return null;
     }
 }

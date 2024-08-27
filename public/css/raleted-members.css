@@ -1,0 +1,24 @@
+.box{
+
+}
+.select-item{
+    background-color: #FCEA8F;
+    width: auto;
+    display: inline-block;
+    border-radius: 10px;
+    border: #FF8000 2px solid;
+    color: #FF8000;
+    padding: 3px;
+    margin: 3px;
+}
+
+.select-item>button{
+    background-color: #ef4444;
+    border-radius: 10px;
+    border: #FF8000 2px solid;
+}
+
+.select-item>a{
+    color: #FF8000;
+    text-decoration: none;
+}

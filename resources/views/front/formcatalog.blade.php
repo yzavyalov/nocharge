@@ -16,20 +16,18 @@ Our endeavor focuses on facilitating the exchange of information regarding such 
 
 @section('content')
     <div class="container main">
-        <div class="row mt-6 page-title">
-            <div class="col title">
-                <h2>Catalogue.</h2>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row mb-4 mt-3 page-content">
-                <div class="col-md-6">
-                    <img src="{{ asset('img/catalog.png') }}" alt="api" class="img-fluid mb-3 mb-md-0">
-                </div>
-                <div class="col-md-6">
-                    <p>In the near future, we will launch an internet robot that will navigate through links and discover company websites. These companies will be categorized, offering website owners the opportunity to enhance the information they wish to convey to their clients. This will enable our participants to swiftly locate the partners they need, improving the search ranking of their websites. Within our catalogue, companies will be categorized by service offerings and markets, streamlining our participants' expenses for payment organization when entering new markets. Today, we are already working on this section of our website and will soon offer it to our participants.</p>
-                </div>
-            </div>
+        <div class="row">
+            <table>
+                @foreach($catalogItems as $item)
+                    <tr>
+                        <td>{{ $item->category }}</td>
+                        <td>{{ $item->link }}</td>
+                        <td>{{ $item->title }}</td>
+                        <td>{{ $item->description }}</td>
+                        <td>{{ $item->conditions }}</td>
+                    </tr>
+                @endforeach
+            </table>
         </div>
     </div>
 @endsection

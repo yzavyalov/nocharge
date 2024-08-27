@@ -12,6 +12,8 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        <link rel="icon" type="image/png" size="16x16" href="{{asset('img/Logo.png')}}">
+        <link rel="stylesheet" href="{{ asset('css/raleted-members.css') }}">
         @hasSection('style')
             @yield('style')
         @endif

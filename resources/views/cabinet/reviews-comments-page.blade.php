@@ -24,7 +24,15 @@
                                     <p>{{ $review->title }}</p>
                                     <p>{{ $review->description }}</p>
                                     <p>{{ $review->text }}</p>
-                                    <button class="btn btn-primary mt-2" onclick="toggleForm('addCommentForm')">Add Comment</button>
+                                    @livewire('chain-bad-items',['mainItem' => $review->id])
+                                    @livewire('raleted-members',['reviewId' => $review->id])
+                                    <button class="btn btn-primary mt-2 col-3" onclick="toggleForm('addCommentForm')">Add Comment</button>
+
+
+
+
+
+{{--                                    <button class="btn btn-info php artisan view:clearmt-2" onclick="toggleForm('relatedParties')">Related parties</button>--}}
                                     <form id="addCommentForm" method="post" action="{{ route('save-comment',$review->id) }}" style="display:none;">
                                         @if ($errors->any())
                                             <div class="alert alert-danger">
@@ -78,3 +86,5 @@
         }
     </script>
 </x-app-layout>
+
+

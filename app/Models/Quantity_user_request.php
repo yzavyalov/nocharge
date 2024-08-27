@@ -14,5 +14,6 @@ class Quantity_user_request extends Model
         'partner_id',
         'check_user_id',
         'type',
+        'quantity',
     ];
 }

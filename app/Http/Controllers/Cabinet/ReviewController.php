@@ -8,6 +8,7 @@ use App\Http\Requests\ReviewRequest;
 use App\Http\Requests\ReviewSearchRequest;
 use App\Models\Badbook\BadItem;
 use App\Services\IframeService;
+use App\Services\PartnerService;
 use App\Services\ReviewService;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,26 +28,19 @@ class ReviewController extends Controller
     {
         $validate = $request->validated();
 
-        if (Auth::user()->hasRole('redaktor'))
-            $ownerPartner = 1;
-        else
-            $ownerPartner = session()->get('partner_id');
+        $ownerPartner = PartnerService::getIdCurrentParnter(Auth::id());
 
         $validate['partner_id'] = $ownerPartner;
 
-        if ($validate['link'])
-        {
-            $a = ReviewService::checkBadItemInBase($validate);
-            $linkData = IframeService::getData($validate['link']);
+        $checkBadItem = ReviewService::checkBadItemIbDB($validate);
 
-            $validate['description'] = $linkData['description'];
+        if (!$checkBadItem)
+            ReviewService::createBadItem($validate);
+        else
+            ReviewService::createComment($validate, $checkBadItem);
 
-            $validate['image'] = $linkData['thumbnail_url'];
 
-            $validate['name'] ?: $validate['name'] = $linkData['title'];
-        }
-
-        $review = BadItem::create($validate);
+        ReviewService::chainChecked($validate);
 
         return redirect()->route('index-review');
     }

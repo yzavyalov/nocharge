@@ -22,7 +22,8 @@ class ReviewRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:150|unique:bad_items',
+//            'name' => 'required|string|max:150|unique:bad_items',
+            'name' => 'required|string|max:150',
             'category' => 'required|integer',
             'text' => 'required|string|max:600',
             'link' => 'url:http,https|nullable',
