@@ -46,7 +46,7 @@ class ReviewController extends Controller
     }
 
 
-    public function select(ReviewSearchRequest $request)
+    public function select(ReviewSearchRequest $request, string $view = 'cabinet.reviews-page')
     {
         $data = $request->validated();
 
@@ -62,7 +62,7 @@ class ReviewController extends Controller
 
         $middlemanTypes = MiddlemanTypeEnum::toSelectArray();
 
-        return view('cabinet.reviews-page',compact('reviews','middlemanTypes'));
+        return view($view,compact('reviews','middlemanTypes'));
     }
 
 
@@ -73,6 +73,11 @@ class ReviewController extends Controller
         $middlemanTypes = MiddlemanTypeEnum::toSelectArray();
 
         return view('cabinet.reviews-comments-page',compact('review','middlemanTypes'));
+    }
+
+    public function update()
+    {
+        //fd
     }
 
 }

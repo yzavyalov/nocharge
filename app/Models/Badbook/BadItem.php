@@ -2,6 +2,7 @@
 
 namespace App\Models\Badbook;
 
+use App\Models\Partners;
 use App\Models\Traits\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -12,6 +13,7 @@ class BadItem extends Model
 
     protected $fillable = [
         'partner_id',
+        'status',
         'name',
         'category',
         'text',
@@ -51,5 +53,27 @@ class BadItem extends Model
     public function secondaryBadItem(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(BadItem::class, 'connect_rewiews','main_bad_item_id','secondary_bad_item_id');
+    }
+
+
+    public function statuses()
+    {
+        return $this->hasMany(ReviewStatus::class,'bad_item_id','id');
+    }
+
+    public function confirmStatus():bool
+    {
+        $sum = $this->status()->latest()->first();
+
+        if ($sum && $sum->sum > 0) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function partner()
+    {
+        return $this->belongsTo(Partners::class);
     }
 }

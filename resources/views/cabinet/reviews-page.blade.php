@@ -75,7 +75,8 @@
                                 <th>Title</th>
                                 <th>Link</th>
                                 <th>Category</th>
-                                <th>Description</th>
+{{--                                <th>Description</th>--}}
+                                <th>Status</th>
                                 <th>Comments</th>
                                 <th>Actions</th>
                             </tr>
@@ -88,7 +89,12 @@
                                     <td><a href="{{ route('show-review',$review->id) }}">{{ $review->name }}</a></td>
                                     <td><a href="{{ $review->link }}">{{ $review->link }}</a></td>
                                     <td>{{ \App\Enums\MiddlemanTypeEnum::toSelectArray()[$review->category] }}</td>
-                                    <td>{{ $review->text }}</td>
+{{--                                    <td>{{ $review->text }}</td>--}}
+                                    <td>
+                                        <span class="badge @if($review->status == 1) bg-danger @else bg-success @endif p-2">
+                                            @if($review->status == 1) Confirmed @else Not Confirmed @endif
+                                        </span>
+                                    </td>
                                     <td>
                                         @if($review->comments->count() == 0)
                                             No comments yet

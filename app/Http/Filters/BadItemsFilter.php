@@ -10,6 +10,7 @@ class BadItemsFilter extends AbstractFilter
     public const PARTNER_ID = 'partner_id';
     public const CATEGORY = 'category';
     public const CREATED_AT = 'created_at';
+    public const STATUS = 'status';
 
     protected function getCallbacks(): array
     {
@@ -18,6 +19,7 @@ class BadItemsFilter extends AbstractFilter
             self::PARTNER_ID => [$this,'partner_id'],
             self::CATEGORY => [$this,'category'],
             self::CREATED_AT => [$this,'created_at'],
+            self::STATUS => [$this,'status'],
         ];
     }
 
@@ -25,11 +27,13 @@ class BadItemsFilter extends AbstractFilter
 
     public function search(Builder $builder, $search)
     {
-        return $builder->where('name', 'like', '%' . $search . '%')
-                       ->orWhere('text', 'like', '%' . $search . '%')
-                       ->orWhere('link', 'like', '%' . $search . '%')
-                       ->orWhere('title', 'like', '%' . $search . '%')
-                       ->orWhere('description', 'like', '%' . $search . '%');
+        return $builder->where(function ($query) use ($search) {
+            $query->where('name', 'like', '%' . $search . '%')
+                ->orWhere('text', 'like', '%' . $search . '%')
+                ->orWhere('link', 'like', '%' . $search . '%')
+                ->orWhere('title', 'like', '%' . $search . '%')
+                ->orWhere('description', 'like', '%' . $search . '%');
+        });
     }
 
 
@@ -46,5 +50,10 @@ class BadItemsFilter extends AbstractFilter
     public function created_at(Builder $builder, $created_at)
     {
         return $builder->where('created_at','>=',$created_at);
+    }
+
+    public function status(Builder $builder, $status)
+    {
+        return $builder->where('status',$status);
     }
 }

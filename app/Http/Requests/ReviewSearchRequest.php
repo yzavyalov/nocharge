@@ -27,6 +27,7 @@ class ReviewSearchRequest extends FormRequest
             'partner_id' => 'integer|nullable',
             'category' => 'integer|nullable',
             'created_at' => 'date|nullable',
+            'status' => 'integer|nullable',
         ];
     }
 }

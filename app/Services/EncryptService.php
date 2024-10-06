@@ -30,4 +30,9 @@ class EncryptService
         else
             return EncryptService::sha256hash($n);
     }
+
+    public static function preparationEmail($email)
+    {
+        return strtolower(str_replace(' ', '', $email));
+    }
 }

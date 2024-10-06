@@ -52,11 +52,11 @@ Our endeavor focuses on facilitating the exchange of information regarding such 
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{{route('no-frod-system')}}">The system of checking the user for the presence of chargebacks</a></li>
-                            <li><a class="dropdown-item" href="{{route('rewiews-system')}}">Reviews of unscrupulous mediators</a></li>
+{{--                            <li><a class="dropdown-item" href="{{route('rewiews-system')}}">Reviews of unscrupulous mediators</a></li>--}}
                             <li><a class="dropdown-item" href="{{route('ludoman-system')}}">System for verifying user data in ludomaniac registries</a></li>
                             <li><a class="dropdown-item" href="{{route('cascad-system')}}">Cascading payment management system</a></li>
                             <li><a class="dropdown-item" href="{{route('api')}}">API</a></li>
-                            <li><a class="dropdown-item" href="{{route('catalog')}}">Catalogue</a></li>
+                            <li><a class="dropdown-item" href="{{route('catalog-index')}}">Black List</a></li>
 {{--                            <li><hr class="dropdown-divider"></li>--}}
 {{--                            <li><a class="dropdown-item" href="#">Password generation system (Enigma)</a></li>--}}
                         </ul>
@@ -190,7 +190,7 @@ Our endeavor focuses on facilitating the exchange of information regarding such 
                 <li><a href="{{route('no-frod-system')}}">The system of checking the user for the presence of chargebacks</a></li>
                 <li><a href="{{route('rewiews-system')}}">Reviews of unscrupulous mediators</a></li>
                 <li><a href="{{route('api')}}">API</a></li>
-                <li><a href="{{route('catalog')}}">Catalogue</a></li>
+                <li><a href="{{route('catalog-index')}}">Black List</a></li>
             </ul>
         </div>
         <div class="col-lg-3 footcolumn">

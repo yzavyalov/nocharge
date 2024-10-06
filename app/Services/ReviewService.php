@@ -89,13 +89,16 @@ class ReviewService
     {
         if ($validate['link'])
         {
-            $linkData = IframeService::getData($validate['link']);
+            if(!IframeService::fourhundredfour($validate['link']))
+            {
+                $linkData = IframeService::getData($validate['link']);
 
-            $validate['description'] = $linkData['description'];
+                $validate['description'] = $linkData['description'];
 
-            $validate['image'] = $linkData['thumbnail_url'];
+                $validate['image'] = $linkData['thumbnail_url'];
 
-            $validate['name'] ?: $validate['name'] = $linkData['title'];
+                $validate['name'] ?: $validate['name'] = $linkData['title'];
+            }
         }
 
         BadItem::create($validate);

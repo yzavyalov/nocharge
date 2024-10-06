@@ -73,6 +73,7 @@
                     <th class="p-3">Name</th>
                     <th class="p-3">Link</th>
                     <th class="p-3">Reviews</th>
+                    <th class="p-3">Status</th>
                     <th class="p-3"></th>
                 </tr>
                 </thead>
@@ -83,6 +84,11 @@
                         <td class="p-3"><a href="{{ route('show-review',$review->id) }}">{{ $review->name }}</a></td>
                         <td class="p-3"><a href="{{ $review->link }}">{{ $review->link }}</a></td>
                         <td class="p-3">{{ $review->text }}</td>
+                        <td class="p-3">
+                            <span class="badge @if($review->status == 1) bg-danger @else bg-success @endif p-2">
+                               @if($review->status == 1) Confirmed @else Not Confirmed @endif
+                            </span>
+                        </td>
                         <td class="p-3 text-center">
                             <button class="btn btn-success" onclick="window.location.href='{{ route('show-review',$review->id) }}'">ADD COMMENT ({{ $review->comments->count() }})</button>
                         </td>

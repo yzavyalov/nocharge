@@ -68,42 +68,13 @@ class CodeController extends Controller
         return redirect()->back()->with(['anchor' => 'checkUser']);
     }
 
-//    public function addCheckUsers(EmailRequest $request)
-//    {
-//        if ($request->has('email'))
-//        {
-//            $mail = EncryptService::coding($request->email);
-//            $user = CheckUser::query()->where('email',$mail)->first();
-//            if (Auth::user()->hasRole('redaktor'))
-//                $ownerPartner = 1;
-//            else
-//                $ownerPartner = session()->get('partner_id');
-//
-//
-//            if (!isset($user))
-//                CheckUser::create([
-//                    'email' => $mail,
-//                    'owner_partner' => $ownerPartner,
-//                ]);
-//        }
-//            //идем по сохранению эмейла в базу
-//        if ($request->hasFile('file'))
-//            \Maatwebsite\Excel\Facades\Excel::import(new CheckUsersExcelImport, $request->file('file'));
-//
-//        session()->flash('success-add-check', 'Your bad guys had added!');
-//
-//        return redirect()->back();
-//    }
-
-
-
 
 
     public function addCheckUsers(EmailRequest $request)
     {
         try {
             if ($request->has('email')) {
-                $mail = EncryptService::coding($request->email);
+                $mail = EncryptService::coding(EncryptService::preparationEmail($request->email));
                 $user = CheckUser::query()->where('email', $mail)->first();
                 $ownerPartner = Auth::user()->hasRole('redaktor') ? 1 : session()->get('partner_id');
 

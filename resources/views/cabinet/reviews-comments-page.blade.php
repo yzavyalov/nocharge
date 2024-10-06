@@ -17,7 +17,11 @@
 
                                 <!-- Large Review Section -->
                                 <div class="border p-4 mb-4">
-                                    <img src="{{$review->image}}" alt="{{$review->title}}" style="width: 200px;">
+                                    <div class="row">
+                                        <div class="col-6"><img src="{{$review->image}}" alt="{{$review->title}}" style="width: 200px;"></div>
+                                        <div class="col-6">@livewire('review-status',['review' => $review])</div>
+                                    </div>
+
                                     <h3 class="text-xl font-semibold">{{ $review->name }}</h3>
                                     <p>{{  \App\Enums\MiddlemanTypeEnum::toSelectArray()[$review->category] }}</p>
                                     <p>{{ $review->link }}</p>
@@ -27,10 +31,6 @@
                                     @livewire('chain-bad-items',['mainItem' => $review->id])
                                     @livewire('raleted-members',['reviewId' => $review->id])
                                     <button class="btn btn-primary mt-2 col-3" onclick="toggleForm('addCommentForm')">Add Comment</button>
-
-
-
-
 
 {{--                                    <button class="btn btn-info php artisan view:clearmt-2" onclick="toggleForm('relatedParties')">Related parties</button>--}}
                                     <form id="addCommentForm" method="post" action="{{ route('save-comment',$review->id) }}" style="display:none;">
@@ -85,6 +85,7 @@
             form.style.display = form.style.display === 'none' ? 'block' : 'none';
         }
     </script>
+
 </x-app-layout>
 
 

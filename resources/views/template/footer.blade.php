@@ -18,7 +18,7 @@
                 <li><a href="{{route('no-frod-system')}}">The system of checking the user for the presence of chargebacks</a></li>
                 <li><a href="{{route('rewiews-system')}}">Reviews of unscrupulous mediators</a></li>
                 <li><a href="{{route('api')}}">API</a></li>
-                <li><a href="{{route('catalog')}}">Catalogue</a></li>
+                <li><a href="{{route('catalog-index')}}">Black List</a></li>
             </ul>
         </div>
         <div class="col-lg-3 footcolumn">

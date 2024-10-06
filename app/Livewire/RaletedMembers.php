@@ -76,6 +76,8 @@ class RaletedMembers extends Component
         }
 
         $this->showSearch = false;
+
+        $this->dispatch('linkReviews');
     }
     public function render()
     {

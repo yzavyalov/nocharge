@@ -52,7 +52,7 @@ Route::group(['middleware' => ['check.access']], function () {
     Route::get('/ludo-offer',[FrontController::class,'ludoOffer'])->name('ludo-offer');
     Route::post('/add-ludo',[LudomanController::class,'create'])->name('add-ludo');
     Route::get('/cascad-system',[FrontController::class,'cascadSystem'])->name('cascad-system');
-    Route::get('/catalog',[FrontController::class,'catalog'])->name('catalog');
+//    Route::get('/catalog',[FrontController::class,'catalog'])->name('catalog');
     Route::get('/protection',[FrontController::class,'protectionData'])->name('protection');
     Route::get('/links',[FrontController::class,'links'])->name('links');
 
@@ -73,6 +73,7 @@ Route::group(['middleware' => ['check.access']], function () {
     //catalog
     Route::prefix('/catalog')->group(function (){
         Route::get('index', [CatalogController::class,'index'])->name('catalog-index');
+        Route::get('select',[CatalogController::class,'selectFrontRevie'])->name('select-front-review');
     });
 
 Route::middleware([
@@ -120,6 +121,7 @@ Route::middleware([
             Route::get('review/search',[ReviewController::class,'select'])->name('search-review');
             Route::get('review/{id}',[ReviewController::class, 'show'])->name('show-review');
             Route::post('review/create',[ReviewController::class, 'create'])->name('save-review');
+            Route::post('review/update',[ReviewController::class, 'update'])->name('save-review');
 
             Route::post('review/{id}/comment/create',[CommentController::class,'create'])->name('save-comment');
             Route::get('review/comment/{id}/show',[CommentController::class,'show'])->name('show-comment');
