@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Enums\TokenTypeEnum;
 use App\Models\Partners;
 use App\Models\Token;
+use Illuminate\Support\Carbon;
 
 class TokenService
 {
@@ -41,5 +42,25 @@ class TokenService
                 }
             }
         }
+    }
+
+    public static function changeTokenFinishDate($tokenId)
+    {
+        $token = Token::query()->find($tokenId);
+
+        $finishDate = Carbon::parse($token->finish_date);
+
+        if ($finishDate > now())
+            return true;
+        else
+            return false;
+    }
+
+    public static function tokenExtendAndActive($token, $period)
+    {
+        $token->update([
+            'active'=> TokenTypeEnum::ACTIVE,
+            'finish_date' => Carbon::parse($token->finish_date)->addMonths($period),
+        ]);
     }
 }

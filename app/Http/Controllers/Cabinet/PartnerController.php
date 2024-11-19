@@ -61,7 +61,7 @@ class PartnerController extends Controller
         $partner = Partners::query()->find($id);
 
         $partner->users()->detach();
-        $partner->token()->delete();
+        $partner->tokens()->delete();
         $partner->payments()->delete();
 
         $partner->delete();

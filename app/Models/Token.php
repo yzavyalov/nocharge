@@ -18,6 +18,6 @@ class Token extends Model
 
     public function partner()
     {
-        return $this->belongsTo(Partners::class);
+        return $this->belongsTo(Partners::class, 'partner_id','id');
     }
 }

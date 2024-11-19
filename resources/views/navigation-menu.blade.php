@@ -19,8 +19,8 @@
                 <x-nav-link href="{{ route('cabinet-about') }}" :active="request()->routeIs('about')">
                     About our system
                 </x-nav-link>
-                <x-nav-link href="{{ route('cabinet-membership') }}" :active="request()->routeIs('membership')">
-                    Membership
+                <x-nav-link href="{{ route('payments.index') }}" :active="request()->routeIs('membership')">
+                    Your companies' balance
                 </x-nav-link>
                 <x-nav-link href="{{ route('cabinet-api') }}" :active="request()->routeIs('api')">
                     API Documentations

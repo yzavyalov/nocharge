@@ -101,11 +101,15 @@
 
     @endhasrole
 
-            @livewire('input-user')
-
             @livewire('input-encrypt')
 
+            @livewire('input-user')
+
             @livewire('intermediaries')
+
+            @livewire('check-user-email')
+
+            @livewire('check-sunction-list')
 
         </div>
     </div>

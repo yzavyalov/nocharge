@@ -14,6 +14,7 @@ class Partners extends Model
     protected $fillable = [
         'name',
         'type',
+        'balance',
     ];
 
     protected $guard = 'partner';
@@ -28,7 +29,7 @@ class Partners extends Model
         return $this->users()->role('user-admin');
     }
 
-    public function token()
+    public function tokens()
     {
         return $this->hasMany(Token::class,'partner_id','id');
     }

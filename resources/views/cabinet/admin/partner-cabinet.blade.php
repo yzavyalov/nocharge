@@ -28,6 +28,7 @@
                         <tr>
                             <th class="text-left">Name of company</th>
                             <th class="text-left">Token expiration date</th>
+                            <th class="text-left">Balance, USDT</th>
                             <th></th>
                         </tr>
                         </thead>
@@ -36,6 +37,7 @@
                             <tr>
                                 <td>{{ $company->name }}</td>
                                 <td>{{ $company->token->first() ? $company->token->first()->finish_date : '' }}</td>
+                                <td>{{ $company->balance ? $company->balance : '0.00' }}</td>
                                 <td>
                                     <button class="btn btn-success" onclick="window.location.href = '{{ route('page-partner',$company->id) }}'">
                                         SELECT

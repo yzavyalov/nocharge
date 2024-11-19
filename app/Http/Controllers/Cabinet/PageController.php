@@ -19,7 +19,8 @@ class PageController extends Controller
 
     public function membership()
     {
-        return view('cabinet.pages.membership-in-cabinet');
+//        return view('cabinet.pages.membership-in-cabinet');
+        return redirect()->route('packet-page');
     }
 
     public function apidocumentation()

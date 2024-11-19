@@ -12,10 +12,13 @@ use App\Http\Controllers\Cabinet\MessageController;
 use App\Http\Controllers\Cabinet\PageController;
 use App\Http\Controllers\Cabinet\PartnerController;
 use App\Http\Controllers\Cabinet\PaymentController;
+use App\Http\Controllers\Cabinet\PaymentResourceController;
 use App\Http\Controllers\Cabinet\ReviewController;
 use App\Http\Controllers\Cabinet\SubscriptionController;
 use App\Http\Controllers\Cabinet\UsefulLinksController;
 use App\Http\Controllers\CatalogController;
+use App\Http\Controllers\CheckSunctionNameController;
+use App\Http\Controllers\CheckUseremailController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\InvestitionController;
 use App\Http\Controllers\LudomanTransactionController;
@@ -36,6 +39,8 @@ use Laravel\Socialite\Facades\Socialite;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+
 
 Route::group(['middleware' => ['check.access']], function () {
     // Все ваши маршруты, к которым требуется проверка доступа
@@ -79,15 +84,24 @@ Route::group(['middleware' => ['check.access']], function () {
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
+//    'verified',
 ])->group(function () {
     Route::get('dashboard', [IndexController::class,'index'])->name('dashboard');
 
+
+    Route::prefix('cabinet')->group(function (){
         Route::get('/cabinet/about',[PageController::class, 'about'])->name('cabinet-about');
         Route::get('/cabinet/membership',[PageController::class, 'membership'])->name('cabinet-membership');
         Route::get('/cabinet/black-list',[PageController::class, 'blackList'])->name('cabinet-blacklist');
         Route::get('/cabinet/api-documentation',[PageController::class, 'apiDocumantation'])->name('cabinet-api');
         Route::get('/cabinet/contact-form',[PageController::class, 'contact'])->name('cabinet-contact');
         Route::get('/cabinet/policy',[PageController::class, 'policy'])->name('cabinet-policy');
+
+        Route::resources([
+            'payments' => PaymentResourceController::class,
+        ]);
+    });
+
 
         Route::post('/submit-email',[EmployeeController::class, 'emailForm'])->name('submit-email');
         Route::post('send/claim',[EmployeeController::class,'claim'])->name('send-claim');
@@ -108,10 +122,11 @@ Route::middleware([
 
         Route::get('packet-page',[IndexController::class,'packetPage'])->name('packet-page');
         Route::get('payment/{count}',[PaymentController::class,'createPayment'])->name('payment-create');
-        Route::get('/payment/save/{count}',[PaymentController::class, 'savePayment'])->name('save-payment');
+        Route::get('/payment/save/{sum}',[PaymentController::class, 'savePayment'])->name('save-payment');
         Route::get('/payment/{id}/oncheck',[PaymentController::class,'oncheck'])->name('oncheck-payment');
 
         Route::get('token/{id}/update',[TokenController::class,'update'])->name('token-update');
+        Route::post('token/{id}/extend',[TokenController::class,'tokenExtend'])->name('token-extend');
 
     Route::middleware('activeToken')->group(function () {
             Route::post('check', [CodeController::class, 'checkCode'])->name('check');
@@ -128,6 +143,8 @@ Route::middleware([
             Route::post('review/comment/{id}/update',[CommentController::class,'update'])->name('update-comment');
             Route::get('review/comment/{id}/delete',[CommentController::class,'delete'])->name('delete-comment');
 
+            Route::post('checkEmail',[CheckUseremailController::class,'checkUserEmail'])->name('check-email');
+            Route::post('checkSunction',[CheckSunctionNameController::class,'checkSunction'])->name('check-sunction');
         });
 
 

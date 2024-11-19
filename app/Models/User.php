@@ -14,13 +14,13 @@ use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use function Termwind\renderUsing;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
     use Notifiable;
-//    use TwoFactorAuthenticatable;
+    use TwoFactorAuthenticatable;
     use HasRoles;
 
     /**
